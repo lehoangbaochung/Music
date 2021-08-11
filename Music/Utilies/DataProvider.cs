@@ -8,29 +8,88 @@ namespace Music.Utilies
 {
     public class DataProvider
     {
-        #region Properties
-        public List<Song> Songs { get; } = new();
-        public List<Album> Albums { get; } = new();
-        public List<Artist> Artists { get; } = new();
-        public List<SongVideo> SongVideos { get; } = new();
-        public List<SongArtist> SongArtists { get; } = new();
-        public List<AlbumArtist> AlbumArtists { get; } = new();
+        #region Fields
+        private static readonly List<Song> songs = new();
+        private static readonly List<Album> albums = new();
+        private static readonly List<Artist> artists = new();
+        private static readonly List<Video> videos = new();
+        private static readonly List<SongArtist> songArtists = new();
+        private static readonly List<AlbumArtist> albumArtists = new();
         #endregion
 
-        #region Singleton
-        private static DataProvider instance;
-
-        public static DataProvider Instance
+        #region Properties
+        public static IList<Song> Songs
         {
             get
             {
-                if (instance == null)
+                if (songs.Count == 0)
                 {
-                    instance = new();
+                    GetSongs();
                 }
-                return instance;
+                return songs;
             }
         }
+
+        public static IList<Album> Albums
+        {
+            get
+            {
+                if (albums.Count == 0)
+                {
+                    GetAlbums();
+                }
+                return albums;
+            }
+        }
+
+        public static IList<Artist> Artists
+        {
+            get
+            {
+                if (artists.Count == 0)
+                {
+                    GetArtists();
+                }
+                return artists;
+            }
+        }
+
+        public static List<Video> Videos
+        {
+            get
+            {
+                if (videos.Count == 0)
+                {
+                    GetVideos();
+                }
+                return videos;
+            }
+        }
+
+        public static List<SongArtist> SongArtists
+        {
+            get
+            {
+                if (songArtists.Count == 0)
+                {
+                    GetSongArtists();
+                }
+                return songArtists;
+            }
+        }
+
+        public static List<AlbumArtist> AlbumArtists
+        {
+            get
+            {
+                if (albumArtists.Count == 0)
+                {
+                    //
+                }
+                return albumArtists;
+            }
+        }
+
         #endregion
 
         #region ColumnNames
@@ -40,7 +99,6 @@ namespace Music.Utilies
         // ids
         private const string ID = "id";
         private const string SONG_ID = "songid";
-        private const string VIDEO_ID = "videoid";
         private const string ALBUM_ID = "albumid";
         private const string ARTIST_ID = "artistid";
         private const string PLAYLIST_ID = "playlistid";
@@ -118,11 +176,10 @@ namespace Music.Utilies
             Parse(TC_DESC),
         };
 
-        private static readonly string[] songVideoColumns =
+        private static readonly string[] videoColumns =
         {
             Parse(ID),
             Parse(SONG_ID), 
-            Parse(VIDEO_ID), 
             Parse(RELEASE_DATE),
             Parse(DURATION)
         };
@@ -142,12 +199,28 @@ namespace Music.Utilies
         };
         #endregion
 
-        private DataProvider()
+        #region PARSE methods
+        private static string Parse(string columnName)
         {
-            // Song
+            return KEY + columnName;
+        }
+
+        private static dynamic Parse(Spreadsheet spreadsheet)
+        {
+            var address = $"https://spreadsheets.google.com/feeds/list/" +
+                $"{ Resource.SpreadsheetId }/{ (int)spreadsheet }/public/values?alt=json";
+            var jsonString = new WebClient().DownloadString(new System.Uri(address));
+            dynamic json = JsonConvert.DeserializeObject(jsonString);
+            return json.feed.entry;
+        }
+        #endregion
+
+        #region GET methods
+        private static void GetSongs()
+        {
             foreach (var row in Parse(Spreadsheet.Song))
             {
-                Songs.Add(new()
+                songs.Add(new()
                 {
                     Id = row[songColumns[0]][VALUE],
                     AlbumId = row[songColumns[1]][VALUE],
@@ -163,11 +236,13 @@ namespace Music.Utilies
                     Genre = row[songColumns[11]][VALUE],
                 });
             }
+        }    
 
-            // Album
+        private static void GetAlbums()
+        {
             foreach (var row in Parse(Spreadsheet.Album))
             {
-                Albums.Add(new()
+                albums.Add(new()
                 {
                     Id = row[albumColumns[0]][VALUE],
                     ReleaseDate = row[albumColumns[1]][VALUE],
@@ -180,11 +255,13 @@ namespace Music.Utilies
                     TraditionalChineseDescription = row[albumColumns[8]][VALUE],
                 });
             }
+        }
 
-            // Artist
+        private static void GetArtists()
+        {
             foreach (var row in Parse(Spreadsheet.Artist))
             {
-                Artists.Add(new()
+                artists.Add(new()
                 {
                     Id = row[artistColumns[0]][VALUE],
                     PlaylistId = row[artistColumns[1]][VALUE],
@@ -197,44 +274,34 @@ namespace Music.Utilies
                     TraditionalChineseDescription = row[artistColumns[8]][VALUE],
                 });
             }
+        }
 
-            // SongVideo
-            foreach (var row in Parse(Spreadsheet.SongVideo))
+        private static void GetVideos()
+        {
+            foreach (var row in Parse(Spreadsheet.Video))
             {
-                SongVideos.Add(new()
+                videos.Add(new()
                 {
-                    Id = row[songVideoColumns[0]][VALUE],
-                    SongId = row[songVideoColumns[1]][VALUE],
-                    VideoId = row[songVideoColumns[2]][VALUE],
-                    ReleaseDate = row[songVideoColumns[3]][VALUE],
-                    Duration = row[songVideoColumns[4]][VALUE]
+                    Id = row[videoColumns[0]][VALUE],
+                    SongId = row[videoColumns[1]][VALUE],
+                    ReleaseDate = row[videoColumns[2]][VALUE],
+                    Duration = row[videoColumns[3]][VALUE]
                 });
             }
+        }
 
-            // SongArtist
+        private static void GetSongArtists()
+        {
             foreach (var row in Parse(Spreadsheet.SongArtist))
             {
-                SongArtists.Add(new()
+                songArtists.Add(new()
                 {
                     Id = row[songArtistColumns[0]][VALUE],
                     SongId = row[songArtistColumns[1]][VALUE],
                     ArtistId = row[songArtistColumns[2]][VALUE]
                 });
-            } 
+            }
         }
-
-        private static string Parse(string columnName)
-        {
-            return KEY + columnName;
-        }
-
-        private static dynamic Parse(Spreadsheet spreadsheet)
-        {
-            var address = $"https://spreadsheets.google.com/feeds/list/" +
-                $"{ Resource.SpreadsheetId }/{ (int)spreadsheet }/public/values?alt=json";
-            var jsonString = new WebClient().DownloadString(new System.Uri(address));
-            dynamic json = JsonConvert.DeserializeObject(jsonString);
-            return json.feed.entry;
-        }
+        #endregion
     }
 }

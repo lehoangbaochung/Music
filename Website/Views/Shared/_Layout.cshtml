@@ -20,13 +20,13 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex font-weight-bold align-content-center justify-content-center">
+                <div class="navbar-collapse collapse d-sm-inline-flex font-weight-bold justify-content-end">
                     <ul class="navbar-nav flex-grow-0">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">BÀI HÁT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">CA SĨ</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Artist" asp-action="Index">CA SĨ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">ALBUM</a>
@@ -46,7 +46,17 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link text-dark dropdown-toggle mr-md-2"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">THÀNH VIÊN</a>
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NGÔN NGỮ</a>
+                            <div class="dropdown-menu dropdown-menu-right shadow" aria-labelledby="bd-versions">
+                                <a class="dropdown-item disabled"
+                                   asp-area="" asp-controller="Home" asp-action="Index">English</a>
+                                <a class="dropdown-item active"
+                                   asp-area="" asp-controller="Home" asp-action="Index">Tiếng Việt</a>
+                                <a class="dropdown-item disabled"
+                                   asp-area="" asp-controller="Home" asp-action="Index">中文（简体）</a>
+                                <a class="dropdown-item disabled"
+                                   asp-area="" asp-controller="Home" asp-action="Index">中文（繁体）</a>
+                            </div>
                         </li>
                     </ul>
                 </div>

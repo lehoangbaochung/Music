@@ -61,6 +61,51 @@ namespace Music {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to T002.
+        /// </summary>
+        internal static string AlbumImageId {
+            get {
+                return ResourceManager.GetString("AlbumImageId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to T001.
+        /// </summary>
+        internal static string ArtistImageId {
+            get {
+                return ResourceManager.GetString("ArtistImageId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R500x500M000.
+        /// </summary>
+        internal static string ImageCode {
+            get {
+                return ResourceManager.GetString("ImageCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .jpg.
+        /// </summary>
+        internal static string ImageExtension {
+            get {
+                return ResourceManager.GetString("ImageExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://y.gtimg.cn/music/photo_new/.
+        /// </summary>
+        internal static string ImageServerUrl {
+            get {
+                return ResourceManager.GetString("ImageServerUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI.
         /// </summary>
         internal static string SpreadsheetId {

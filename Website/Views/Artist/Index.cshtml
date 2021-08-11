@@ -1,8 +1,60 @@
-﻿
+﻿@model List<Music.Models.Artist>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ca sĩ";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var newArtist = Model[0];
+    var recommendArtist = Model[new Random().Next(0, Model.Count)];
 }
 
-<h1>Index</h1>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row g-0 border shadow rounded overflow-hidden flex-md-row mb-4 mr-1 h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-success">Mới</strong>
+                <h3 class="mb-1">@newArtist.VietnameseName</h3>
+                <div class="mb-2 text-muted text-right">@newArtist.SimplifiedChineseName</div>
+                <p class="mb-2">@newArtist.VietnameseDescription</p>
+                <a href="#" class="stretched-link">Thông tin thêm >></a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+                <img class="bd-placeholder-img rounded-circle p-3" 
+                     style="background-color:limegreen;"
+                     width="250" height="250" 
+                     src=@newArtist.ImageUrl aria-label="Image" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row g-0 border shadow rounded overflow-hidden flex-md-row mb-4 ml-1 h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">Đề xuất</strong>
+                <h3 class="mb-1">@recommendArtist.VietnameseName</h3>
+                <div class="mb-2 text-muted text-right">@recommendArtist.SimplifiedChineseName</div>
+                <p class="mb-2">@recommendArtist.SimplifiedChineseDescription</p>
+                <a href="#" class="stretched-link">Thông tin thêm >></a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+                <img class="bd-placeholder-img rounded-circle p-3" 
+                     style="background-color:royalblue;"
+                     width="250" height="250"
+                     src=@recommendArtist.ImageUrl aria-label="Image" />
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row text-center p-3">
+    @{
+        foreach (var artist in Model)
+        {
+            <div class="col-lg-3 p-3" style="height:75%;">
+                <img class="bd-placeholder-img rounded-circle shadow p-1" width="150" height="150"
+                     src=@artist.ImageUrl loading="lazy"
+                     aria-label="Placeholder: 140x140" />
+                <h4 class="p-3">@artist.VietnameseName</h4>
+                <p>@artist.SimplifiedChineseName</p>
+            </div>
+        }
+    }
+</div>
 

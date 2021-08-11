@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlbumImageId" xml:space="preserve">
+    <value>T002</value>
+  </data>
+  <data name="ArtistImageId" xml:space="preserve">
+    <value>T001</value>
+  </data>
+  <data name="ImageCode" xml:space="preserve">
+    <value>R500x500M000</value>
+  </data>
+  <data name="ImageExtension" xml:space="preserve">
+    <value>.jpg</value>
+  </data>
+  <data name="ImageServerUrl" xml:space="preserve">
+    <value>https://y.gtimg.cn/music/photo_new/</value>
+  </data>
   <data name="SpreadsheetId" xml:space="preserve">
     <value>1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI</value>
   </data>

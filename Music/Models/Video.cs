@@ -2,16 +2,13 @@
 
 namespace Music.Models
 {
-    public class SongVideo
+    public class Video
     {
         [Required]
         public int Id { get; set; }
 
         [Required]
         public int SongId { get; set; }
-
-        [Required]
-        public string VideoId { get; set; }
 
         [Required]
         [Display(Name = "Thời lượng")]
