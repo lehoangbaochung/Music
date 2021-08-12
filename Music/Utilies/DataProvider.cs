@@ -18,7 +18,7 @@ namespace Music.Utilies
         #endregion
 
         #region Properties
-        public static IList<Song> Songs
+        public static List<Song> Songs
         {
             get
             {
@@ -30,7 +30,7 @@ namespace Music.Utilies
             }
         }
 
-        public static IList<Album> Albums
+        public static List<Album> Albums
         {
             get
             {
@@ -42,7 +42,7 @@ namespace Music.Utilies
             }
         }
 
-        public static IList<Artist> Artists
+        public static List<Artist> Artists
         {
             get
             {
@@ -186,7 +186,6 @@ namespace Music.Utilies
 
         private static readonly string[] songArtistColumns =
         {
-            Parse(ID), 
             Parse(SONG_ID), 
             Parse(ARTIST_ID)
         };
@@ -207,11 +206,18 @@ namespace Music.Utilies
 
         private static dynamic Parse(Spreadsheet spreadsheet)
         {
-            var address = $"https://spreadsheets.google.com/feeds/list/" +
+            try
+            {
+                var address = $"https://spreadsheets.google.com/feeds/list/" +
                 $"{ Resource.SpreadsheetId }/{ (int)spreadsheet }/public/values?alt=json";
-            var jsonString = new WebClient().DownloadString(new System.Uri(address));
-            dynamic json = JsonConvert.DeserializeObject(jsonString);
-            return json.feed.entry;
+                var jsonString = new WebClient().DownloadString(address);
+                dynamic json = JsonConvert.DeserializeObject(jsonString);
+                return json.feed.entry;
+            }
+            catch (WebException)
+            {
+                return Parse(spreadsheet);
+            }
         }
         #endregion
 
@@ -296,9 +302,8 @@ namespace Music.Utilies
             {
                 songArtists.Add(new()
                 {
-                    Id = row[songArtistColumns[0]][VALUE],
-                    SongId = row[songArtistColumns[1]][VALUE],
-                    ArtistId = row[songArtistColumns[2]][VALUE]
+                    SongId = row[songArtistColumns[0]][VALUE],
+                    ArtistId = row[songArtistColumns[1]][VALUE]
                 });
             }
         }

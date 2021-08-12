@@ -120,6 +120,9 @@
   <data name="AlbumImageId" xml:space="preserve">
     <value>T002</value>
   </data>
+  <data name="Alphabet" xml:space="preserve">
+    <value>#,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,v,x,y,z</value>
+  </data>
   <data name="ArtistImageId" xml:space="preserve">
     <value>T001</value>
   </data>

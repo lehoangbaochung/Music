@@ -22,7 +22,7 @@ namespace Music {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
+    public class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Music {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Music.Resource", typeof(Resource).Assembly);
@@ -51,7 +51,7 @@ namespace Music {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace Music {
         /// <summary>
         ///   Looks up a localized string similar to T002.
         /// </summary>
-        internal static string AlbumImageId {
+        public static string AlbumImageId {
             get {
                 return ResourceManager.GetString("AlbumImageId", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to #,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,v,x,y,z.
+        /// </summary>
+        public static string Alphabet {
+            get {
+                return ResourceManager.GetString("Alphabet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to T001.
         /// </summary>
-        internal static string ArtistImageId {
+        public static string ArtistImageId {
             get {
                 return ResourceManager.GetString("ArtistImageId", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace Music {
         /// <summary>
         ///   Looks up a localized string similar to R500x500M000.
         /// </summary>
-        internal static string ImageCode {
+        public static string ImageCode {
             get {
                 return ResourceManager.GetString("ImageCode", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace Music {
         /// <summary>
         ///   Looks up a localized string similar to .jpg.
         /// </summary>
-        internal static string ImageExtension {
+        public static string ImageExtension {
             get {
                 return ResourceManager.GetString("ImageExtension", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace Music {
         /// <summary>
         ///   Looks up a localized string similar to https://y.gtimg.cn/music/photo_new/.
         /// </summary>
-        internal static string ImageServerUrl {
+        public static string ImageServerUrl {
             get {
                 return ResourceManager.GetString("ImageServerUrl", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace Music {
         /// <summary>
         ///   Looks up a localized string similar to 1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI.
         /// </summary>
-        internal static string SpreadsheetId {
+        public static string SpreadsheetId {
             get {
                 return ResourceManager.GetString("SpreadsheetId", resourceCulture);
             }
