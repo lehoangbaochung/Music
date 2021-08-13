@@ -2,7 +2,6 @@
     ViewData["Title"] = "Thông tin ca sĩ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <div class="row gutters-sm">
     <div class="col-md-4 mb-3">
         <div class="card">
@@ -13,8 +12,9 @@
                     <div class="mt-3">
                         <h4>@ViewBag.Artist.VietnameseName</h4>
                         <p class="text-secondary mb-3">@ViewBag.Artist.SimplifiedChineseName</p>
-                        <button class="btn btn-primary">Phát tất cả</button>
-                        <button class="btn btn-outline-primary">Thông tin thêm</button>
+                        <button class="btn btn-success">Bài hát</button>
+                        <button class="btn btn-warning">Album</button>
+                        <button class="btn btn-danger">Video</button>
                     </div>
                 </div>
             </div>
@@ -62,23 +62,31 @@
         <div class="card mb-3">
             <div class="card-body">
                 @{
+                    int i = 0;
                     foreach (var song in ViewBag.TopSongs)
                     {
+                        i++;
                         <div class="row">
-                            <div class="col-sm-6">
-                                <h6 class="mb-0">@song.VietnameseTitle</h6>
+                            <div class="col-sm-1">
+                                <h6 class="mb-0">@i</h6>
                             </div>
-                            <div class="col-sm-6 text-secondary">
-                                @song.SimplifiedChineseTitle
+                            <div class="col-sm-6">
+                                <h6 class="mb-0">@song.VietnameseName</h6>
+                            </div>
+                            <div class="col-sm-4 text-secondary">
+                                @song.SimplifiedChineseName
+                            </div>
+                            <div class="col-sm-1">
+                                <a class="btn btn-info">></a>
                             </div>
                         </div>
                         <hr />
                     }
                 }
-                <div class="row">
-                    <div class="col-sm-6">
-                        <a class="btn btn-info align-content-center">Xem tất cả</a>
-                    </div>
+                <div class="mt-3">
+                    <a class="btn btn-info align-content-center m-0">Phát tất cả</a>
+                    <a class="btn btn-info align-content-center m-0">Phát ngẫu nhiên</a>
+                    <a class="btn btn-info align-content-center m-0">Tải xuống</a>
                 </div>
             </div>
         </div>

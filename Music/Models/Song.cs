@@ -1,18 +1,12 @@
-﻿namespace Music.Models
+﻿using Music.Interfaces;
+
+namespace Music.Models
 {
-    public class Song
+    public class Song : BaseModel, ILyric
     {
-        public int Id { get; set; }
+        public new int Id { get; set; }
 
         public string AlbumId { get; set; }
-
-        public string VietnameseTitle { get; set; }
-
-        public string PinyinTitle { get; set; }
-
-        public string SimplifiedChineseTitle { get; set; }
-
-        public string TraditionalChineseTitle { get; set; }
 
         public string VietnameseLyric { get; set; }
 

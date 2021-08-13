@@ -1,6 +1,6 @@
 ﻿namespace Music.Enumerables
 {
-    public enum AlbumGenre
+    public enum AlbumGenre : uint
     {
         Single,
         Album

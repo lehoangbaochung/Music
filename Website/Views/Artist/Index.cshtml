@@ -57,9 +57,10 @@
         foreach (var artist in ViewBag.Artists)
         {
             <div class="col-lg-3 p-3" style="height:75%;">
-                <img class="bd-placeholder-img rounded-circle shadow p-1" width="150" height="150"
-                     href="/Artist/Detail/@artist.Id"
-                     src=@artist.ImageUrl loading="lazy" aria-label="artist" />
+                <a href="/Artist/Detail/@artist.Id">
+                    <img class="bd-placeholder-img rounded-circle shadow p-1" width="150" height="150"
+                         src=@artist.ImageUrl loading="lazy" aria-label="artist" />
+                </a>
                 <h4 class="p-3">@artist.VietnameseName</h4>
                 <p>@artist.SimplifiedChineseName</p>
             </div>

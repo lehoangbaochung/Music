@@ -88,6 +88,51 @@ namespace Music {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to a,á,à,ả,ã,ạ,ă,ắ,ằ,ẳ,ẵ,ặ,â,ấ,ầ,ẩ,ẫ,ậ.
+        /// </summary>
+        public static string CharactersA {
+            get {
+                return ResourceManager.GetString("CharactersA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to d,đ.
+        /// </summary>
+        public static string CharactersD {
+            get {
+                return ResourceManager.GetString("CharactersD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to e,é,è,ẻ,ẽ,ẹ,ê,ế,ề,ể,ễ,ệ.
+        /// </summary>
+        public static string CharactersE {
+            get {
+                return ResourceManager.GetString("CharactersE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to o,ó,ò,ỏ,õ,ọ,ô,ố,ồ,ổ,ỗ,ộ,ơ,ớ,ờ,ở,ỡ,ợ.
+        /// </summary>
+        public static string CharactersO {
+            get {
+                return ResourceManager.GetString("CharactersO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to u,ú,ù,ủ,ũ,ụ,ư,ứ,ừ,ử,ữ,ự.
+        /// </summary>
+        public static string CharactersU {
+            get {
+                return ResourceManager.GetString("CharactersU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to R500x500M000.
         /// </summary>
         public static string ImageCode {
@@ -111,6 +156,15 @@ namespace Music {
         public static string ImageServerUrl {
             get {
                 return ResourceManager.GetString("ImageServerUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0,1,2,3,4,5,6,7,8,9.
+        /// </summary>
+        public static string NumberCharacters {
+            get {
+                return ResourceManager.GetString("NumberCharacters", resourceCulture);
             }
         }
         

@@ -109,12 +109,6 @@ namespace Music.Utilies
         private const string SC_NAME = "scname";
         private const string TC_NAME = "tcname";
 
-        // titles
-        private const string VN_TITLE = "vntitle";
-        private const string PY_TITLE = "pytitle";
-        private const string SC_TITLE = "sctitle";
-        private const string TC_TITLE = "tctitle";
-
         // lyrics
         private const string VN_LYRIC = "vnlyric";
         private const string PY_LYRIC = "pylyric";
@@ -139,10 +133,10 @@ namespace Music.Utilies
             Parse(ID),
             Parse(ALBUM_ID),
             Parse(RELEASE_DATE),
-            Parse(VN_TITLE),
-            Parse(PY_TITLE),
-            Parse(SC_TITLE),
-            Parse(TC_TITLE),
+            Parse(VN_NAME),
+            Parse(PY_NAME),
+            Parse(SC_NAME),
+            Parse(TC_NAME),
             Parse(VN_LYRIC),
             Parse(PY_LYRIC),
             Parse(SC_LYRIC),
@@ -152,12 +146,12 @@ namespace Music.Utilies
 
         private static readonly string[] albumColumns =
         {
-            Parse(ALBUM_ID),
+            Parse(ID),
             Parse(RELEASE_DATE),
-            Parse(VN_TITLE),
-            Parse(PY_TITLE),
-            Parse(SC_TITLE),
-            Parse(TC_TITLE),
+            Parse(VN_NAME),
+            Parse(PY_NAME),
+            Parse(SC_NAME),
+            Parse(TC_NAME),
             Parse(VN_DESC),
             Parse(SC_DESC),
             Parse(TC_DESC),
@@ -231,10 +225,10 @@ namespace Music.Utilies
                     Id = row[songColumns[0]][VALUE],
                     AlbumId = row[songColumns[1]][VALUE],
                     ReleaseDate = row[songColumns[2]][VALUE],
-                    VietnameseTitle = row[songColumns[3]][VALUE],
-                    PinyinTitle = row[songColumns[4]][VALUE],
-                    SimplifiedChineseTitle = row[songColumns[5]][VALUE],
-                    TraditionalChineseTitle = row[songColumns[6]][VALUE],
+                    VietnameseName = row[songColumns[3]][VALUE],
+                    PinyinName = row[songColumns[4]][VALUE],
+                    SimplifiedChineseName = row[songColumns[5]][VALUE],
+                    TraditionalChineseName = row[songColumns[6]][VALUE],
                     VietnameseLyric = row[songColumns[7]][VALUE],
                     PinyinLyric = row[songColumns[8]][VALUE],
                     SimplifiedChineseLyric = row[songColumns[9]][VALUE],
@@ -252,10 +246,10 @@ namespace Music.Utilies
                 {
                     Id = row[albumColumns[0]][VALUE],
                     ReleaseDate = row[albumColumns[1]][VALUE],
-                    VietnameseTitle = row[albumColumns[2]][VALUE],
-                    PinyinTitle = row[albumColumns[3]][VALUE],
-                    SimplifiedChineseTitle = row[albumColumns[4]][VALUE],
-                    TraditionalChineseTitle = row[albumColumns[5]][VALUE],
+                    VietnameseName = row[albumColumns[2]][VALUE],
+                    PinyinName = row[albumColumns[3]][VALUE],
+                    SimplifiedChineseName = row[albumColumns[4]][VALUE],
+                    TraditionalChineseName = row[albumColumns[5]][VALUE],
                     VietnameseDescription = row[albumColumns[6]][VALUE],
                     SimplifiedChineseDescription = row[albumColumns[7]][VALUE],
                     TraditionalChineseDescription = row[albumColumns[8]][VALUE],

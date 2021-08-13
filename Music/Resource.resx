@@ -126,6 +126,21 @@
   <data name="ArtistImageId" xml:space="preserve">
     <value>T001</value>
   </data>
+  <data name="CharactersA" xml:space="preserve">
+    <value>a,á,à,ả,ã,ạ,ă,ắ,ằ,ẳ,ẵ,ặ,â,ấ,ầ,ẩ,ẫ,ậ</value>
+  </data>
+  <data name="CharactersD" xml:space="preserve">
+    <value>d,đ</value>
+  </data>
+  <data name="CharactersE" xml:space="preserve">
+    <value>e,é,è,ẻ,ẽ,ẹ,ê,ế,ề,ể,ễ,ệ</value>
+  </data>
+  <data name="CharactersO" xml:space="preserve">
+    <value>o,ó,ò,ỏ,õ,ọ,ô,ố,ồ,ổ,ỗ,ộ,ơ,ớ,ờ,ở,ỡ,ợ</value>
+  </data>
+  <data name="CharactersU" xml:space="preserve">
+    <value>u,ú,ù,ủ,ũ,ụ,ư,ứ,ừ,ử,ữ,ự</value>
+  </data>
   <data name="ImageCode" xml:space="preserve">
     <value>R500x500M000</value>
   </data>
@@ -134,6 +149,9 @@
   </data>
   <data name="ImageServerUrl" xml:space="preserve">
     <value>https://y.gtimg.cn/music/photo_new/</value>
+  </data>
+  <data name="NumberCharacters" xml:space="preserve">
+    <value>0,1,2,3,4,5,6,7,8,9</value>
   </data>
   <data name="SpreadsheetId" xml:space="preserve">
     <value>1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI</value>

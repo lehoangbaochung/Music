@@ -11,14 +11,7 @@ namespace Website.Controllers
         {
             var artists = DataProvider.Artists;
 
-            if (id.Equals('/'))
-            {
-                ViewBag.Artists = artists.OrderBy(artist => artist.VietnameseName);
-            }    
-            else
-            {
-                ViewBag.Artists = artists.Where(a => a.VietnameseName.StartsWith(id));
-            }    
+            ViewBag.Artists = ArtistHelper.Where(artists, id);  
 
             ViewBag.NewArtist = artists[0];
             ViewBag.HotArtist = artists[new Random().Next(0, artists.Count)];
@@ -54,7 +47,7 @@ namespace Website.Controllers
             // Pass data to view
             ViewBag.Artist = artist;
             ViewBag.Songs = songs;
-            ViewBag.Albums = albums.Take(10);
+            ViewBag.Albums = albums;
 
             ViewBag.TopSongs = songs.Take(10);
             ViewBag.TopAlbums = albums.Take(5);
