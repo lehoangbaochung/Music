@@ -1,6 +1,6 @@
 ﻿namespace Music.Models
 {
-    public class Album : BaseModel
+    public class Album : Base
     {
         public string ReleaseDate { get; set; }
 

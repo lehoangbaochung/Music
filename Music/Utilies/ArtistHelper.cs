@@ -83,9 +83,9 @@ namespace Music.Utilies
             return outterList;
         }
 
-        public static IList<BaseModel> Where(List<BaseModel> sourceList, char character)
+        public static IList<Base> Where(List<Base> sourceList, char character)
         {
-            List<BaseModel> outterList = new();
+            List<Base> outterList = new();
 
             if (char.IsLower(character))
             {

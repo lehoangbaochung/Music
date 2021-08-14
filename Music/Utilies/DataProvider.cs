@@ -1,4 +1,4 @@
-﻿using Music.Enumerables;
+﻿using Music.Enumerables.Tables;
 using Music.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -24,21 +24,25 @@ namespace Music.Utilies
             {
                 if (songs.Count == 0)
                 {
-                    GetSongs();
-                }
+                    foreach (var row in Parse(nameof(Song)))
+                    {
+                        songs.Add(new()
+                        {
+                            Id = row[(int)SongTable.Id],
+                            ArtistId = row[(int)SongTable.ArtistId],
+                            VietnameseName = row[(int)SongTable.VietnameseName],
+                            PinyinName = row[(int)SongTable.PinyinName],
+                            SimplifiedChineseName = row[(int)SongTable.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)SongTable.TraditionalChineseName],
+                            //VietnameseLyric = row[SongTable.VietnameseLyric],
+                            //PinyinLyric = row[SongTable.PinyinLyric],
+                            //SimplifiedChineseLyric = row[SongTable.SimplifiedChineseLyric],
+                            //TraditionalChineseLyric = row[SongTable.TraditionalChineseLyric],
+                            //Genre = row[SongTable.Genre]
+                        });
+                    }
+                }    
                 return songs;
-            }
-        }
-
-        public static List<Album> Albums
-        {
-            get
-            {
-                if (albums.Count == 0)
-                {
-                    GetAlbums();
-                }
-                return albums;
             }
         }
 
@@ -48,9 +52,46 @@ namespace Music.Utilies
             {
                 if (artists.Count == 0)
                 {
-                    GetArtists();
+                    foreach (var row in Parse(nameof(Artist)))
+                    {
+                        artists.Add(new()
+                        {
+                            Id = row[(int)ArtistTable.Id],
+                            //PlaylistId = row[(int)ArtistTable.PlaylistId],
+                            VietnameseName = row[(int)ArtistTable.VietnameseName],
+                            PinyinName = row[(int)ArtistTable.PinyinName],
+                            SimplifiedChineseName = row[(int)ArtistTable.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)ArtistTable.TraditionalChineseName]
+                        });
+                    }
                 }
                 return artists;
+            }
+        }
+
+        public static List<Album> Albums
+        {
+            get
+            {
+                if (albums.Count == 0)
+                {
+                    foreach (var row in Parse(nameof(Album)))
+                    {
+                        albums.Add(new()
+                        {
+                            Id = row[AlbumTable.Id],
+                            ReleaseDate = row[AlbumTable.Id],
+                            VietnameseName = row[AlbumTable.Id],
+                            PinyinName = row[AlbumTable.Id],
+                            SimplifiedChineseName = row[AlbumTable.Id],
+                            TraditionalChineseName = row[AlbumTable.Id],
+                            VietnameseDescription = row[AlbumTable.Id],
+                            SimplifiedChineseDescription = row[AlbumTable.Id],
+                            TraditionalChineseDescription = row[AlbumTable.Id],
+                        });
+                    }
+                }
+                return albums;
             }
         }
 
@@ -60,247 +101,29 @@ namespace Music.Utilies
             {
                 if (videos.Count == 0)
                 {
-                    GetVideos();
+                    foreach (var row in Parse(nameof(Video)))
+                    {
+                        videos.Add(new()
+                        {
+                            Id = row[(int)VideoTable.Id],
+                            SongId = row[(int)VideoTable.SongId],
+                            Duration = row[(int)VideoTable.Duration],
+                            //ReleaseDate = row[(int)VideoTable.ReleaseDate]
+                        });
+                    }
                 }
                 return videos;
             }
         }
-
-        public static List<SongArtist> SongArtists
-        {
-            get
-            {
-                if (songArtists.Count == 0)
-                {
-                    GetSongArtists();
-                }
-                return songArtists;
-            }
-        }
-
-        public static List<AlbumArtist> AlbumArtists
-        {
-            get
-            {
-                if (albumArtists.Count == 0)
-                {
-                    //
-                }
-                return albumArtists;
-            }
-        }
-
         #endregion
 
-        #region ColumnNames
-        private const string KEY = "gsx$";
-        private const string VALUE = "$t";
-
-        // ids
-        private const string ID = "id";
-        private const string SONG_ID = "songid";
-        private const string ALBUM_ID = "albumid";
-        private const string ARTIST_ID = "artistid";
-        private const string PLAYLIST_ID = "playlistid";
-
-        // names
-        private const string VN_NAME = "vnname";
-        private const string PY_NAME = "pyname";
-        private const string SC_NAME = "scname";
-        private const string TC_NAME = "tcname";
-
-        // lyrics
-        private const string VN_LYRIC = "vnlyric";
-        private const string PY_LYRIC = "pylyric";
-        private const string SC_LYRIC = "sclyric";
-        private const string TC_LYRIC = "tclyric";
-
-        // descriptions
-        private const string VN_DESC = "vndesc";
-        private const string PY_DESC = "pydesc";
-        private const string SC_DESC = "scdesc";
-        private const string TC_DESC = "tcdesc";
-
-        // others
-        private const string DURATION = "duration";
-        private const string GENRE = "genre";
-        private const string RELEASE_DATE = "releasedate";
-        #endregion
-
-        #region TableNames
-        private static readonly string[] songColumns =
+        private static dynamic Parse(string tableName)
         {
-            Parse(ID),
-            Parse(ALBUM_ID),
-            Parse(RELEASE_DATE),
-            Parse(VN_NAME),
-            Parse(PY_NAME),
-            Parse(SC_NAME),
-            Parse(TC_NAME),
-            Parse(VN_LYRIC),
-            Parse(PY_LYRIC),
-            Parse(SC_LYRIC),
-            Parse(TC_LYRIC),
-            Parse(GENRE)
-        };
-
-        private static readonly string[] albumColumns =
-        {
-            Parse(ID),
-            Parse(RELEASE_DATE),
-            Parse(VN_NAME),
-            Parse(PY_NAME),
-            Parse(SC_NAME),
-            Parse(TC_NAME),
-            Parse(VN_DESC),
-            Parse(SC_DESC),
-            Parse(TC_DESC),
-        };
-
-        private static readonly string[] artistColumns =
-        {
-            Parse(ID),
-            Parse(PLAYLIST_ID),
-            Parse(VN_NAME),
-            Parse(PY_NAME),
-            Parse(SC_NAME),
-            Parse(TC_NAME),
-            Parse(VN_DESC),
-            Parse(SC_DESC),
-            Parse(TC_DESC),
-        };
-
-        private static readonly string[] videoColumns =
-        {
-            Parse(ID),
-            Parse(SONG_ID), 
-            Parse(RELEASE_DATE),
-            Parse(DURATION)
-        };
-
-        private static readonly string[] songArtistColumns =
-        {
-            Parse(SONG_ID), 
-            Parse(ARTIST_ID)
-        };
-
-        private static readonly string[] albumArtistColumns =
-        {
-            Parse(ID), 
-            Parse(ALBUM_ID), 
-            Parse(ARTIST_ID)
-        };
-        #endregion
-
-        #region PARSE methods
-        private static string Parse(string columnName)
-        {
-            return KEY + columnName;
+            var address = $"https://sheets.googleapis.com/v4/spreadsheets/" +
+                $"{ Resource.SpreadsheetId }/values/{ tableName }?key={ Resource.ApiKey }";
+            var jsonString = new WebClient().DownloadString(address);
+            dynamic json = JsonConvert.DeserializeObject(jsonString);
+            return json.values;
         }
-
-        private static dynamic Parse(Spreadsheet spreadsheet)
-        {
-            try
-            {
-                var address = $"https://spreadsheets.google.com/feeds/list/" +
-                $"{ Resource.SpreadsheetId }/{ (int)spreadsheet }/public/values?alt=json";
-                var jsonString = new WebClient().DownloadString(address);
-                dynamic json = JsonConvert.DeserializeObject(jsonString);
-                return json.feed.entry;
-            }
-            catch (WebException)
-            {
-                return Parse(spreadsheet);
-            }
-        }
-        #endregion
-
-        #region GET methods
-        private static void GetSongs()
-        {
-            foreach (var row in Parse(Spreadsheet.Song))
-            {
-                songs.Add(new()
-                {
-                    Id = row[songColumns[0]][VALUE],
-                    AlbumId = row[songColumns[1]][VALUE],
-                    ReleaseDate = row[songColumns[2]][VALUE],
-                    VietnameseName = row[songColumns[3]][VALUE],
-                    PinyinName = row[songColumns[4]][VALUE],
-                    SimplifiedChineseName = row[songColumns[5]][VALUE],
-                    TraditionalChineseName = row[songColumns[6]][VALUE],
-                    VietnameseLyric = row[songColumns[7]][VALUE],
-                    PinyinLyric = row[songColumns[8]][VALUE],
-                    SimplifiedChineseLyric = row[songColumns[9]][VALUE],
-                    TraditionalChineseLyric = row[songColumns[10]][VALUE],
-                    Genre = row[songColumns[11]][VALUE],
-                });
-            }
-        }    
-
-        private static void GetAlbums()
-        {
-            foreach (var row in Parse(Spreadsheet.Album))
-            {
-                albums.Add(new()
-                {
-                    Id = row[albumColumns[0]][VALUE],
-                    ReleaseDate = row[albumColumns[1]][VALUE],
-                    VietnameseName = row[albumColumns[2]][VALUE],
-                    PinyinName = row[albumColumns[3]][VALUE],
-                    SimplifiedChineseName = row[albumColumns[4]][VALUE],
-                    TraditionalChineseName = row[albumColumns[5]][VALUE],
-                    VietnameseDescription = row[albumColumns[6]][VALUE],
-                    SimplifiedChineseDescription = row[albumColumns[7]][VALUE],
-                    TraditionalChineseDescription = row[albumColumns[8]][VALUE],
-                });
-            }
-        }
-
-        private static void GetArtists()
-        {
-            foreach (var row in Parse(Spreadsheet.Artist))
-            {
-                artists.Add(new()
-                {
-                    Id = row[artistColumns[0]][VALUE],
-                    PlaylistId = row[artistColumns[1]][VALUE],
-                    VietnameseName = row[artistColumns[2]][VALUE],
-                    PinyinName = row[artistColumns[3]][VALUE],
-                    SimplifiedChineseName = row[artistColumns[4]][VALUE],
-                    TraditionalChineseName = row[artistColumns[5]][VALUE],
-                    VietnameseDescription = row[artistColumns[6]][VALUE],
-                    SimplifiedChineseDescription = row[artistColumns[7]][VALUE],
-                    TraditionalChineseDescription = row[artistColumns[8]][VALUE],
-                });
-            }
-        }
-
-        private static void GetVideos()
-        {
-            foreach (var row in Parse(Spreadsheet.Video))
-            {
-                videos.Add(new()
-                {
-                    Id = row[videoColumns[0]][VALUE],
-                    SongId = row[videoColumns[1]][VALUE],
-                    ReleaseDate = row[videoColumns[2]][VALUE],
-                    Duration = row[videoColumns[3]][VALUE]
-                });
-            }
-        }
-
-        private static void GetSongArtists()
-        {
-            foreach (var row in Parse(Spreadsheet.SongArtist))
-            {
-                songArtists.Add(new()
-                {
-                    SongId = row[songArtistColumns[0]][VALUE],
-                    ArtistId = row[songArtistColumns[1]][VALUE]
-                });
-            }
-        }
-        #endregion
     }
 }

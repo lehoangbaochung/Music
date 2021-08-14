@@ -79,6 +79,15 @@ namespace Music {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s.
+        /// </summary>
+        public static string ApiKey {
+            get {
+                return ResourceManager.GetString("ApiKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to T001.
         /// </summary>
         public static string ArtistImageId {

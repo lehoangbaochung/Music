@@ -2,7 +2,7 @@
 
 namespace Music.Models
 {
-    public class BaseModel : IName, IDescription
+    public class Base : IName, IDescription
     {
         public string Id { get; set; }
 

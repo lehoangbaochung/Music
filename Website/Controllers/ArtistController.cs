@@ -21,36 +21,29 @@ namespace Website.Controllers
 
         public IActionResult Detail(string id)
         {
-            // Get detail of this artist by id
-            var artist = DataProvider.Artists.Find(artist => artist.Id.Equals(id));
+            ViewBag.Artist = DataProvider.Artists
+                .Find(artist => artist.Id.Equals(id));
 
-            if (artist == null)
+            if (ViewBag.Artist == null)
             {
                 return NotFound();
             }
 
-            var songArtists = DataProvider.SongArtists.Where(
-                songArtist => songArtist.ArtistId.Equals(id));
+            //var songs = DataProvider.Songs.Join(songs, 
+            //    song => song.Id, 
+            //    songArtist => songArtist.SongId,
+            //    (song, songArtist) => song).ToList();
 
-            // Get all songs of this artist
-            var songs = DataProvider.Songs.Join(songArtists, 
-                song => song.Id, 
-                songArtist => songArtist.SongId,
-                (song, songArtist) => song);
+            //var albums = DataProvider.Albums.Join(albums,
+            //    album => album.Id,
+            //    albumArtist => albumArtist.AlbumId,
+            //    (album, albumArtist) => album).ToList();
 
-            // Get all albums of this artist
-            var albums = DataProvider.Albums.Join(songs,
-                album => album.Id,
-                song => song.AlbumId,
-                (album, song) => album);
-
-            // Pass data to view
-            ViewBag.Artist = artist;
-            ViewBag.Songs = songs;
-            ViewBag.Albums = albums;
-
-            ViewBag.TopSongs = songs.Take(10);
-            ViewBag.TopAlbums = albums.Take(5);
+            //// Pass data to view
+            //ViewBag.Songs = songs;
+            //ViewBag.Albums = albums;
+            //ViewBag.TopSongs = songs.OrderByDescending(song => song.Id).Take(10);
+            //ViewBag.TopAlbums = albums.OrderBy(album => album.Id).Take(6);
 
             return View();
         }
