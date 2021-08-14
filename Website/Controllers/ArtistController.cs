@@ -22,32 +22,33 @@ namespace Website.Controllers
         public IActionResult Detail(string id)
         {
             // Get detail of this artist by id
-            var artist = DataProvider.Artists.Find(artist => artist.Id.Equals(id));
+            var artist = DataProvider.Artists
+                .Find(artist => artist.Id.Equals(id));
 
             if (artist == null)
             {
                 return NotFound();
             }
 
+            // Get all songs of this artist
             var songArtists = DataProvider.SongArtists.Where(
                 songArtist => songArtist.ArtistId.Equals(id));
 
-            // Get all songs of this artist
             var songs = DataProvider.Songs.Join(songArtists, 
                 song => song.Id, 
                 songArtist => songArtist.SongId,
-                (song, songArtist) => song);
+                (song, songArtist) => song).ToList();
 
             // Get all albums of this artist
             var albums = DataProvider.Albums.Join(songs,
                 album => album.Id,
                 song => song.AlbumId,
-                (album, song) => album);
+                (album, song) => album).ToList();
 
             // Pass data to view
             ViewBag.Artist = artist;
-            ViewBag.Songs = songs;
-            ViewBag.Albums = albums;
+            ViewBag.Songs = songs.ToList();
+            ViewBag.Albums = albums.ToList();
 
             ViewBag.TopSongs = songs.Take(10);
             ViewBag.TopAlbums = albums.Take(5);

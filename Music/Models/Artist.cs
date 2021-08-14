@@ -1,15 +1,11 @@
 ﻿namespace Music.Models
 {
-    public class Artist : BaseModel
+    public class Artist : User
     {
         public string PlaylistId { get; set; }
 
-        public bool? Gender { get; set; }
-
-        public string ImageUrl
+        public new string ImageUrl
             => Resource.ImageServerUrl + Resource.ArtistImageId
              + Resource.ImageCode + Id + Resource.ImageExtension;
-
-
     }
 }

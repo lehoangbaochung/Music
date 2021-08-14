@@ -1,11 +1,15 @@
 ﻿namespace Music.Interfaces
 {
-    interface IProfile
+    interface IProfile : IFullName, IDescription
     {
-        string Fullname { get; set; }
+        string Id { get; set; }
+
+        int? Gender { get; set; }
 
         string Birthday { get; set; }
 
         string Address { get; set; }
+
+        string ImageUrl { get; }
     }
 }

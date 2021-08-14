@@ -57,7 +57,7 @@
         foreach (var artist in ViewBag.Artists)
         {
             <div class="col-lg-3 p-3" style="height:75%;">
-                <a href="/Artist/Detail/@artist.Id">
+                <a asp-controller="Artist" asp-action="Detail" asp-route-id="@artist.Id">
                     <img class="bd-placeholder-img rounded-circle shadow p-1" width="150" height="150"
                          src=@artist.ImageUrl loading="lazy" aria-label="artist" />
                 </a>
