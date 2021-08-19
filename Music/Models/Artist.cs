@@ -6,6 +6,6 @@
 
         public new string ImageUrl
             => Resource.ImageServerUrl + Resource.ArtistImageId
-             + Resource.ImageCode + Id + Resource.ImageExtension;
+             + Resource.MediumImageCode + Id + Resource.ImageExtension;
     }
 }

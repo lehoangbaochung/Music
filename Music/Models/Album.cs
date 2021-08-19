@@ -7,7 +7,6 @@
         public string Genre { get; set; }
 
         public string ImageUrl
-            => Resource.ImageServerUrl + Resource.AlbumImageId
-             + Resource.ImageCode + Id + Resource.ImageExtension;
+            => GetImageUrl(Id);
     }
 }

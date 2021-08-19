@@ -1,4 +1,4 @@
-﻿namespace Music.Models
+﻿namespace Music.Enumerables
 {
     public class SongArtist
     {

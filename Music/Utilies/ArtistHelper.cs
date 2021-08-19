@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Music.Utilies
 {
-    public class ArtistHelper
+    public static class ArtistHelper
     {
         private static readonly char[] aChars = { 'A', 'Á', 'À', 'Ă', 'Â', 'Á' };
         private static readonly char[] dChars = { 'D', 'Đ' };
@@ -78,7 +78,7 @@ namespace Music.Utilies
             {
                 outterList.AddRange(sourceList
                         .Where(a => a.VietnameseName.ToUpper().StartsWith(character)));
-            }    
+            }
 
             return outterList;
         }

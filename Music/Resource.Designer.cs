@@ -142,15 +142,6 @@ namespace Music {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to R500x500M000.
-        /// </summary>
-        public static string ImageCode {
-            get {
-                return ResourceManager.GetString("ImageCode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to .jpg.
         /// </summary>
         public static string ImageExtension {

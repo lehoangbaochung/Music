@@ -144,9 +144,6 @@
   <data name="CharactersU" xml:space="preserve">
     <value>u,ú,ù,ủ,ũ,ụ,ư,ứ,ừ,ử,ữ,ự</value>
   </data>
-  <data name="ImageCode" xml:space="preserve">
-    <value>R500x500M000</value>
-  </data>
   <data name="ImageExtension" xml:space="preserve">
     <value>.jpg</value>
   </data>

@@ -13,8 +13,6 @@ namespace Music.Utilies
         private static readonly List<Album> albums = new();
         private static readonly List<Artist> artists = new();
         private static readonly List<Video> videos = new();
-        private static readonly List<SongArtist> songArtists = new();
-        private static readonly List<AlbumArtist> albumArtists = new();
         #endregion
 
         #region Properties
