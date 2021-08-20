@@ -11,7 +11,7 @@ namespace Website.Controllers
         {
             var artists = DataProvider.Artists;
 
-            ViewBag.Artists = ArtistHelper.Where(artists, id);  
+            ViewBag.Artists = DataHelper.Where(artists, id);  
 
             ViewBag.NewArtist = artists[0];
             ViewBag.HotArtist = artists[new Random().Next(0, artists.Count)];
@@ -19,33 +19,33 @@ namespace Website.Controllers
             return View();
         }
 
-        public IActionResult Detail(string id)
+        public IActionResult Detail(string id, string type = null)
         {
-            ViewBag.Artist = DataProvider.Artists
+            var artist = DataProvider.Artists
                 .Find(artist => artist.Id.Equals(id));
 
-            if (ViewBag.Artist == null)
+            if (artist == null)
             {
                 return NotFound();
             }
 
-            //var songs = DataProvider.Songs.Join(songs, 
-            //    song => song.Id, 
-            //    songArtist => songArtist.SongId,
-            //    (song, songArtist) => song).ToList();
+            ViewBag.Artist = artist;
+            ViewBag.Songs = artist.Songs;
+            ViewBag.Albums = artist.Albums;
+            ViewBag.Videos = artist.Videos;
 
-            //var albums = DataProvider.Albums.Join(albums,
-            //    album => album.Id,
-            //    albumArtist => albumArtist.AlbumId,
-            //    (album, albumArtist) => album).ToList();
+            ViewBag.RecentSongs = artist.Songs.OrderByDescending(song => song.Id).Take(10);
+            ViewBag.RecentAlbums = artist.Albums.OrderByDescending(album => album.SongId).Take(3);
+            ViewBag.RecentVideos = artist.Videos.OrderByDescending(video => video.SongId).Take(3);
 
-            //// Pass data to view
-            //ViewBag.Songs = songs;
-            //ViewBag.Albums = albums;
-            //ViewBag.TopSongs = songs.OrderByDescending(song => song.Id).Take(10);
-            //ViewBag.TopAlbums = albums.OrderBy(album => album.Id).Take(6);
+            ViewBag.RelatedArtist = DataProvider.Artists[new Random().Next(0, DataProvider.Artists.Count)];
 
-            return View();
+            if (type == null)
+            {
+                return View();
+            }
+            else
+                return View();
         }
     }
 }

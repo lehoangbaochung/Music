@@ -1,11 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Music.Enumerables;
+using Music.Utilies;
+using System.ComponentModel.DataAnnotations;
 
 namespace Music.Models
 {
-    public class Video
+    public class Video : Base
     {
         [Required]
-        public int Id { get; set; }
+        public new string Id { get; set; }
 
         [Required]
         public int SongId { get; set; }
@@ -17,5 +19,8 @@ namespace Music.Models
         [Required]
         [Display(Name = "Ngày đăng")]
         public string ReleaseDate { get; set; }
+
+        public string ImageUrl
+            => ImageResolution.MQDefault.GetImageUrl(Id);
     }
 }

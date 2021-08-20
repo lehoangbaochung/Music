@@ -1,11 +1,16 @@
-﻿using Music.Models;
+﻿using Music.Enumerables;
+using Music.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Music.Utilies
 {
-    public static class ArtistHelper
+    public static class DataHelper
     {
+        private const char JOIN_CHARACTER = '-';
+        private const string SPLIT_CHARACTER = "/";
+
         private static readonly char[] aChars = { 'A', 'Á', 'À', 'Ă', 'Â', 'Á' };
         private static readonly char[] dChars = { 'D', 'Đ' };
         private static readonly char[] eChars = { 'E', 'Ê' };
@@ -151,6 +156,50 @@ namespace Music.Utilies
             }
 
             return outterList;
+        }
+
+        public static string GetNames(in string id, string splitCharacter = SPLIT_CHARACTER, Language language = default)
+        {
+            var artistName = string.Empty;
+
+            foreach (var artistId in id.Split(JOIN_CHARACTER))
+            {
+                var artist = DataProvider.Artists.Find(a => a.Id.Equals(artistId));
+                if (artist == null)
+                {
+                    throw new NullReferenceException("Name is not found");
+                }
+                else
+                {
+                    artistName += language switch
+                    {
+                        Language.English => artist.PinyinName + splitCharacter,
+                        Language.SimplifiedChinese => artist.SimplifiedChineseName + splitCharacter,
+                        Language.TraditionalChinese => artist.TraditionalChineseName + splitCharacter,
+                        _ => artist.VietnameseName + splitCharacter,
+                    };
+                }
+            }
+            return artistName.Remove(artistName.LastIndexOf(splitCharacter)).TrimEnd();
+        }
+
+        public static string GetImageUrl(this ImageResolution imageResolution, string id, string imageType = null)
+        {
+            return imageResolution switch
+            {
+                ImageResolution.Small or ImageResolution.Medium or ImageResolution.Large 
+                    => Resource.ImageServerUrl + imageType
+                        + $"R{ (int)imageResolution }x{ (int)imageResolution }M000"
+                        + id + Resource.ImageExtension,
+
+                ImageResolution.Default or ImageResolution.MaxResDefault or
+                ImageResolution.MQDefault or ImageResolution.HQDefault or ImageResolution.SDDefault
+                    => Resource.VideoImageUrl + id + '/' 
+                        + imageResolution.ToString().ToLower() 
+                        + Resource.ImageExtension,
+
+                _ => string.Empty,
+            };
         }
     }
 }

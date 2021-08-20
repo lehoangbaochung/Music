@@ -1,4 +1,4 @@
-﻿using Music.Enumerables.Tables;
+﻿using Music.Enumerables;
 using Music.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -26,12 +26,12 @@ namespace Music.Utilies
                     {
                         songs.Add(new()
                         {
-                            Id = row[(int)SongTable.Id],
-                            ArtistId = row[(int)SongTable.ArtistId],
-                            VietnameseName = row[(int)SongTable.VietnameseName],
-                            PinyinName = row[(int)SongTable.PinyinName],
-                            SimplifiedChineseName = row[(int)SongTable.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)SongTable.TraditionalChineseName],
+                            Id = row[(int)DataTable.PrimaryKey],
+                            ArtistId = row[(int)DataTable.ReferenceKey],
+                            VietnameseName = row[(int)DataTable.VietnameseName],
+                            PinyinName = row[(int)DataTable.PinyinName],
+                            SimplifiedChineseName = row[(int)DataTable.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataTable.TraditionalChineseName],
                             //VietnameseLyric = row[SongTable.VietnameseLyric],
                             //PinyinLyric = row[SongTable.PinyinLyric],
                             //SimplifiedChineseLyric = row[SongTable.SimplifiedChineseLyric],
@@ -54,12 +54,12 @@ namespace Music.Utilies
                     {
                         artists.Add(new()
                         {
-                            Id = row[(int)ArtistTable.Id],
+                            Id = row[(int)DataTable.PrimaryKey],
                             //PlaylistId = row[(int)ArtistTable.PlaylistId],
-                            VietnameseName = row[(int)ArtistTable.VietnameseName],
-                            PinyinName = row[(int)ArtistTable.PinyinName],
-                            SimplifiedChineseName = row[(int)ArtistTable.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)ArtistTable.TraditionalChineseName]
+                            VietnameseName = row[(int)DataTable.VietnameseName],
+                            PinyinName = row[(int)DataTable.PinyinName],
+                            SimplifiedChineseName = row[(int)DataTable.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataTable.TraditionalChineseName]
                         });
                     }
                 }
@@ -77,15 +77,12 @@ namespace Music.Utilies
                     {
                         albums.Add(new()
                         {
-                            Id = row[AlbumTable.Id],
-                            ReleaseDate = row[AlbumTable.Id],
-                            VietnameseName = row[AlbumTable.Id],
-                            PinyinName = row[AlbumTable.Id],
-                            SimplifiedChineseName = row[AlbumTable.Id],
-                            TraditionalChineseName = row[AlbumTable.Id],
-                            VietnameseDescription = row[AlbumTable.Id],
-                            SimplifiedChineseDescription = row[AlbumTable.Id],
-                            TraditionalChineseDescription = row[AlbumTable.Id],
+                            Id = row[(int)DataTable.PrimaryKey],
+                            SongId = row[(int)DataTable.ReferenceKey],
+                            VietnameseName = row[(int)DataTable.VietnameseName],
+                            PinyinName = row[(int)DataTable.PinyinName],
+                            SimplifiedChineseName = row[(int)DataTable.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataTable.TraditionalChineseName]
                         });
                     }
                 }
@@ -103,10 +100,8 @@ namespace Music.Utilies
                     {
                         videos.Add(new()
                         {
-                            Id = row[(int)VideoTable.Id],
-                            SongId = row[(int)VideoTable.SongId],
-                            Duration = row[(int)VideoTable.Duration],
-                            //ReleaseDate = row[(int)VideoTable.ReleaseDate]
+                            Id = row[(int)DataTable.PrimaryKey],
+                            SongId = row[(int)DataTable.ReferenceKey]
                         });
                     }
                 }

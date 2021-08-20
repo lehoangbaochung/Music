@@ -156,4 +156,7 @@
   <data name="SpreadsheetId" xml:space="preserve">
     <value>1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI</value>
   </data>
+  <data name="VideoImageUrl" xml:space="preserve">
+    <value>https://img.youtube.com/vi/</value>
+  </data>
 </root>

@@ -176,5 +176,14 @@ namespace Music {
                 return ResourceManager.GetString("SpreadsheetId", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://img.youtube.com/vi/.
+        /// </summary>
+        public static string VideoImageUrl {
+            get {
+                return ResourceManager.GetString("VideoImageUrl", resourceCulture);
+            }
+        }
     }
 }

@@ -9,6 +9,8 @@ namespace Music.Models
         /// </summary>
         public new int Id { get; set; }
 
+        public string ArtistId { get; set; }
+
         public string VietnameseLyric { get; set; }
 
         public string PinyinLyric { get; set; }
