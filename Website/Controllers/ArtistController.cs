@@ -7,45 +7,33 @@ namespace Website.Controllers
 {
     public class ArtistController : Controller
     {
-        public IActionResult Index(char id = '/')
-        {
-            var artists = DataProvider.Artists;
+        //public IActionResult Index(string id, string type = null)
+        //{
+        //    var artist = DataProvider.Artists
+        //        .Find(artist => artist.Id.Equals(id));
 
-            ViewBag.Artists = DataHelper.Where(artists, id);  
+        //    if (artist == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            ViewBag.NewArtist = artists[0];
-            ViewBag.HotArtist = artists[new Random().Next(0, artists.Count)];
+        //    ViewBag.Artist = artist;
+        //    ViewBag.Songs = artist.Songs;
+        //    ViewBag.Albums = artist.Albums;
+        //    ViewBag.Videos = artist.Videos;
 
-            return View();
-        }
+        //    ViewBag.RecentSongs = artist.Songs.OrderByDescending(song => song.Id).Take(10);
+        //    ViewBag.RecentAlbums = artist.Albums.OrderByDescending(album => album.SongId).Take(3);
+        //    ViewBag.RecentVideos = artist.Videos.OrderByDescending(video => video.SongId).Take(3);
 
-        public IActionResult Detail(string id, string type = null)
-        {
-            var artist = DataProvider.Artists
-                .Find(artist => artist.Id.Equals(id));
+        //    ViewBag.RelatedArtist = DataProvider.Artists[new Random().Next(0, DataProvider.Artists.Count)];
 
-            if (artist == null)
-            {
-                return NotFound();
-            }
-
-            ViewBag.Artist = artist;
-            ViewBag.Songs = artist.Songs;
-            ViewBag.Albums = artist.Albums;
-            ViewBag.Videos = artist.Videos;
-
-            ViewBag.RecentSongs = artist.Songs.OrderByDescending(song => song.Id).Take(10);
-            ViewBag.RecentAlbums = artist.Albums.OrderByDescending(album => album.SongId).Take(3);
-            ViewBag.RecentVideos = artist.Videos.OrderByDescending(video => video.SongId).Take(3);
-
-            ViewBag.RelatedArtist = DataProvider.Artists[new Random().Next(0, DataProvider.Artists.Count)];
-
-            if (type == null)
-            {
-                return View();
-            }
-            else
-                return View();
-        }
+        //    if (type == null)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //        return View();
+        //}
     }
 }

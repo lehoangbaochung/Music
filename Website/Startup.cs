@@ -44,6 +44,9 @@ namespace Website
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}/{type?}");
                 endpoints.MapControllerRoute(
+                    name: "artist",
+                    pattern: "Artist/{id?}");
+                endpoints.MapControllerRoute(
                   name: "areas",
                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );

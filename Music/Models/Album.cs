@@ -18,7 +18,7 @@ namespace Music.Models
                     foreach (var songId in SongId.Split(JOIN_CHARACTER))
                     {
                         songs.Add(DataProvider.Songs.Find(
-                            song => song.Id.Equals(songId)));
+                            song => song.Id.ToString().Equals(songId)));
                     }
                 }
                 return songs;
@@ -33,8 +33,16 @@ namespace Music.Models
                 {
                     foreach (var song in Songs)
                     {
-                        artists.AddRange(DataProvider.Artists.FindAll(
-                                artist => artist.Id.Contains(song.ArtistId)));
+                        foreach (var artistId in song.ArtistId.Split(JOIN_CHARACTER))
+                        {
+                            var artist = DataProvider.Artists.Find(
+                                artist => artist.Id.Equals(artistId));
+
+                            if (!artists.Contains(artist))
+                            {
+                                artists.Add(artist);
+                            }
+                        }        
                     }    
                 }    
                 return artists;
@@ -46,6 +54,6 @@ namespace Music.Models
         public string Genre { get; set; }
 
         public string ImageUrl
-            => ImageResolution.Small.GetImageUrl(Id, Resource.AlbumImageId);
+            => ImageResolution.Medium.GetImageUrl(Id, Resource.AlbumImageId);
     }
 }

@@ -13,7 +13,7 @@
                     <a type="button" class="btn btn-sm btn-success"
                        href="">Phát tất cả</a>
                     <a type="button" class="btn btn-sm btn-outline-primary" 
-                       asp-controller="Artist" asp-action="Detail" asp-route-id=@ViewBag.NewArtist.Id>Thông tin thêm</a>
+                       asp-controller="Home" asp-action="Artist" asp-route-id=@ViewBag.NewArtist.Id>Thông tin thêm</a>
                 </div>
             </div>
             <div class="col-auto d-none d-lg-block p-3">
@@ -33,7 +33,7 @@
                     <a type="button" class="btn btn-sm btn-success"
                        href="">Phát tất cả</a>
                     <a type="button" class="btn btn-sm btn-outline-primary"
-                       asp-controller="Artist" asp-action="Detail" asp-route-id=@ViewBag.HotArtist.Id>Thông tin thêm</a>
+                       asp-controller="Home" asp-action="Artist" asp-route-id=@ViewBag.HotArtist.Id>Thông tin thêm</a>
                 </div>
             </div>
             <div class="col-auto d-none d-lg-block p-3">
@@ -47,8 +47,8 @@
 @{
     var pagination = new
     {
-        ControllerName = "Artist",
-        ActionName = "Index"
+        ControllerName = "Home",
+        ActionName = "Artist"
     };
 }
 <partial name="_AlphabetPagination" model="@pagination" />
@@ -57,7 +57,7 @@
         foreach (var artist in ViewBag.Artists)
         {
             <div class="col-lg-3 p-3" style="height:75%;">
-                <a asp-controller="Artist" asp-action="Detail" asp-route-id="@artist.Id">
+                <a asp-controller="Home" asp-action="Artist" asp-route-id="@artist.Id">
                     <img class="bd-placeholder-img rounded-circle shadow p-1" width="150" height="150"
                          src=@artist.ImageUrl loading="lazy" aria-label="artist" />
                 </a>

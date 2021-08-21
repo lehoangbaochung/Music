@@ -14,4 +14,9 @@
     <ProjectReference Include="..\Music\Music.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Album\" />
+    <Folder Include="Views\Artist\" />
+  </ItemGroup>
+
 </Project>
