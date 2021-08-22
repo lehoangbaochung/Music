@@ -1,5 +1,5 @@
 ﻿using Music.Enumerables;
-using Music.Utilies;
+using Music.Utilities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Music.Models
@@ -7,10 +7,7 @@ namespace Music.Models
     public class Video : Base
     {
         [Required]
-        public new string Id { get; set; }
-
-        [Required]
-        public int SongId { get; set; }
+        public string SongId { get; set; }
 
         [Required]
         [Display(Name = "Thời lượng")]

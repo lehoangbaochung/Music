@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net;
 
-namespace Music.Utilies
+namespace Music.Utilities
 {
     public class DataProvider
     {

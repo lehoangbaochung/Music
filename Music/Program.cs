@@ -6,7 +6,7 @@ namespace Music
     {
         static void Main()
         {
-            foreach (var item in Utilies.DataProvider.Albums)
+            foreach (var item in Utilities.DataProvider.Albums)
             {
                 foreach (var song in item.Songs)
                 {

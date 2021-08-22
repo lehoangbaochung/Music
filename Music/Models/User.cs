@@ -1,10 +1,11 @@
-﻿using Music.Interfaces;
+﻿using Music.Enumerables;
+using Music.Interfaces;
 
 namespace Music.Models
 {
     public class User : Base, IProfile
     {
-        public int? Gender { get; set; }
+        public Gender Gender { get; set; }
 
         public string Birthday { get; set; }
 

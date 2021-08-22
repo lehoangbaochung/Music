@@ -1,10 +1,12 @@
-﻿namespace Music.Interfaces
+﻿using Music.Enumerables;
+
+namespace Music.Interfaces
 {
     interface IProfile : IFullName, IDescription
     {
         string Id { get; set; }
 
-        int? Gender { get; set; }
+        Gender Gender { get; set; }
 
         string Birthday { get; set; }
 

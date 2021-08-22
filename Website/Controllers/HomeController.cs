@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Music.Utilies;
+using Music.Utilities;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -28,34 +28,46 @@ namespace Website.Controllers
             {
                 var artists = DataProvider.Artists;
 
-                ViewBag.Artists = artists;// DataHelper.Where(artists, id.ToCharArray()[0]);
+                ViewBag.Artists = artists.Take(12);
                 ViewBag.NewArtist = artists[0];
-                ViewBag.HotArtist = artists[new Random().Next(0, artists.Count)];
+                ViewBag.HotArtist = artists[new Random().Next(0, 12)];
 
                 return View("Artist");
             }   
             else
             {
-                var artist = DataProvider.Artists
-                .Find(artist => artist.Id.Equals(id));
-
-                if (artist == null)
+                if (int.TryParse(id, out int index))
                 {
-                    return NotFound();
-                }
+                    var artists = DataProvider.Artists;
 
-                ViewBag.Artist = artist;
-                ViewBag.Songs = artist.Songs;
-                ViewBag.Albums = artist.Albums;
-                ViewBag.Videos = artist.Videos;
+                    ViewBag.Artists = artists.Where(index);
+                    ViewBag.NewArtist = artists[0];
+                    ViewBag.HotArtist = artists[new Random().Next(0, artists.Count)];
+                    return View("Artist");
+                }    
+                else
+                {
+                    var artist = DataProvider.Artists
+                        .Find(artist => artist.Id.Equals(id));
 
-                ViewBag.RecentSongs = artist.Songs.OrderByDescending(song => song.Id).Take(10);
-                ViewBag.RecentAlbums = artist.Albums.OrderByDescending(album => album.SongId).Take(3);
-                ViewBag.RecentVideos = artist.Videos.OrderByDescending(video => video.SongId).Take(3);
+                    if (artist == null)
+                    {
+                        return NotFound();
+                    }
 
-                ViewBag.RelatedArtist = DataProvider.Artists[new Random().Next(0, DataProvider.Artists.Count)];
+                    ViewBag.Artist = artist;
+                    ViewBag.Songs = artist.Songs;
+                    ViewBag.Albums = artist.Albums;
+                    ViewBag.Videos = artist.Videos;
 
-                return View("ArtistDetail");
+                    ViewBag.RecentSongs = artist.Songs.OrderByDescending(song => song.Id).Take(10);
+                    ViewBag.RecentAlbums = artist.Albums.OrderByDescending(album => album.SongId).Take(3);
+                    ViewBag.RecentVideos = artist.Videos.OrderByDescending(video => video.SongId).Take(3);
+
+                    ViewBag.RelatedArtist = DataProvider.Artists[new Random().Next(0, DataProvider.Artists.Count)];
+
+                    return View("ArtistDetail");
+                }    
             }    
         }
 

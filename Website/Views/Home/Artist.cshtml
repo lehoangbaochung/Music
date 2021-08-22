@@ -48,10 +48,11 @@
     var pagination = new
     {
         ControllerName = "Home",
-        ActionName = "Artist"
+        ActionName = "Artist",
+        Items = Music.Resource.Alphabet.ToUpper().Split(',')
     };
 }
-<partial name="_AlphabetPagination" model="@pagination" />
+<partial name="_StaticPagination" model="@pagination" />
 <div class="row text-center p-3">
     @{
         foreach (var artist in ViewBag.Artists)

@@ -1,5 +1,5 @@
 ﻿using Music.Enumerables;
-using Music.Utilies;
+using Music.Utilities;
 using System.Collections.Generic;
 
 namespace Music.Models

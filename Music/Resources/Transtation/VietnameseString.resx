@@ -117,46 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AlbumImageId" xml:space="preserve">
-    <value>T002</value>
+  <data name="Band" xml:space="preserve">
+    <value>Nhóm</value>
   </data>
-  <data name="Alphabet" xml:space="preserve">
-    <value>a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,v,x,y,z</value>
+  <data name="Electronic" xml:space="preserve">
+    <value>Điện tử</value>
   </data>
-  <data name="ApiKey" xml:space="preserve">
-    <value>AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s</value>
+  <data name="Female" xml:space="preserve">
+    <value>Nữ</value>
   </data>
-  <data name="ArtistImageId" xml:space="preserve">
-    <value>T001</value>
+  <data name="Folk" xml:space="preserve">
+    <value>Dân ca</value>
   </data>
-  <data name="CharactersA" xml:space="preserve">
-    <value>a,á,à,ả,ã,ạ,ă,ắ,ằ,ẳ,ẵ,ặ,â,ấ,ầ,ẩ,ẫ,ậ</value>
+  <data name="Male" xml:space="preserve">
+    <value>Nam</value>
   </data>
-  <data name="CharactersD" xml:space="preserve">
-    <value>d,đ</value>
+  <data name="Number" xml:space="preserve">
+    <value>0-9</value>
   </data>
-  <data name="CharactersE" xml:space="preserve">
-    <value>e,é,è,ẻ,ẽ,ẹ,ê,ế,ề,ể,ễ,ệ</value>
+  <data name="Other" xml:space="preserve">
+    <value>#</value>
   </data>
-  <data name="CharactersO" xml:space="preserve">
-    <value>o,ó,ò,ỏ,õ,ọ,ô,ố,ồ,ổ,ỗ,ộ,ơ,ớ,ờ,ở,ỡ,ợ</value>
+  <data name="Popular" xml:space="preserve">
+    <value>Thịnh hành</value>
   </data>
-  <data name="CharactersU" xml:space="preserve">
-    <value>u,ú,ù,ủ,ũ,ụ,ư,ứ,ừ,ử,ữ,ự</value>
+  <data name="RnB" xml:space="preserve">
+    <value>R&amp;B</value>
   </data>
-  <data name="ImageExtension" xml:space="preserve">
-    <value>.jpg</value>
+  <data name="Traditional" xml:space="preserve">
+    <value>Quốc phong</value>
   </data>
-  <data name="ImageServerUrl" xml:space="preserve">
-    <value>https://y.gtimg.cn/music/photo_new/</value>
-  </data>
-  <data name="NumberCharacters" xml:space="preserve">
-    <value>0,1,2,3,4,5,6,7,8,9</value>
-  </data>
-  <data name="SpreadsheetId" xml:space="preserve">
-    <value>1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI</value>
-  </data>
-  <data name="VideoImageUrl" xml:space="preserve">
-    <value>https://img.youtube.com/vi/</value>
+  <data name="Unknown" xml:space="preserve">
+    <value>Không xác định</value>
   </data>
 </root>

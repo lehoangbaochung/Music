@@ -70,7 +70,7 @@ namespace Music {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to #,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,v,x,y,z.
+        ///   Looks up a localized string similar to a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,w,v,x,y,z.
         /// </summary>
         public static string Alphabet {
             get {

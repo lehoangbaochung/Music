@@ -4,11 +4,6 @@ namespace Music.Models
 {
     public class Song : Base, ILyric
     {
-        /// <summary>
-        /// The id of song
-        /// </summary>
-        public new int Id { get; set; }
-
         public string ArtistId { get; set; }
 
         public string VietnameseLyric { get; set; }

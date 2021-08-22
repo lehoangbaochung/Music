@@ -1,5 +1,5 @@
 ﻿using Music.Enumerables;
-using Music.Utilies;
+using Music.Utilities;
 using System.Collections.Generic;
 
 namespace Music.Models
@@ -76,6 +76,8 @@ namespace Music.Models
         }
 
         public string PlaylistId { get; set; }
+
+        
 
         public new string ImageUrl
             => ImageResolution.Medium.GetImageUrl(Id, Resource.ArtistImageId);
