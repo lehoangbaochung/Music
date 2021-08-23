@@ -77,8 +77,6 @@ namespace Music.Models
 
         public string PlaylistId { get; set; }
 
-        
-
         public new string ImageUrl
             => ImageResolution.Medium.GetImageUrl(Id, Resource.ArtistImageId);
     }

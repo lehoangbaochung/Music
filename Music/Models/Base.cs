@@ -20,7 +20,7 @@ namespace Music.Models
         public string SimplifiedChineseDescription { get; set; }
         public string TraditionalChineseDescription { get; set; }
 
-        public Genre Genre { get; set; }
+        public string Category { get; set; }
 
         protected string GetImageUrl(ImageResolution imageSize = ImageResolution.Medium)
         {

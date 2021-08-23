@@ -6,8 +6,6 @@ namespace Music.Interfaces
     {
         string Id { get; set; }
 
-        Gender Gender { get; set; }
-
         string Birthday { get; set; }
 
         string Address { get; set; }

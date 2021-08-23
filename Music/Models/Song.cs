@@ -13,7 +13,5 @@ namespace Music.Models
         public string SimplifiedChineseLyric { get; set; }
 
         public string TraditionalChineseLyric { get; set; }
-
-        public string Genre { get; set; }
     } 
 }

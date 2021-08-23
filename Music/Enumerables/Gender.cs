@@ -2,9 +2,9 @@
 {
     public enum Gender 
     {
-        Default,
-        Male,
-        Female,
-        Band
+        Default = 0,
+        Male = 1,
+        Female = 2,
+        Band = 3
     }
 }

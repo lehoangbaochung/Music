@@ -5,12 +5,12 @@ namespace Music.Enumerables
     public enum Category
     {
         Unknown = -1,
-        Default = 0,
 
         #region Gender
-        Male = 1,
-        Female = 2,
-        Band = 3,
+        Default = Gender.Default,
+        Male = Gender.Male,
+        Female = Gender.Female,
+        Band = Gender.Band,
         #endregion
 
         #region Genre

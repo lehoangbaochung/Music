@@ -68,9 +68,8 @@ namespace Music.Utilities
                     break;
                 default:
                     results.AddRange(artists
-                            .Where(artist => artist.VietnameseName
-                            .StartsWith(((Category)categoryId).ToString(), 
-                            StringComparison.CurrentCulture)));
+                            .Where(artist => artist.VietnameseName.ToUpper()
+                            .StartsWith(((Category)categoryId).ToString())));
                     break;
                     
             }

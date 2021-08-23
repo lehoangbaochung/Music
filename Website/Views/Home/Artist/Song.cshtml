@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/Layout/Profile.cshtml";
+    var songs = new
+    {
+        Items = ViewBag.Songs,
+        Title = "Bài hát",
+        Subtitle = $"{ ViewBag.Songs.Count }",
+        ControllerName = "Home",
+        ActionName = "Artist",
+        ParameterName = "Song"
+    };
+}
+<partial name="~/Views/Shared/Partial/ListView.cshtml" model="@songs" />

@@ -5,8 +5,6 @@ namespace Music.Models
 {
     public class User : Base, IProfile
     {
-        public Gender Gender { get; set; }
-
         public string Birthday { get; set; }
 
         public string Address { get; set; }
@@ -20,5 +18,13 @@ namespace Music.Models
         public string SimplifiedChineseFullName { get; set; }
 
         public string TraditionalChineseFullName { get; set; }
+
+        public Gender Gender
+        {
+            get
+            {
+                return Gender.Male;
+            }
+        }
     }
 }

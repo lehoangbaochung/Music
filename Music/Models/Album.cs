@@ -51,8 +51,6 @@ namespace Music.Models
 
         public string SongId { get; set; }
 
-        public string Genre { get; set; }
-
         public string ImageUrl
             => ImageResolution.Medium.GetImageUrl(Id, Resource.AlbumImageId);
     }
