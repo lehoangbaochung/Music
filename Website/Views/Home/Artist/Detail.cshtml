@@ -1,63 +1,24 @@
 ﻿@{
     Layout = "~/Views/Shared/Layout/Profile.cshtml";
-    var songs = new
+    ItemViewModel songViewModel = new()
     {
-        Items = ViewBag.RecentSongs,
         Title = "Bài hát",
-        Subtitle = "Xem tất cả",
-        ControllerName = "Home",
-        ActionName = "Artist",
-        ParameterName = "Song"
+        Items = ViewBag.RecentSongs,
+        Hyperlink = new("Home", "Artist", "Song")
+    };
+    ItemViewModel albumViewModel = new()
+    {
+        Title = "Album",
+        Items = ViewBag.RecentAlbums,
+        Hyperlink = new("Home", "Artist", "Album")
+    };
+    ItemViewModel videoViewModel = new()
+    {
+        Title = "Video",
+        Items = ViewBag.RecentVideos,
+        Hyperlink = new("Home", "Artist", "Video")
     };
 }
-<partial name="~/Views/Shared/Partial/ListView.cshtml" model="@songs" />
-<!-- Album -->
-<div class="row">
-    <h4 class="col-md-2">Album</h4>
-    <a class="col-md-10 mt-1 text-md-right">Xem tất cả</a>
-</div>
-<div class="card mb-3">
-    <div class="card-body">
-        <div class="row">
-            @{
-                foreach (var album in ViewBag.RecentAlbums)
-                {
-                    <div class="col-md-4 mb-3">
-                        <div class="card shadow-sm">
-                            <img src="@album.ImageUrl" alt="album" />
-                            <div class="card-body">
-                                <h6>@album.VietnameseName</h6>
-                                <small class="text-muted float-right">@album.SimplifiedChineseName</small>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
-</div>
-<!-- Video -->
-<div class="row">
-    <h4 class="col-md-2">Video</h4>
-    <a class="col-md-10 mt-1 text-md-right">Xem tất cả</a>
-</div>
-<div class="card mb-3">
-    <div class="card-body">
-        <div class="row">
-            @{
-                foreach (var video in ViewBag.RecentVideos)
-                {
-                    <div class="col-md-4 mb-3">
-                        <div class="card shadow-sm">
-                            <img src="@video.ImageUrl" alt="video" />
-                            @*<div class="card-body">
-                                    <h6>@video.VietnameseName</h6>
-                                    <small class="text-muted float-right">@video.SimplifiedChineseName</small>
-                                </div>*@
-                        </div>
-                    </div>
-                }
-            }
-        </div>
-    </div>
-</div>
+<partial name="~/Views/Shared/Partial/List.cshtml" model="@songViewModel" />
+<partial name="~/Views/Shared/Partial/Grid.cshtml" model="@albumViewModel" />
+<partial name="~/Views/Shared/Partial/Grid.cshtml" model="@videoViewModel" />

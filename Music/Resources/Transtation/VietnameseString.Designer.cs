@@ -70,6 +70,15 @@ namespace Music.Resources.Transtation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mặc định.
+        /// </summary>
+        internal static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Điện tử.
         /// </summary>
         internal static string Electronic {

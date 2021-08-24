@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Ca sĩ";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Tuple<string, string[]> pagination = new("All", Extension.GetNames(Category.A, Category.Z));
 }
 <div class="row">
     <div class="col-md-6">
@@ -45,28 +46,4 @@
         </div>
     </div>
 </div>
-@{
-    var pagination = new
-    {
-        ControllerName = "Home",
-        ActionName = "Artist",
-        Items = Extension.GetNames(Category.A, Category.Z)
-    };
-}
-<partial name="_StaticPagination" model="@pagination" />
-<div class="row text-center p-3">
-    @{
-        foreach (var artist in ViewBag.Artists)
-        {
-            <div class="col-lg-3 p-3" style="height:75%;">
-                <a asp-controller="Home" asp-action="Artist" asp-route-id="@artist.Id">
-                    <img class="bd-placeholder-img rounded-circle shadow p-1" width="150" height="150"
-                         src=@artist.ImageUrl loading="lazy" aria-label="artist" />
-                </a>
-                <h4 class="p-3">@artist.VietnameseName</h4>
-                <p>@artist.SimplifiedChineseName</p>
-            </div>
-        }
-    }
-</div>
-
+<partial name="~/Views/Shared/Partial/Pagination.cshtml" model="@pagination" />

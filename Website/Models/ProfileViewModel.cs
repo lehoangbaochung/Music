@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Website.Models
 {
@@ -17,6 +16,8 @@ namespace Website.Models
     public class Profile
     {
         public string Id { get; set; }
+
+        public string Header { get; set; }
 
         public string Title { get; set; }
 

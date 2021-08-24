@@ -1,11 +1,15 @@
 ﻿using Music.Enumerables;
 using Music.Models;
+using Music.Utilities;
 using System;
 using Website.Models;
 
 namespace Website.Helpers
 {
-    public static class ProfileHelper
+    /// <summary>
+    /// ngrok http https://localhost:44397 -host-header="localhost:44397"
+    /// </summary>
+    public static class ViewHelper
     {
         static ProfileViewModel viewModel;
 
@@ -16,13 +20,17 @@ namespace Website.Helpers
                 throw new NullReferenceException("Artist is null");
             }
 
+            var relatedArtist = DataProvider.Artists[new Random().Next(0, DataProvider.Artists.Count)];
+
             viewModel = new();
             viewModel.Profile = new()
             {
                 Title = artist.VietnameseName,
                 Subtitle = artist.SimplifiedChineseName,
                 ImageUrl = artist.ImageUrl,
-                Color = artist.Gender.Equals(Gender.Male) ? "blue" : "red"
+                Color = artist.Gender.Equals(Gender.Male) ?
+                    ConsoleColor.Blue.GetLowerName() :
+                    ConsoleColor.Red.GetLowerName()
             };
             viewModel.Summaries.AddRange(new Profile[]
             {
@@ -32,7 +40,7 @@ namespace Website.Helpers
                     Id = nameof(Song),
                     Title = "Bài hát",
                     Subtitle = artist.Songs.Count.ToString(),
-                    Color = "success"
+                    Color = ConsoleColor.Green.GetButtonName()
                 },
                 // Album
                 new()
@@ -40,7 +48,7 @@ namespace Website.Helpers
                     Id = nameof(Album),
                     Title = "Album",
                     Subtitle = artist.Albums.Count.ToString(),
-                    Color = "warning"
+                    Color = ConsoleColor.Yellow.GetButtonName()
                 },
                 // Artist
                 new()
@@ -48,9 +56,9 @@ namespace Website.Helpers
                     Id = nameof(Video),
                     Title = "Video",
                     Subtitle = artist.Videos.Count.ToString(),
-                    Color = ConsoleColor.Red.GetName()
+                    Color = ConsoleColor.Red.GetButtonName()
                 },
-            });
+            }); ;
             viewModel.Informations.AddRange(new Profile[]
             {
                 new()
@@ -78,18 +86,20 @@ namespace Website.Helpers
             {
                 new()
                 {
-                    Id = "002vALgR3hRRlv",
-                    Title = artist.VietnameseName,
-                    Subtitle = artist.SimplifiedChineseName,
-                    ImageUrl = artist.ImageUrl,
-                    Color = artist.Gender.Equals(Gender.Male) ? "blue" : "red"
+                    Id = relatedArtist.Id,
+                    Title = relatedArtist.VietnameseName,
+                    Subtitle = relatedArtist.SimplifiedChineseName,
+                    ImageUrl = relatedArtist.ImageUrl,
+                    Color = relatedArtist.Gender.Equals(Gender.Male) ? 
+                        ConsoleColor.Blue.GetLowerName() : 
+                        ConsoleColor.Red.GetLowerName()
                 }
             });
 
             return viewModel;
         }
 
-        static string GetName(this ConsoleColor color)
+        static string GetButtonName(this ConsoleColor color)
         {
             return color switch
             {
@@ -97,12 +107,17 @@ namespace Website.Helpers
                 ConsoleColor.Blue => "info",
                 ConsoleColor.DarkBlue => "primary",
                 ConsoleColor.Gray => "secondary",
-                ConsoleColor.Green => "screen",
+                ConsoleColor.Green => "success",
                 ConsoleColor.Red => "danger",
                 ConsoleColor.White => "light",
                 ConsoleColor.Yellow => "warning",
                 _ => color.ToString(),
             };
+        }
+
+        static string GetLowerName(this ConsoleColor color)
+        {
+            return color.ToString().ToLower();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Website
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}/{type?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{category?}");
                 endpoints.MapControllerRoute(
                   name: "areas",
                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"

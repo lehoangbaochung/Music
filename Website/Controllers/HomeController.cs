@@ -23,7 +23,7 @@ namespace Website.Controllers
             return View();
         }
 
-        public IActionResult Artist(string id = null, string type = null)
+        public IActionResult Artist(string id = null, string category = null)
         {
             if (id == null)
             {
@@ -31,7 +31,7 @@ namespace Website.Controllers
 
                 ViewBag.Artists = artists.Take(12);
                 ViewBag.NewArtist = artists[0];
-                ViewBag.HotArtist = artists[new Random().Next(0, 12)];
+                ViewBag.HotArtist = artists[new Random().Next(0, DataProvider.Artists.Count)];
                 
                 return View("Artist/Index");
             }   
@@ -41,7 +41,7 @@ namespace Website.Controllers
                 {
                     var artists = DataProvider.Artists;
                     
-                    ViewBag.Artists = artists.Where(index);
+                    ViewBag.Artists = artists.Where(index.ToString());
                     ViewBag.NewArtist = artists[0];
                     ViewBag.HotArtist = artists[new Random().Next(0, artists.Count)];
                     return View("Artist/Index");
@@ -56,9 +56,9 @@ namespace Website.Controllers
                         return NotFound();
                     }
 
-                    var viewModel = ProfileHelper.GetProfile(artist);
+                    var viewModel = ViewHelper.GetProfile(artist);
 
-                    if (type == null)
+                    if (category == null)
                     {                        
                         ViewBag.Artist = artist;
                         ViewBag.Songs = artist.Songs;
@@ -90,19 +90,13 @@ namespace Website.Controllers
                 albums.Add(DataProvider.Albums[new System.Random().Next(0, DataProvider.Albums.Count)]);
             }
             ViewBag.RecentAlbums = albums;
-
+            
             return View();
         }
 
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

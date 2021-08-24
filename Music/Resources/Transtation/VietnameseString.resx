@@ -120,6 +120,9 @@
   <data name="Band" xml:space="preserve">
     <value>Nhóm</value>
   </data>
+  <data name="Default" xml:space="preserve">
+    <value>Mặc định</value>
+  </data>
   <data name="Electronic" xml:space="preserve">
     <value>Điện tử</value>
   </data>

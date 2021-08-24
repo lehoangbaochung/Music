@@ -2,9 +2,9 @@
 {
     public enum Language
     {
-        Vietnamese,
         English,
         SimplifiedChinese,
-        TraditionalChinese
+        TraditionalChinese,
+        Vietnamese
     }
 }

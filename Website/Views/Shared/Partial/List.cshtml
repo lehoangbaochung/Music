@@ -1,0 +1,59 @@
+﻿@model Website.Models.ItemViewModel
+<div class="row">
+    <h4 class="col-md-2">@Model.Title</h4>
+    @{
+        if (Model.Hyperlink == null)
+        {
+            <a class="col-md-10 mt-1 text-md-right">
+                @Model.Subtitle
+            </a>
+        }
+        else
+        {
+            <a class="col-md-10 mt-1 text-md-right"
+               asp-controller="@Model.Hyperlink.Item1"
+               asp-action="@Model.Hyperlink.Item2"
+               asp-route-category="@Model.Hyperlink.Item3">
+                @Model.Subtitle
+            </a>
+        }
+    }
+</div>
+<div class="card mb-3">
+    <div class="card-body">
+        @{
+            foreach (var item in Model.Items)
+            {
+                <div class="row">
+                    <div class="col-sm-1">
+                        <h6>@item.Id</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <h6>@item.VietnameseName</h6>
+                    </div>
+                    <div class="col-sm-5 text-secondary">
+                        @item.SimplifiedChineseName
+                    </div>
+                </div>
+                <hr />
+            }
+
+            if (Model.Hyperlink == null)
+            {
+                if (Model.Items.Count > 0)
+                {
+                    <nav aria-label="page navigation">
+                        <ul class="pagination justify-content-center">
+                            @{
+                                for (int i = 1; i <= Model.PageCount; i++)
+                                {
+                                    <li class="page-item"><a class="page-link" href="#">@i</a></li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                }
+            }
+        }
+    </div>
+</div>
