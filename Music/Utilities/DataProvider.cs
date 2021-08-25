@@ -26,12 +26,12 @@ namespace Music.Utilities
                     {
                         songs.Add(new()
                         {
-                            Id = row[(int)DataTable.PrimaryKey],
-                            ArtistId = row[(int)DataTable.ReferenceKey],
-                            VietnameseName = row[(int)DataTable.VietnameseName],
-                            PinyinName = row[(int)DataTable.PinyinName],
-                            SimplifiedChineseName = row[(int)DataTable.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.TraditionalChineseName],
+                            Id = row[(int)DataColumn.PrimaryKey],
+                            ArtistId = row[(int)DataColumn.ReferenceKey],
+                            VietnameseName = row[(int)DataColumn.VietnameseName],
+                            PinyinName = row[(int)DataColumn.PinyinName],
+                            SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataColumn.TraditionalChineseName],
                             //VietnameseLyric = row[SongTable.VietnameseLyric],
                             //PinyinLyric = row[SongTable.PinyinLyric],
                             //SimplifiedChineseLyric = row[SongTable.SimplifiedChineseLyric],
@@ -54,12 +54,12 @@ namespace Music.Utilities
                     {
                         artists.Add(new()
                         {
-                            Id = row[(int)DataTable.PrimaryKey],
+                            Id = row[(int)DataColumn.PrimaryKey],
                             //PlaylistId = row[(int)ArtistTable.PlaylistId],
-                            VietnameseName = row[(int)DataTable.VietnameseName],
-                            PinyinName = row[(int)DataTable.PinyinName],
-                            SimplifiedChineseName = row[(int)DataTable.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.TraditionalChineseName]
+                            VietnameseName = row[(int)DataColumn.VietnameseName],
+                            PinyinName = row[(int)DataColumn.PinyinName],
+                            SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataColumn.TraditionalChineseName]
                         });
                     }
                 }
@@ -77,12 +77,12 @@ namespace Music.Utilities
                     {
                         albums.Add(new()
                         {
-                            Id = row[(int)DataTable.PrimaryKey],
-                            SongId = row[(int)DataTable.ReferenceKey],
-                            VietnameseName = row[(int)DataTable.VietnameseName],
-                            PinyinName = row[(int)DataTable.PinyinName],
-                            SimplifiedChineseName = row[(int)DataTable.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.TraditionalChineseName]
+                            Id = row[(int)DataColumn.PrimaryKey],
+                            SongIds = row[(int)DataColumn.ReferenceKey],
+                            VietnameseName = row[(int)DataColumn.VietnameseName],
+                            PinyinName = row[(int)DataColumn.PinyinName],
+                            SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataColumn.TraditionalChineseName]
                         });
                     }
                 }
@@ -100,8 +100,8 @@ namespace Music.Utilities
                     {
                         videos.Add(new()
                         {
-                            Id = row[(int)DataTable.PrimaryKey],
-                            SongId = row[(int)DataTable.ReferenceKey]
+                            Id = row[(int)DataColumn.PrimaryKey],
+                            SongId = row[(int)DataColumn.ReferenceKey]
                         });
                     }
                 }

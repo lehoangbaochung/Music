@@ -1,8 +1,11 @@
 ﻿@using Music.Enumerables;
 @{
     ViewData["Title"] = "Ca sĩ";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    Tuple<string, string[]> pagination = new("All", Extension.GetNames(Category.A, Category.Z));
+    PaginationViewModel pagination = new()
+    {
+        PageNames = Music.Extensions.Extension.GetNames(Category.A, Category.Z).ToList(),
+        PartialView = new("~/Views/Shared/Partial/ArtistList.cshtml", ViewBag.Artists)
+    };
 }
 <div class="row">
     <div class="col-md-6">

@@ -1,7 +1,7 @@
-﻿@model Website.Models.ProfileViewModel
+﻿@model ProfileViewModel
 @{
     ViewData["Title"] = Model.Profile.Title;
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Layout/Index.cshtml";
 }
 <div class="row gutters-sm">
     <div class="col-md-4 mb-3">
@@ -17,10 +17,12 @@
                         @{
                             foreach (var summary in Model.Summaries)
                             {
-                                <button class="btn btn-@summary.Color" 
-                                        href="~@summary.Id">@summary.Title
+                                <a class="btn btn-@summary.Color"
+                                   asp-controller="@summary.Hyperlink.ControllerName"
+                                   asp-action="@summary.Hyperlink.ActionName"
+                                   asp-route-category="@summary.Hyperlink.CategoryName">@summary.Title
                                     <h4>@summary.Subtitle</h4>
-                                </button>
+                                </a>
                             }
                         }
                     </div>
@@ -60,7 +62,9 @@
                     foreach (var profile in Model.RelatedProfiles)
                     {
                         <div class="col-lg-auto">
-                            <a href="@profile.Id">
+                            <a asp-controller="@profile.Hyperlink.ControllerName"
+                                asp-action="@profile.Hyperlink.ActionName"
+                                asp-route-id="@profile.Hyperlink.Id">
                                 <img class="rounded-circle shadow p-1"
                                      style="background-color:@profile.Color;"
                                      width="150" height="150" aria-label="artist"

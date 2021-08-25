@@ -183,23 +183,6 @@ namespace Music.Utilities
             return artistName.Remove(artistName.LastIndexOf(splitCharacter)).TrimEnd();
         }
 
-        public static string GetImageUrl(this ImageResolution imageResolution, string id, string imageType = null)
-        {
-            return imageResolution switch
-            {
-                ImageResolution.Small or ImageResolution.Medium or ImageResolution.Large 
-                    => Resource.ImageServerUrl + imageType
-                        + $"R{ (int)imageResolution }x{ (int)imageResolution }M000"
-                        + id + Resource.ImageExtension,
 
-                ImageResolution.Default or ImageResolution.MaxResDefault or
-                ImageResolution.MQDefault or ImageResolution.HQDefault or ImageResolution.SDDefault
-                    => Resource.VideoImageUrl + id + '/' 
-                        + imageResolution.ToString().ToLower() 
-                        + Resource.ImageExtension,
-
-                _ => string.Empty,
-            };
-        }
     }
 }

@@ -1,21 +1,20 @@
 ﻿@model ItemViewModel
 
 <div class="row">
-    <h4 class="col-md-2">@Model.Title</h4>
     @{
         if (Model.Hyperlink == null)
         {
-            <a class="col-md-10 mt-1 text-md-right">
-                @Model.Subtitle
+            <a class="col-md-6">
+                <h4>@Model.Header</h4>
             </a>
         }
         else
         {
-            <a class="col-md-10 mt-1 text-md-right"
-               asp-controller="@Model.Hyperlink.Item1"
-               asp-action="@Model.Hyperlink.Item2"
-               asp-route-category="@Model.Hyperlink.Item3">
-                @Model.Subtitle
+            <a class="col-md-6"
+               asp-controller="@Model.Hyperlink.ControllerName"
+               asp-action="@Model.Hyperlink.ActionName"
+               asp-route-category="@Model.Hyperlink.CategoryName">
+                <h4>@Model.Header</h4>
             </a>
         }
     }
@@ -26,9 +25,9 @@
             @{
                 foreach (var item in Model.Items)
                 {
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-4 mb-4">
                         <div class="card shadow-sm">
-                            <img src="@item.ImageUrl" alt="album" />
+                            <img src="@item.ImageUrl" alt="album" loading="lazy" />
                             <div class="card-body">
                                 <h6>@item.VietnameseName</h6>
                                 <small class="text-muted float-right">@item.SimplifiedChineseName</small>
@@ -36,24 +35,27 @@
                         </div>
                     </div>
                 }
-
-                if (Model.Hyperlink == null)
-                {
-                    if (Model.Items.Count > 0)
-                    {
-                        <nav aria-label="page navigation">
-                            <ul class="pagination justify-content-center">
-                                @{
-                                    for (int i = 1; i <= Model.PageCount; i++)
-                                    {
-                                        <li class="page-item"><a class="page-link" href="#">@i</a></li>
-                                    }
-                                }
-                            </ul>
-                        </nav>
-                    }
-                }
             }
         </div>
+        @{
+            if (Model.Hyperlink == null)
+            {
+                if (Model.Items.Count > 0)
+                {
+                    <nav aria-label="page navigation">
+                        <ul class="pagination justify-content-center">
+                            @{
+                                for (int i = 1; i <= Model.PageCount; i++)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">@i</a>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </nav>
+                }
+            }
+        }
     </div>
 </div>

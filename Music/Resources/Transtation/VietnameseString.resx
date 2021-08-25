@@ -147,6 +147,9 @@
   <data name="RnB" xml:space="preserve">
     <value>R&amp;B</value>
   </data>
+  <data name="Song" xml:space="preserve">
+    <value>Bài hát</value>
+  </data>
   <data name="Traditional" xml:space="preserve">
     <value>Quốc phong</value>
   </data>

@@ -1,6 +1,6 @@
 ﻿namespace Music.Enumerables
 {
-    enum DataTable
+    enum DataColumn
     {
         PrimaryKey = 0,
         ReferenceKey = 1,

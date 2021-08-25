@@ -10,13 +10,6 @@ namespace Music.Utilities
     {
         static readonly List<Artist> artists = DataProvider.Artists;
 
-        static IEnumerable<Artist> GroupByGender(string index)
-        {
-            return DataProvider.Artists
-                .Where(artist => artist.Gender
-                .Equals((Gender)int.Parse(index)));
-        }
-
         /// <summary>
         /// Filters a sequence of values based on the id of category
         /// </summary>
@@ -85,6 +78,25 @@ namespace Music.Utilities
                     break;
 
             }
+        }
+
+        public static string[] Paging(List<object> items, int itemsInPage = 10)
+        {
+            if (items.Count <= itemsInPage) 
+                return new string[] { "1" };
+
+            var pageCount = items.Count % itemsInPage == 0 ?
+                items.Count / itemsInPage :
+                items.Count / itemsInPage + 1;
+
+            var pageNames = new string[pageCount];
+
+            for (int i = 1; i <= pageCount; i++)
+            {
+                pageNames[i - 1] = i.ToString();
+            }
+
+            return pageNames;
         }
     }
 }

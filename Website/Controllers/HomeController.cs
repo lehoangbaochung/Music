@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Music.Extensions;
 using Music.Utilities;
 using System;
-using System.Diagnostics;
 using System.Linq;
-using Website.Helpers;
-using Website.Models;
+using Website.Utilities;
 
 namespace Website.Controllers
 {
@@ -55,29 +54,41 @@ namespace Website.Controllers
                     {
                         return NotFound();
                     }
-
-                    var viewModel = ViewHelper.GetProfile(artist);
-
-                    if (category == null)
-                    {                        
-                        ViewBag.Artist = artist;
-                        ViewBag.Songs = artist.Songs;
-                        ViewBag.Albums = artist.Albums;
-                        ViewBag.Videos = artist.Videos;
-
-                        ViewBag.RecentSongs = artist.Songs.OrderByDescending(song => song.Id).Take(10).ToList();
-                        ViewBag.RecentAlbums = artist.Albums.OrderByDescending(album => album.SongId).Take(3).ToList();
-                        ViewBag.RecentVideos = artist.Videos.OrderByDescending(video => video.SongId).Take(3).ToList();
-
-                        ViewBag.RelatedArtist = DataProvider.Artists[new Random().Next(0, DataProvider.Artists.Count)];
-
-                        return View("Artist/Detail", viewModel);
-                    }    
-                    else 
+                     
+                    var model = artist.GetProfile();
+                    ViewBag.Artist = artist;
+                    ViewBag.Songs = artist.GetSongs();
+                    ViewBag.Albums = artist.GetAlbums();
+                    ViewBag.Videos = artist.GetVideos();
+                    //this.ReturnView(viewModel, category);
+                    switch (category)
                     {
-                        ViewBag.Songs = artist.Songs;
-                        return View("Artist/Song", viewModel);
-                    }    
+                        case "Song":
+                            {
+                                return View("Artist/Song", model);
+                            }
+                        case"Album":
+                            {
+                                return View("Artist/Album", model);
+                            }
+                        case "Video":
+                            {
+                                return View("Artist/Video", model);
+                            }
+                        default:
+                            {
+                                ViewBag.RecentSongs = artist.GetSongs()
+                                    .OrderByDescending(song => song.Id).Take(10).ToList();
+                                ViewBag.RecentAlbums = artist.GetAlbums()
+                                    .OrderByDescending(album => album.SongIds).Take(3).ToList();
+                                ViewBag.RecentVideos = artist.GetVideos()
+                                    .OrderByDescending(video => video.SongId).Take(3).ToList();
+                                ViewBag.RelatedArtist = DataProvider.Artists[
+                                    new Random().Next(0, DataProvider.Artists.Count)];
+
+                                return View("Artist/Detail", model);
+                            }
+                    }        
                 }    
             }    
         }

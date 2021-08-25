@@ -151,6 +151,15 @@ namespace Music.Resources.Transtation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bài hát.
+        /// </summary>
+        internal static string Song {
+            get {
+                return ResourceManager.GetString("Song", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quốc phong.
         /// </summary>
         internal static string Traditional {

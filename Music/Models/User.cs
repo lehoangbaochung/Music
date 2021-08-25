@@ -19,11 +19,11 @@ namespace Music.Models
 
         public string TraditionalChineseFullName { get; set; }
 
-        public Gender Gender
+        public Category Category
         {
             get
             {
-                return Gender.Male;
+                return Category.Male;
             }
         }
     }

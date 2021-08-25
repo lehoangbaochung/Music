@@ -1,32 +1,38 @@
-﻿@model System.Tuple<string, string[]>
-@using Music.Utilities;
+﻿@model PaginationViewModel
 
 <nav aria-label="pagination">
     <ul class="nav nav-pills pagination mb-3" id="pills-tab" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" id="pills-@Model.Item1-tab" data-toggle="pill" href="#pills-@Model.Item1"
-               role="tab" aria-controls="pills-@Model.Item1" aria-selected="true">@Model.Item1</a>
+            <a class="nav-link active" id="pills-@Model.PageNames[0]-tab" 
+               data-toggle="pill" href="#pills-@Model.PageNames[0]"
+               role="tab" aria-controls="pills-@Model.PageNames[0]" 
+               aria-selected="true">@Model.PageNames[0]</a>
         </li>
         @{
-            foreach (var header in Model.Item2)
+            foreach (var item in Model.PageNames.Skip(1))
             {
                 <li class="nav-item">
-                    <a class="nav-link" id="pills-@header-tab" data-toggle="pill" href="#pills-@header"
-                       role="tab" aria-controls="pills-@header" aria-selected="false">@header</a>
+                    <a class="nav-link" id="pills-@item-tab" 
+                       data-toggle="pill" href="#pills-@item"
+                       role="tab" aria-controls="pills-@item" 
+                       aria-selected="false">@item</a>
                 </li>
             }
         }
     </ul>
     <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-@Model.Item1"
-             role="tabpanel" aria-labelledby="pills-@Model.Item1-tab">
-            <partial name="~/Views/Shared/Partial/ArtistList.cshtml" model="@Music.Utilities.DataProvider.Artists" />
+        <div class="tab-pane fade show active" id="pills-@Model.PageNames[0]"
+             role="tabpanel" aria-labelledby="pills-@Model.PageNames[0]-tab">
+            <partial name="@Model.PartialView.Item1" 
+                     model="@Model.PartialView.Item2" />
         </div>
         @{
-            foreach (var header in Model.Item2)
+            foreach (var item in Model.PageNames.Skip(1))
             {
-                <div class="tab-pane fade" id="pills-@header" role="tabpanel" aria-labelledby="pills-@header-tab">
-                    <partial name="~/Views/Shared/Partial/ArtistList.cshtml" model="@Music.Utilities.DataProvider.Artists.Where(header)" />
+                <div class="tab-pane fade" id="pills-@item" 
+                     role="tabpanel" aria-labelledby="pills-@item-tab">
+                    <partial name="@Model.PartialView.Item1" 
+                             model="@Model.PartialView.Item2" />
                 </div>
             }
         }

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <CopyRefAssembliesToPublishDirectory>true</CopyRefAssembliesToPublishDirectory>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,10 +12,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Music\Music.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Home\Album\" />
   </ItemGroup>
 
 </Project>
