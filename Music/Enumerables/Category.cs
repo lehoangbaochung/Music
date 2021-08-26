@@ -66,7 +66,10 @@ namespace Music.Enumerables
         X = ConsoleKey.X,
         Y = ConsoleKey.Y,
         Z = ConsoleKey.Z,
-        Other = 91
+        Other = 91,
         #endregion
+
+        List,
+        Grid
     }
 }

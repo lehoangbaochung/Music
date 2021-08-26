@@ -12,5 +12,7 @@ namespace Website.ViewModels
         public List<Profile> Summaries { get; set; } = new();
 
         public List<Profile> Informations { get; set; } = new();
+
+        public List<ItemViewModel> Items { get; set; } = new();
     }
 }

@@ -1,10 +1,5 @@
-﻿@{
+﻿@model ProfileViewModel
+@{
     Layout = "~/Views/Shared/Layout/Profile.cshtml";
-    ItemViewModel videoViewModel = new()
-    {
-        Header = "Video",
-        Items = ViewBag.Videos,
-        Hyperlink = null
-    };
 }
-<partial name="~/Views/Shared/Partial/Grid.cshtml" model="@videoViewModel" />
+<partial name="@Model.Items[2].ViewName" model="@Model.Items[2]" />

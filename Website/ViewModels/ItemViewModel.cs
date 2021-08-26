@@ -4,6 +4,8 @@ namespace Website.ViewModels
 {
     public class ItemViewModel
     {
+        public string ViewName { get; set; }
+
         public Hyperlink Hyperlink { get; set; }
 
         public dynamic Items { get; set; }

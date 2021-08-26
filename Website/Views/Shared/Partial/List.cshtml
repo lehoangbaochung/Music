@@ -11,28 +11,28 @@
         else
         {
             <a class="col-md-6"
-               asp-controller="@Model.Hyperlink.ControllerName"
-               asp-action="@Model.Hyperlink.ActionName"
-               asp-route-category="@Model.Hyperlink.CategoryName">
+                asp-controller="@Model.Hyperlink.Controller"
+                asp-action="@Model.Hyperlink.Action"
+                asp-route-category="@Model.Hyperlink.Category">
                 <h4>@Model.Header</h4>
             </a>
         }
     }
 </div>
-<div class="card mb-3">
+<div class="card mb-3 shadow-sm">
     <div class="card-body">
         @{
             int index = 1;
             foreach (var item in Model.Items)
             {
                 <div class="row">
-                    <div class="col-sm-1">
+                    <div class="col-sm-2">
                         <h6>@index</h6>
                     </div>
                     <div class="col-sm-6">
                         <h6>@item.VietnameseName</h6>
                     </div>
-                    <div class="col-sm-5 text-secondary">
+                    <div class="col-sm-4 text-secondary">
                         @item.SimplifiedChineseName
                     </div>
                 </div>

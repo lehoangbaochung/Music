@@ -11,21 +11,21 @@
         else
         {
             <a class="col-md-6"
-               asp-controller="@Model.Hyperlink.ControllerName"
-               asp-action="@Model.Hyperlink.ActionName"
-               asp-route-category="@Model.Hyperlink.CategoryName">
+               asp-controller="@Model.Hyperlink.Controller"
+               asp-action="@Model.Hyperlink.Action"
+               asp-route-category="@Model.Hyperlink.Category">
                 <h4>@Model.Header</h4>
             </a>
         }
     }
 </div>
-<div class="card mb-3">
+<div class="card shadow-sm">
     <div class="card-body">
         <div class="row">
             @{
                 foreach (var item in Model.Items)
                 {
-                    <div class="col-md-4 mb-4">
+                    <div class="col-md-4 mb-4 w-50">
                         <div class="card shadow-sm">
                             <img src="@item.ImageUrl" alt="album" loading="lazy" />
                             <div class="card-body">

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Music.Extensions;
 using Music.Utilities;
 using System;
 using System.Linq;
@@ -30,66 +29,17 @@ namespace Website.Controllers
 
                 ViewBag.Artists = artists.Take(12);
                 ViewBag.NewArtist = artists[0];
-                ViewBag.HotArtist = artists[new Random().Next(0, DataProvider.Artists.Count)];
+                ViewBag.HotArtist = artists[new Random()
+                    .Next(0, DataProvider.Artists.Count)];
                 
                 return View("Artist/Index");
             }   
             else
             {
-                if (int.TryParse(id, out int index))
-                {
-                    var artists = DataProvider.Artists;
-                    
-                    ViewBag.Artists = artists.Where(index.ToString());
-                    ViewBag.NewArtist = artists[0];
-                    ViewBag.HotArtist = artists[new Random().Next(0, artists.Count)];
-                    return View("Artist/Index");
-                }    
-                else
-                {
-                    var artist = DataProvider.Artists
-                            .Find(artist => artist.Id.Equals(id));
-
-                    if (artist == null)
-                    {
-                        return NotFound();
-                    }
-                     
-                    var model = artist.GetProfile();
-                    ViewBag.Artist = artist;
-                    ViewBag.Songs = artist.GetSongs();
-                    ViewBag.Albums = artist.GetAlbums();
-                    ViewBag.Videos = artist.GetVideos();
-                    //this.ReturnView(viewModel, category);
-                    switch (category)
-                    {
-                        case "Song":
-                            {
-                                return View("Artist/Song", model);
-                            }
-                        case"Album":
-                            {
-                                return View("Artist/Album", model);
-                            }
-                        case "Video":
-                            {
-                                return View("Artist/Video", model);
-                            }
-                        default:
-                            {
-                                ViewBag.RecentSongs = artist.GetSongs()
-                                    .OrderByDescending(song => song.Id).Take(10).ToList();
-                                ViewBag.RecentAlbums = artist.GetAlbums()
-                                    .OrderByDescending(album => album.SongIds).Take(3).ToList();
-                                ViewBag.RecentVideos = artist.GetVideos()
-                                    .OrderByDescending(video => video.SongId).Take(3).ToList();
-                                ViewBag.RelatedArtist = DataProvider.Artists[
-                                    new Random().Next(0, DataProvider.Artists.Count)];
-
-                                return View("Artist/Detail", model);
-                            }
-                    }        
-                }    
+                var artist = DataProvider.Artists
+                    .Find(artist => artist.Id.Equals(id));
+                return artist == null ? NotFound() : 
+                    View(artist.GetViewName(category), artist.GetProfile(category));
             }    
         }
 

@@ -61,6 +61,15 @@ namespace Music.Resources.Transtation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ca sĩ.
+        /// </summary>
+        internal static string Artist {
+            get {
+                return ResourceManager.GetString("Artist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nhóm.
         /// </summary>
         internal static string Band {

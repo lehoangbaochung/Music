@@ -1,10 +1,5 @@
-﻿@{
+﻿@model ProfileViewModel
+@{
     Layout = "~/Views/Shared/Layout/Profile.cshtml";
-    ItemViewModel songViewModel = new()
-    {
-        Header = "Bài hát",
-        Items = ViewBag.Songs,
-        Hyperlink = null
-    };
 }
-<partial name="~/Views/Shared/Partial/List.cshtml" model="@songViewModel" />
+<partial name="@Model.Items[0].ViewName" model="@Model.Items[0]" />

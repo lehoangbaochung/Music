@@ -1,10 +1,5 @@
-﻿@{
+﻿@model ProfileViewModel
+@{
     Layout = "~/Views/Shared/Layout/Profile.cshtml";
-    ItemViewModel albumViewModel = new()
-    {
-        Header = "Album",
-        Items = ViewBag.Albums,
-        Hyperlink = null
-    };
 }
-<partial name="~/Views/Shared/Partial/Grid.cshtml" model="@albumViewModel" />
+<partial name="@Model.Items[1].ViewName" model="@Model.Items[1]" />

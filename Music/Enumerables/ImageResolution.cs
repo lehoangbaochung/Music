@@ -8,10 +8,10 @@
         Large = 800,
 
         // Video
-        Default = 120,
-        MQDefault = 320,
-        HQDefault = 480,
-        SDDefault = 640,
-        MaxResDefault = 1280
+        Default = 90,
+        MQDefault = 180,
+        HQDefault = 360,
+        SDDefault = 480,
+        MaxResDefault = 720
     }    
 }

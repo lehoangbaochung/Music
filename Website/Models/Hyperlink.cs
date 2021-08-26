@@ -2,23 +2,23 @@
 {
     public class Hyperlink
     {
-        public string ControllerName { get; set; }
+        public string Controller { get; set; }
 
-        public string ActionName { get; set; }
+        public string Action { get; set; }
 
         public string Id { get; set; }
 
-        public string CategoryName { get; set; }
+        public string Category { get; set; }
 
         public Hyperlink() { }
 
-        public Hyperlink(string controllerName, string actionName,
-            string id = null, string categoryName = null)
+        public Hyperlink(string controller, string action,
+            string id = null, string category = null)
         {
             Id = id;
-            ControllerName = controllerName;
-            ActionName = actionName;
-            CategoryName = categoryName;
+            Controller = controller;
+            Action = action;
+            Category = category;
         }
     }
 }
