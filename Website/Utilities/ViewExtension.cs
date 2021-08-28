@@ -13,6 +13,8 @@ namespace Website.Utilities
     /// </summary>
     public static class ViewExtension
     {
+        private const string VIEWS_PATH = "~/Views/Home/Shared/";
+
         private static string GetButtonName(this ConsoleColor color)
         {
             return color switch
@@ -29,9 +31,48 @@ namespace Website.Utilities
             };
         }
 
-        public static string GetViewName(this Artist artist, string category)
+        public static string GetViewName(this Base @base, string id = null, string category = null)
         {
-            return category == null ? $"{ nameof(Artist) }/Detail" : $"{ nameof(Artist) }/{ category }";
+            if (id == null)
+            {
+                return @base.ToString();
+            }   
+
+            if (category == null)
+            {
+                return $"{ VIEWS_PATH }Detail.cshtml";
+            }    
+            
+            return $"{ VIEWS_PATH }{ category }.cshtml";
+        }
+
+        public static object GetModel(this Artist artist, string id = null, string category = null)
+        {
+            if (id == null)
+            {
+                return null;
+            } 
+            
+            if (category == null)
+            {
+                return artist.GetProfile(category);
+            }
+
+            ItemViewModel model = new()
+            {
+                Header = category.ToString(Language.Vietnamese),
+                Hyperlink = new("Home", nameof(Artist), null, category)
+            };
+
+            switch (category)
+            {
+                case nameof(Song):
+                    model.Items = artist.GetRecentSongs(10);
+                    model.ViewName = GetViewName(Category.List);
+                    break;
+            }    
+
+            return model;
         }
 
         private static string GetViewName(Category category)
@@ -117,31 +158,31 @@ namespace Website.Utilities
                         ConsoleColor.Red.ToString().ToLower()
                 }
             });
-            viewModel.Items.AddRange(artist.GetModels(category));
+            viewModel.Items.AddRange(GetModels(artist, category));
             return viewModel;
         }
 
-        private static ItemViewModel[] GetModels(this Artist artist, string category)
+        private static ItemViewModel[] GetModels(Artist artist, string category)
         {
             var models = new ItemViewModel[]
             {
                 new()
                 {
+                    Items = artist.GetRecentSongs(15),
                     ViewName = GetViewName(Category.List),
                     Header = nameof(Song).ToString(Language.Vietnamese),
-                    Items = artist.GetRecentSongs(10),
                     Hyperlink = new("Home", nameof(Artist), null, nameof(Song))
                 },
                 new()
                 {
+                    Items = artist.GetRecentAlbums(12),
                     ViewName = GetViewName(Category.Grid),
                     Header = nameof(Album).ToString(Language.Vietnamese),
-                    Items = artist.GetRecentAlbums(6),
                     Hyperlink = new("Home", nameof(Artist), null, nameof(Album))
                 },
                 new()
                 {
-                    Items = artist.GetRecentVideos(6),
+                    Items = artist.GetRecentVideos(12),
                     ViewName = GetViewName(Category.Grid),
                     Header = nameof(Video).ToString(Language.Vietnamese),
                     Hyperlink = new("Home", nameof(Artist), null, nameof(Video))
@@ -159,6 +200,47 @@ namespace Website.Utilities
                 models[2].Items = artist.GetVideos();
             }    
             
+            return models;
+        }
+
+        private static ItemViewModel[] GetModels(this Album album, string category)
+        {
+            var models = new ItemViewModel[]
+            {
+                new()
+                {
+                    ViewName = GetViewName(Category.List),
+                    Header = nameof(Song).ToString(Language.Vietnamese),
+                    Items = album.GetSongs(),
+                    Hyperlink = new("Home", nameof(Artist), null, nameof(Song))
+                },
+                new()
+                {
+                    ViewName = GetViewName(Category.Grid),
+                    Header = nameof(Album).ToString(Language.Vietnamese),
+                    Items = album.GetArtists(),
+                    Hyperlink = new("Home", nameof(Artist), null, nameof(Album))
+                },
+                new()
+                {
+                    Items = album.GetVideos(6),
+                    ViewName = GetViewName(Category.Grid),
+                    Header = nameof(Video).ToString(Language.Vietnamese),
+                    Hyperlink = new("Home", nameof(Artist), null, nameof(Video))
+                }
+            };
+
+            if (category != null)
+            {
+                models[0].Hyperlink = null;
+                models[1].Hyperlink = null;
+                models[2].Hyperlink = null;
+
+                models[0].Items = album.GetSongs();
+                models[1].Items = album.GetArtists();
+                models[2].Items = album.GetVideos();
+            }
+
             return models;
         }
 

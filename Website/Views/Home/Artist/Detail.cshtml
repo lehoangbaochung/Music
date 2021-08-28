@@ -1,8 +1,0 @@
-﻿@model ProfileViewModel
-@{
-    Layout = "~/Views/Shared/Layout/Profile.cshtml";
-    foreach (var item in Model.Items)
-    {
-        <partial name="@item.ViewName" model="@item" />
-    }
-}

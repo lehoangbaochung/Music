@@ -21,7 +21,7 @@ namespace Website.Controllers
             return View();
         }
 
-        public IActionResult Artist(string id = null, string category = null)
+        public IActionResult Artist(string id, string category)
         {
             if (id == null)
             {
@@ -33,14 +33,13 @@ namespace Website.Controllers
                     .Next(0, DataProvider.Artists.Count)];
                 
                 return View("Artist/Index");
-            }   
-            else
-            {
-                var artist = DataProvider.Artists
+            }
+
+            var artist = DataProvider.Artists
                     .Find(artist => artist.Id.Equals(id));
-                return artist == null ? NotFound() : 
-                    View(artist.GetViewName(category), artist.GetProfile(category));
-            }    
+
+            return artist == null ? NotFound() :
+                    View(artist.GetViewName(id, category), artist.GetModel(id, category));
         }
 
         public IActionResult Album()
@@ -52,7 +51,7 @@ namespace Website.Controllers
             }
             ViewBag.RecentAlbums = albums;
             
-            return View();
+            return View("Album/Index");
         }
 
         public IActionResult Privacy()
