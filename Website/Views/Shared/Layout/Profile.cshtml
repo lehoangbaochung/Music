@@ -1,26 +1,25 @@
 ﻿@model ProfileViewModel
 @{
-    ViewData["Title"] = Model.Profile.Title;
+    ViewData["Title"] = Model.PrimaryItem.Title;
     Layout = "~/Views/Shared/Layout/Index.cshtml";
+    var primaryItem = Model.PrimaryItem;
+    var secondaryItem = Model.SecondaryItem;
 }
 <div class="row gutters-sm">
     <div class="col-md-4 mb-3">
         <div class="card">
             <div class="card-body shadow border-0">
                 <div class="align-items-center text-center">
-                    <img src="@Model.Profile.ImageUrl" alt="avatar"
+                    <img src="@primaryItem.ImageUrl" alt="@primaryItem.Title"
                          class="rounded-circle p-3 w-75" 
-                         style="background-color:@Model.Profile.Color;" />
+                         style="background-color:@primaryItem.ColorName;" />
                     <div class="mt-3">
-                        <h3>@Model.Profile.Title</h3>
-                        <p class="text-secondary mb-3">@Model.Profile.Subtitle</p>
+                        <h3>@primaryItem.Title</h3>
+                        <p class="text-secondary mb-3">@primaryItem.Subtitle</p>
                         @{
-                            foreach (var summary in Model.Summaries)
+                            foreach (var summary in Model.Parameters)
                             {
-                                <a class="btn btn-@summary.Color"
-                                   asp-controller="@summary.Hyperlink.Controller"
-                                   asp-action="@summary.Hyperlink.Action"
-                                   asp-route-category="@summary.Hyperlink.Category">@summary.Title
+                                <a class="btn btn-@summary.ColorName" href="">@summary.Title
                                     <h4>@summary.Subtitle</h4>
                                 </a>
                             }
@@ -51,6 +50,7 @@
                 }
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0 text-info justify-content-between">Thông tin thêm</h6>
+                    <pre></pre>
                 </li>
             </ul>
         </div>
@@ -59,20 +59,17 @@
             <div class="card-body text-center">
                 <h4 class="mb-3">Đề xuất</h4>
                 @{
-                    foreach (var profile in Model.RelatedProfiles)
-                    {
-                        <div>
-                            <a asp-controller="@profile.Hyperlink.Controller"
-                               asp-action="@profile.Hyperlink.Action"
-                               asp-route-id="@profile.Hyperlink.Id">
-                                <img class="rounded-circle shadow p-1 w-50"
-                                     style="background-color:@profile.Color;"
-                                     aria-label="artist" src="@profile.ImageUrl" />
-                            </a>
-                            <h5 class="mt-3">@profile.Title</h5>
-                            <p class="text-secondary">@profile.Subtitle</p>
-                        </div>
-                    }
+                    <div>
+                        <a asp-controller="@secondaryItem.Hyperlink.Controller"
+                            asp-action="@secondaryItem.Hyperlink.Action"
+                            asp-route-id="@secondaryItem.Hyperlink.Id">
+                            <img class="rounded-circle shadow p-1 w-50"
+                                    style="background-color:@secondaryItem.ColorName;"
+                                    aria-label="artist" src="@secondaryItem.ImageUrl" />
+                        </a>
+                        <h5 class="mt-3">@secondaryItem.Title</h5>
+                        <p class="text-secondary">@secondaryItem.Subtitle</p>
+                    </div>
                 }
             </div>
         </div>

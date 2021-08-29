@@ -5,7 +5,7 @@ namespace Music.Models
     public class Base : IName, IDescription
     {
         public string Id { get; set; }
-        public string Category { get; set; }
+        public string Category { get; set; } = "";
 
         public string VietnameseName { get; set; }
         public string PinyinName { get; set; }

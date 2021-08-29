@@ -1,4 +1,4 @@
-﻿@model ItemViewModel
+﻿@model NavigationViewModel
 
 <div class="card shadow m-3">
     <div class="card-body">
@@ -7,35 +7,45 @@
             foreach (var item in Model.Items)
             {
                 <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                         <h6>@index</h6>
                     </div>
                     <div class="col-sm-6">
                         <h6>@item.VietnameseName</h6>
                     </div>
-                    <div class="col-sm-4 text-secondary">
+                    <div class="col-sm-5 text-secondary">
                         @item.SimplifiedChineseName
                     </div>
                 </div>
                 <hr />
                 index++;
             }
-
-            if (Model.Items.Count > 0)
-            {
-                <nav aria-label="page navigation">
-                    <ul class="pagination justify-content-center">
-                        @{
-                            for (int i = index; i <= Model.PageCount; i++)
-                            {
-                                <li class="page-item">
-                                    <a class="page-link">@i</a>
-                                </li>
-                            }
-                        }
-                    </ul>
-                </nav>
-            }
         }
     </div>
+    @*@{
+        if (Model.Items.Count > 0)
+        {
+            <nav aria-label="nav page">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link">&laquo;</a>
+                    </li>
+                    @{
+                        for (int i = 1; i <= Model.PageCount; i++)
+                        {
+                            <li class="page-item active">
+                                <span class="page-link">
+                                    @i
+                                    <span class="sr-only">(current)</span>
+                                </span>
+                            </li>
+                        }
+                    }
+                    <li class="page-item">
+                        <a class="page-link" href="#">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        }
+    }*@
 </div>

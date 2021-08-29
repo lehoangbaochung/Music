@@ -24,8 +24,7 @@ namespace Music.Extensions
             };
         }
 
-        public static string GetImageUrl(this ImageResolution imageResolution, 
-            string id, string imageId = null)
+        public static string GetImageUrl(this ImageResolution imageResolution, string id, string imageId = null)
         {
             return imageResolution switch
             {

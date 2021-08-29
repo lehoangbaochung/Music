@@ -13,9 +13,12 @@ namespace Website.Utilities
     /// </summary>
     public static class ViewExtension
     {
-        private const string VIEWS_PATH = "~/Views/Home/Shared/";
+        public const string PROFILE_VIEW_PATH = "~/Views/Shared/Partial/Profile.cshtml";
 
-        private static string GetButtonName(this ConsoleColor color)
+        private const string LIST_VIEW_PATH = "~/Views/Shared/Partial/List.cshtml";
+        private const string GRID_VIEW_PATH = "~/Views/Shared/Partial/Grid.cshtml";
+
+        private static string ToButtonName(this ConsoleColor color)
         {
             return color switch
             {
@@ -31,98 +34,62 @@ namespace Website.Utilities
             };
         }
 
-        public static string GetViewName(this Base @base, string id = null, string category = null)
+        public static Hyperlink GetHyperlink(Base @base)
         {
-            if (id == null)
-            {
-                return @base.ToString();
-            }   
-
-            if (category == null)
-            {
-                return $"{ VIEWS_PATH }Detail.cshtml";
-            }    
-            
-            return $"{ VIEWS_PATH }{ category }.cshtml";
+            return new Hyperlink("Home", @base.GetType().Name, @base.Id);
         }
 
-        public static object GetModel(this Artist artist, string id = null, string category = null)
+        public static ProfileViewModel GetProfile(this Artist artist)
         {
-            if (id == null)
-            {
-                return null;
-            } 
-            
-            if (category == null)
-            {
-                return artist.GetProfile(category);
-            }
+            var relatedArtist = DataProvider.Artists.GetRandomItem();
 
-            ItemViewModel model = new()
+            ProfileViewModel model = new()
             {
-                Header = category.ToString(Language.Vietnamese),
-                Hyperlink = new("Home", nameof(Artist), null, category)
+                PrimaryItem = new()
+                {
+                    ImageUrl = artist.ImageUrl,
+                    Title = artist.VietnameseName,
+                    Subtitle = artist.SimplifiedChineseName,
+                    ColorName = artist.Category.Equals(Category.Male) ?
+                        ConsoleColor.Blue.ToString().ToLower() :
+                        ConsoleColor.Red.ToString().ToLower()
+                },
+                SecondaryItem = new()
+                {
+                    ImageUrl = relatedArtist.ImageUrl,
+                    Title = relatedArtist.VietnameseName,
+                    Subtitle = relatedArtist.SimplifiedChineseName,
+                    Hyperlink = new("Home", nameof(Artist), relatedArtist.Id),
+                    ColorName = relatedArtist.Category.Equals(Category.Male) ?
+                        ConsoleColor.Blue.ToString().ToLower() :
+                        ConsoleColor.Red.ToString().ToLower()
+                }
             };
-
-            switch (category)
-            {
-                case nameof(Song):
-                    model.Items = artist.GetRecentSongs(10);
-                    model.ViewName = GetViewName(Category.List);
-                    break;
-            }    
-
-            return model;
-        }
-
-        private static string GetViewName(Category category)
-        {
-            return $"~/Views/Shared/Partial/{ category }.cshtml";
-        }
-
-        public static ProfileViewModel GetProfile(this Artist artist, string category)
-        {
-            var relatedArtist = DataProvider.Artists[
-                new Random().Next(0, DataProvider.Artists.Count)];
-
-            ProfileViewModel viewModel = new();           
-            viewModel.Profile = new()
-            {
-                Title = artist.VietnameseName,
-                Subtitle = artist.SimplifiedChineseName,
-                ImageUrl = artist.ImageUrl,
-                Color = artist.Category.Equals(Category.Male) ?
-                    ConsoleColor.Blue.ToString().ToLower() :
-                    ConsoleColor.Red.ToString().ToLower()
-            };
-            viewModel.Summaries.AddRange(new Profile[]
+            model.Parameters.AddRange(new Profile[]
             {
                 // Song
                 new()
                 {
                     Title = nameof(Song).ToString(Language.Vietnamese),
                     Subtitle = artist.GetSongs().Count.ToString(),
-                    Color = ConsoleColor.Green.GetButtonName(),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Song))
+                    ColorName = ConsoleColor.Green.ToButtonName()
                 },
                 // Album
                 new()
                 {
                     Title = nameof(Album).ToString(Language.Vietnamese),
                     Subtitle = artist.GetAlbums().Count.ToString(),
-                    Color = ConsoleColor.Yellow.GetButtonName(),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Album))
+                    ColorName = ConsoleColor.Yellow.ToButtonName()
                 },
                 // Video
                 new()
                 {
                     Title = nameof(Video).ToString(Language.Vietnamese),
                     Subtitle = artist.GetVideos().Count.ToString(),
-                    Color = ConsoleColor.Red.GetButtonName(),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Video))
+                    ColorName = ConsoleColor.Red.ToButtonName()
                 }
             });
-            viewModel.Informations.AddRange(new Profile[]
+            model.Informations.AddRange(new Profile[]
             {
                 new()
                 {
@@ -145,180 +112,125 @@ namespace Website.Utilities
                     Subtitle = "Đang cập nhật"
                 }
             });
-            viewModel.RelatedProfiles.AddRange(new Profile[]
-            {
-                new()
-                {
-                    Hyperlink = new("Home", nameof(Artist), relatedArtist.Id, null),
-                    Title = relatedArtist.VietnameseName,
-                    Subtitle = relatedArtist.SimplifiedChineseName,
-                    ImageUrl = relatedArtist.ImageUrl,
-                    Color = relatedArtist.Category.Equals(Category.Male) ? 
-                        ConsoleColor.Blue.ToString().ToLower() : 
-                        ConsoleColor.Red.ToString().ToLower()
-                }
-            });
-            viewModel.Items.AddRange(GetModels(artist, category));
-            return viewModel;
-        }
-
-        private static ItemViewModel[] GetModels(Artist artist, string category)
-        {
-            var models = new ItemViewModel[]
+            model.Navigations.AddRange(new NavigationViewModel[]
             {
                 new()
                 {
                     Items = artist.GetRecentSongs(15),
-                    ViewName = GetViewName(Category.List),
-                    Header = nameof(Song).ToString(Language.Vietnamese),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Song))
+                    ViewName = LIST_VIEW_PATH,
+                    Header = nameof(Song)
                 },
                 new()
                 {
                     Items = artist.GetRecentAlbums(12),
-                    ViewName = GetViewName(Category.Grid),
-                    Header = nameof(Album).ToString(Language.Vietnamese),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Album))
+                    ViewName = GRID_VIEW_PATH,
+                    Header = nameof(Album)
                 },
                 new()
                 {
                     Items = artist.GetRecentVideos(12),
-                    ViewName = GetViewName(Category.Grid),
-                    Header = nameof(Video).ToString(Language.Vietnamese),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Video))
+                    ViewName = GRID_VIEW_PATH,
+                    Header = nameof(Video)
                 }
-            };
-
-            if (category != null)
-            {
-                models[0].Hyperlink = null;
-                models[1].Hyperlink = null;
-                models[2].Hyperlink = null;
-
-                models[0].Items = artist.GetSongs();
-                models[1].Items = artist.GetAlbums();
-                models[2].Items = artist.GetVideos();
-            }    
-            
-            return models;
-        }
-
-        private static ItemViewModel[] GetModels(this Album album, string category)
-        {
-            var models = new ItemViewModel[]
-            {
-                new()
-                {
-                    ViewName = GetViewName(Category.List),
-                    Header = nameof(Song).ToString(Language.Vietnamese),
-                    Items = album.GetSongs(),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Song))
-                },
-                new()
-                {
-                    ViewName = GetViewName(Category.Grid),
-                    Header = nameof(Album).ToString(Language.Vietnamese),
-                    Items = album.GetArtists(),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Album))
-                },
-                new()
-                {
-                    Items = album.GetVideos(6),
-                    ViewName = GetViewName(Category.Grid),
-                    Header = nameof(Video).ToString(Language.Vietnamese),
-                    Hyperlink = new("Home", nameof(Artist), null, nameof(Video))
-                }
-            };
-
-            if (category != null)
-            {
-                models[0].Hyperlink = null;
-                models[1].Hyperlink = null;
-                models[2].Hyperlink = null;
-
-                models[0].Items = album.GetSongs();
-                models[1].Items = album.GetArtists();
-                models[2].Items = album.GetVideos();
-            }
-
-            return models;
+            });
+            return model;
         }
 
         public static ProfileViewModel GetProfile(this Album album)
         {
-            ProfileViewModel viewModel = new();
-            viewModel.Profile = new()
+            var relatedAlbum = album.GetRelatedAlbum();
+
+            ProfileViewModel model = new()
             {
-                Title = album.VietnameseName,
-                Subtitle = album.SimplifiedChineseName,
-                ImageUrl = album.ImageUrl,
-                Color = ConsoleColor.Magenta.ToString().ToLower()
+                PrimaryItem = new()
+                {
+                    ImageUrl = album.ImageUrl,
+                    Title = album.VietnameseName,
+                    Subtitle = album.SimplifiedChineseName,
+                    ColorName = album.Category.Equals(Category.Male) ?
+                        ConsoleColor.Blue.ToString().ToLower() :
+                        ConsoleColor.Red.ToString().ToLower()
+                },
+                SecondaryItem = new()
+                {
+                    ImageUrl = relatedAlbum.ImageUrl,
+                    Title = relatedAlbum.VietnameseName,
+                    Subtitle = relatedAlbum.SimplifiedChineseName,
+                    Hyperlink = new("Home", nameof(Album), relatedAlbum.Id),
+                    ColorName = relatedAlbum.Category.Equals(Category.Male) ?
+                        ConsoleColor.Blue.ToString().ToLower() :
+                        ConsoleColor.Red.ToString().ToLower()
+                }
             };
-            viewModel.Summaries.AddRange(new Profile[]
+            model.Parameters.AddRange(new Profile[]
             {
                 // Song
                 new()
                 {
                     Title = nameof(Song).ToString(Language.Vietnamese),
                     Subtitle = album.GetSongs().Count.ToString(),
-                    Color = ConsoleColor.Green.GetButtonName(),
-                    Hyperlink = new("Home", nameof(Album), null, nameof(Song))
+                    ColorName = ConsoleColor.Green.ToButtonName()
                 },
                 // Album
                 new()
                 {
                     Title = nameof(Artist).ToString(Language.Vietnamese),
                     Subtitle = album.GetArtists().Count.ToString(),
-                    Color = ConsoleColor.Yellow.GetButtonName(),
-                    Hyperlink = new("Home", nameof(Album), null, nameof(Artist))
+                    ColorName = ConsoleColor.Yellow.ToButtonName()
                 },
                 // Video
                 new()
                 {
                     Title = nameof(Video).ToString(Language.Vietnamese),
                     Subtitle = album.GetVideos().Count.ToString(),
-                    Color = ConsoleColor.Red.GetButtonName(),
-                    Hyperlink = new("Home", nameof(Album), null, nameof(Video))
+                    ColorName = ConsoleColor.Red.ToButtonName()
                 }
             });
-            viewModel.Informations.AddRange(new Profile[]
+            model.Informations.AddRange(new Profile[]
             {
                 new()
                 {
-                    Title = "Ca sĩ",
-                    Subtitle = "Đang cập nhật"
-                },
-                new()
-                {
-                    Title = "Ngày phát hành",
-                    Subtitle = "Đang cập nhật"
-                },
-                new()
-                {
                     Title = "Thể loại",
-                    Subtitle = "Single"
+                    Subtitle = "Đang cập nhật"
+                },
+                new()
+                {
+                    Title = "Phát hành",
+                    Subtitle = "Đang cập nhật"
                 },
                 new()
                 {
                     Title = "Hãng đĩa",
                     Subtitle = "Đang cập nhật"
+                },
+                new()
+                {
+                    Title = "Đĩa đơn",
+                    Subtitle = "Đang cập nhật"
                 }
             });
-            var otherAlbum = DataProvider.Albums.GetRandomItem();
-            viewModel.RelatedProfiles.AddRange(new Profile[]
+            model.Navigations.AddRange(new NavigationViewModel[]
             {
                 new()
                 {
-                    Hyperlink = new("Home", nameof(Album), otherAlbum.Id, null),
-                    Title = otherAlbum.VietnameseName,
-                    Subtitle = otherAlbum.SimplifiedChineseName,
-                    ImageUrl = otherAlbum.ImageUrl,
-                    Color = otherAlbum.Category.Equals(Category.Male) ?
-                        ConsoleColor.Blue.ToString().ToLower() :
-                        ConsoleColor.Red.ToString().ToLower()
+                    Items = album.GetSongs(),
+                    ViewName = LIST_VIEW_PATH,
+                    Header = nameof(Song)
+                },
+                new()
+                {
+                    Items = album.GetArtists(),
+                    ViewName = GRID_VIEW_PATH,
+                    Header = nameof(Artist)
+                },
+                new()
+                {
+                    Items = album.GetVideos(),
+                    ViewName = GRID_VIEW_PATH,
+                    Header = nameof(Video)
                 }
             });
-            return viewModel;
+            return model;
         }
     }
 }

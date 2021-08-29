@@ -1,4 +1,5 @@
 ﻿using Music.Models;
+using Music.Utilities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,6 +26,11 @@ namespace Music.Extensions
             return album.GetVideos()
                 .OrderByDescending(video => video.Id)
                 .Take(count).ToList();
+        }
+
+        public static Album GetRelatedAlbum(this Album album)
+        {
+            return DataProvider.Albums.GetRandomItem();
         }
     }
 }

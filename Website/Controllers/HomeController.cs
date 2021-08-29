@@ -21,7 +21,7 @@ namespace Website.Controllers
             return View();
         }
 
-        public IActionResult Artist(string id, string category)
+        public IActionResult Artist(string id)
         {
             if (id == null)
             {
@@ -35,23 +35,31 @@ namespace Website.Controllers
                 return View("Artist/Index");
             }
 
-            var artist = DataProvider.Artists
-                    .Find(artist => artist.Id.Equals(id));
+            var artist = DataProvider.Artists.Find(a => a.Id.Equals(id));
 
             return artist == null ? NotFound() :
-                    View(artist.GetViewName(id, category), artist.GetModel(id, category));
+                    View(ViewExtension.PROFILE_VIEW_PATH, artist.GetProfile());
         }
 
-        public IActionResult Album()
+        public IActionResult Album(string id)
         {
-            System.Collections.Generic.List<Music.Models.Album> albums = new(); 
-            for (int i = 0; i < 3; i++)
+            if (id == null)
             {
-                albums.Add(DataProvider.Albums[new System.Random().Next(0, DataProvider.Albums.Count)]);
-            }
-            ViewBag.RecentAlbums = albums;
-            
-            return View("Album/Index");
+                System.Collections.Generic.List<Music.Models.Album> albums = new();
+                for (int i = 0; i < 3; i++)
+                {
+                    albums.Add(DataProvider.Albums[new Random().Next(0, DataProvider.Albums.Count)]);
+                }
+                ViewBag.RecentAlbums = albums;
+                
+                return View("Album/Index");
+            }    
+            else
+            {
+                var album = DataProvider.Albums.Find(a => a.Id.Equals(id));
+                return album == null ? NotFound() : 
+                    View(ViewExtension.PROFILE_VIEW_PATH, album.GetProfile());
+            }    
         }
 
         public IActionResult Privacy()

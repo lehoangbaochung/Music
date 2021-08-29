@@ -1,18 +1,12 @@
-﻿using Website.Models;
-
-namespace Website.ViewModels
+﻿namespace Website.ViewModels
 {
-    public class ItemViewModel
+    public class NavigationViewModel
     {
-        public string ViewName { get; set; }
-
-        public Hyperlink Hyperlink { get; set; }
+        public string Header { get; set; }
 
         public dynamic Items { get; set; }
 
-        public string ImageUrl { get; set; }
-
-        public string Header { get; set; }
+        public string ViewName { get; set; }
 
         public int PageCount
         {

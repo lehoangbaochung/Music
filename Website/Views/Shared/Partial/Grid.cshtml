@@ -1,4 +1,4 @@
-﻿@model ItemViewModel
+﻿@model NavigationViewModel
 
 <div class="card shadow m-3">
     <div class="card-body">
@@ -6,12 +6,17 @@
             @{
                 foreach (var item in Model.Items)
                 {
+                    var hyperlink = Website.Utilities.ViewExtension.GetHyperlink(item);
                     <div class="col-md-4 mt-2 mb-2 w-50">
-                        <div class="card shadow-sm" style="word-break:keep-all; word-wrap:hyphenate">
-                            <img src="@item.ImageUrl" alt="album" loading="lazy" />
+                        <div class="card shadow-sm">
+                            <img src="@item.ImageUrl" alt="@item.VietnameseName" loading="lazy" />
                             <div class="card-body d-inline-block">
                                 <h6 title="@item.VietnameseName">@item.VietnameseName</h6>
                                 <small class="text-muted float-right">@item.SimplifiedChineseName</small>
+                                <a class="stretched-link"
+                                   asp-controller="@hyperlink.Controller"
+                                   asp-action="@hyperlink.Action"
+                                   asp-route-id="@hyperlink.Id"></a>
                             </div>
                         </div>
                     </div>
@@ -30,12 +35,13 @@
                             for (int i = 1; i <= Model.PageCount; i++)
                             {
                                 <li class="page-item active">
-                                    <span class="page-link">@i
+                                    <span class="page-link">
+                                        @i
                                         <span class="sr-only">(current)</span>
                                     </span>
                                 </li>
                             }
-                        }         
+                        }
                         <li class="page-item">
                             <a class="page-link" href="#">&raquo;</a>
                         </li>

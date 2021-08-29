@@ -1,0 +1,41 @@
+﻿@using Music.Enumerables;
+@using Music.Extensions;
+@model ProfileViewModel
+@{
+    Layout = "~/Views/Shared/Layout/Profile.cshtml";
+    if (Model.Navigations.Count == 0) return;
+}
+<nav>
+    <div class="nav nav-pills h5 justify-content-center" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-@Model.Navigations[0].Header-tab" data-toggle="tab" role="tab"
+           href="#nav-@Model.Navigations[0].Header" aria-controls="nav-@Model.Navigations[0].Header" aria-selected="true">
+            @Model.Navigations[0].Header.ToString(Language.Vietnamese)
+        </a>
+        @{
+            if (Model.Navigations.Count < 2) return;
+            for (int i = 1; i < Model.Navigations.Count; i++)
+            {
+                <a class="nav-item nav-link" id="nav-@Model.Navigations[i].Header-tab" data-toggle="tab" role="tab"
+                   href="#nav-@Model.Navigations[i].Header" aria-controls="nav-contact" aria-selected="false">
+                    @Model.Navigations[i].Header.ToString(Language.Vietnamese)
+                </a>
+            }
+        }
+    </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-@Model.Navigations[0].Header"
+         role="tabpanel" aria-labelledby="nav-@Model.Navigations[0].Header-tab">
+        <partial name="@Model.Navigations[0].ViewName" model="@Model.Navigations[0]" />
+    </div>
+    @{
+        if (Model.Navigations.Count < 2) return;
+        for (int i = 1; i < Model.Navigations.Count; i++)
+        {
+            <div class="tab-pane fade" id="nav-@Model.Navigations[i].Header"
+                 role="tabpanel" aria-labelledby="nav-@Model.Navigations[i].Header-tab">
+                <partial name="@Model.Navigations[i].ViewName" model="@Model.Navigations[i]" />
+            </div>
+        }
+    }
+</div>
