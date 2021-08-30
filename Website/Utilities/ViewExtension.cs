@@ -14,11 +14,11 @@ namespace Website.Utilities
     public static class ViewExtension
     {
         public const string PROFILE_VIEW_PATH = "~/Views/Shared/Partial/Profile.cshtml";
-
         private const string LIST_VIEW_PATH = "~/Views/Shared/Partial/List.cshtml";
         private const string GRID_VIEW_PATH = "~/Views/Shared/Partial/Grid.cshtml";
+        private const string VIDEO_VIEW_PATH = "~/Views/Shared/Partial/Video.cshtml";
 
-        private static string ToButtonName(this ConsoleColor color)
+        private static string GetButtonColorName(ConsoleColor color)
         {
             return color switch
             {
@@ -72,21 +72,21 @@ namespace Website.Utilities
                 {
                     Title = nameof(Song).ToString(Language.Vietnamese),
                     Subtitle = artist.GetSongs().Count.ToString(),
-                    ColorName = ConsoleColor.Green.ToButtonName()
+                    ColorName = GetButtonColorName(ConsoleColor.Green)
                 },
                 // Album
                 new()
                 {
                     Title = nameof(Album).ToString(Language.Vietnamese),
                     Subtitle = artist.GetAlbums().Count.ToString(),
-                    ColorName = ConsoleColor.Yellow.ToButtonName()
+                    ColorName = GetButtonColorName(ConsoleColor.Yellow)
                 },
                 // Video
                 new()
                 {
                     Title = nameof(Video).ToString(Language.Vietnamese),
                     Subtitle = artist.GetVideos().Count.ToString(),
-                    ColorName = ConsoleColor.Red.ToButtonName()
+                    ColorName = GetButtonColorName(ConsoleColor.Red)
                 }
             });
             model.Informations.AddRange(new Profile[]
@@ -129,7 +129,7 @@ namespace Website.Utilities
                 new()
                 {
                     Items = artist.GetRecentVideos(12),
-                    ViewName = GRID_VIEW_PATH,
+                    ViewName = VIDEO_VIEW_PATH,
                     Header = nameof(Video)
                 }
             });
@@ -169,21 +169,21 @@ namespace Website.Utilities
                 {
                     Title = nameof(Song).ToString(Language.Vietnamese),
                     Subtitle = album.GetSongs().Count.ToString(),
-                    ColorName = ConsoleColor.Green.ToButtonName()
+                    ColorName = GetButtonColorName(ConsoleColor.Green)
                 },
                 // Album
                 new()
                 {
                     Title = nameof(Artist).ToString(Language.Vietnamese),
                     Subtitle = album.GetArtists().Count.ToString(),
-                    ColorName = ConsoleColor.Yellow.ToButtonName()
+                    ColorName = GetButtonColorName(ConsoleColor.Yellow)
                 },
                 // Video
                 new()
                 {
                     Title = nameof(Video).ToString(Language.Vietnamese),
                     Subtitle = album.GetVideos().Count.ToString(),
-                    ColorName = ConsoleColor.Red.ToButtonName()
+                    ColorName = GetButtonColorName(ConsoleColor.Red)
                 }
             });
             model.Informations.AddRange(new Profile[]
@@ -226,7 +226,7 @@ namespace Website.Utilities
                 new()
                 {
                     Items = album.GetVideos(),
-                    ViewName = GRID_VIEW_PATH,
+                    ViewName = VIDEO_VIEW_PATH,
                     Header = nameof(Video)
                 }
             });

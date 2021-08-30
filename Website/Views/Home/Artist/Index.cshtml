@@ -4,7 +4,7 @@
     PaginationViewModel pagination = new()
     {
         PageNames = Music.Extensions.Extension.GetNames(Category.A, Category.Z).ToList(),
-        PartialView = new("~/Views/Shared/Partial/ArtistList.cshtml", ViewBag.Artists)
+        PartialView = new("~/Views/Shared/Partial/Artist.cshtml", ViewBag.Artists)
     };
 }
 <div class="row">
@@ -49,4 +49,4 @@
         </div>
     </div>
 </div>
-<partial name="~/Views/Shared/Partial/Pagination.cshtml" model="@pagination" />
+<partial name="~/Views/Shared/Partial/Navigation.cshtml" model="@pagination" />

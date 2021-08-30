@@ -35,7 +35,7 @@ namespace Music.Models
                 {
                     // Find an album containing it (include exceptions about songid number)
                     var album = DataProvider.Albums.Find(
-                        album => album.SongIds.Contains(song.Id.ToString()));
+                        album => album.SongIds.Contains(song.Id));
 
                     // If there is an album containing it
                     if (album != null)
@@ -44,7 +44,7 @@ namespace Music.Models
                         foreach (var songId in album.SongIds.Split(Extension.JOIN_CHARACTER))
                         {
                             // Correct check
-                            if (songId.Equals(song.Id.ToString()))
+                            if (songId.Equals(song.Id))
                             {
                                 // Check duplicate
                                 if (!albums.Contains(album))
