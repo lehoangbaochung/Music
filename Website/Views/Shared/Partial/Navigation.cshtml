@@ -1,40 +1,38 @@
-﻿@model PaginationViewModel
-
-<nav aria-label="pagination">
-    <ul class="nav nav-pills pagination mb-3" id="pills-tab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="pills-@Model.PageNames[0]-tab" 
-               data-toggle="pill" href="#pills-@Model.PageNames[0]"
-               role="tab" aria-controls="pills-@Model.PageNames[0]" 
-               aria-selected="true">@Model.PageNames[0]</a>
-        </li>
-        @{
-            foreach (var item in Model.PageNames.Skip(1))
-            {
-                <li class="nav-item">
-                    <a class="nav-link" id="pills-@item-tab" 
-                       data-toggle="pill" href="#pills-@item"
-                       role="tab" aria-controls="pills-@item" 
-                       aria-selected="false">@item</a>
-                </li>
-            }
+﻿@model List<NavigationViewModel>
+@using Music.Enumerables;
+@using Music.Extensions;
+@{
+    if (Model.Count == 0) return;
+}
+<div class="nav nav-pills justify-content-center h5" id="nav-tab" role="tablist" aria-orientation="horizontal">
+    <a class="nav-item nav-link active" id="nav-@Model[0].Header-tab" data-toggle="tab" role="tab"
+       href="#nav-@Model[0].Header" aria-controls="nav-@Model[0].Header" aria-selected="true">
+        @Model[0].Header.ToString(Language.Vietnamese)
+    </a>
+    @{
+        if (Model.Count < 2) return;
+        for (int i = 1; i < Model.Count; i++)
+        {
+            <a class="nav-item nav-link" id="nav-@Model[i].Header-tab" data-toggle="tab" role="tab"
+               href="#nav-@Model[i].Header" aria-controls="nav-contact" aria-selected="false">
+                @Model[i].Header.ToString(Language.Vietnamese)
+            </a>
         }
-    </ul>
-    <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-@Model.PageNames[0]"
-             role="tabpanel" aria-labelledby="pills-@Model.PageNames[0]-tab">
-            <partial name="@Model.PartialView.Item1" 
-                     model="@Model.PartialView.Item2" />
-        </div>
-        @{
-            foreach (var item in Model.PageNames.Skip(1))
-            {
-                <div class="tab-pane fade" id="pills-@item" 
-                     role="tabpanel" aria-labelledby="pills-@item-tab">
-                    <partial name="@Model.PartialView.Item1" 
-                             model="@Model.PartialView.Item2" />
-                </div>
-            }
-        }
+    }
+</div>
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-@Model[0].Header"
+         role="tabpanel" aria-labelledby="nav-@Model[0].Header-tab">
+        <partial name="@Model[0].ViewName" model="@Model[0]" />
     </div>
-</nav>
+    @{
+        if (Model.Count < 2) return;
+        for (int i = 1; i < Model.Count; i++)
+        {
+            <div class="tab-pane fade" id="nav-@Model[i].Header"
+                 role="tabpanel" aria-labelledby="nav-@Model[i].Header-tab">
+                <partial name="@Model[i].ViewName" model="@Model[i]" />
+            </div>
+        }
+    }
+</div>

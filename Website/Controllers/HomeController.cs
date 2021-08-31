@@ -32,7 +32,7 @@ namespace Website.Controllers
                 ViewBag.HotArtist = artists[new Random()
                     .Next(0, DataProvider.Artists.Count)];
                 
-                return View("Artist/Index");
+                return View("Artist");
             }
 
             var artist = DataProvider.Artists.Find(a => a.Id.Equals(id));
@@ -52,7 +52,7 @@ namespace Website.Controllers
                 }
                 ViewBag.RecentAlbums = albums;
                 
-                return View("Album/Index");
+                return View("Album");
             }    
             else
             {

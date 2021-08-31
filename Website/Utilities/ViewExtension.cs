@@ -3,6 +3,7 @@ using Music.Extensions;
 using Music.Models;
 using Music.Utilities;
 using System;
+using System.Collections.Generic;
 using Website.Models;
 using Website.ViewModels;
 
@@ -17,6 +18,7 @@ namespace Website.Utilities
         private const string LIST_VIEW_PATH = "~/Views/Shared/Partial/List.cshtml";
         private const string GRID_VIEW_PATH = "~/Views/Shared/Partial/Grid.cshtml";
         private const string VIDEO_VIEW_PATH = "~/Views/Shared/Partial/Video.cshtml";
+        private const string NAVIGATION_VIEW_PATH = "~/Views/Shared/Partial/Navigation.cshtml";
 
         private static string GetButtonColorName(ConsoleColor color)
         {
@@ -231,6 +233,17 @@ namespace Website.Utilities
                 }
             });
             return model;
+        }
+
+        public static NavigationViewModel[] GetNavigations(this Song song)
+        {
+            return new NavigationViewModel[] 
+            {
+                new()
+                {
+                    Header = "Tiếng Việt"
+                }
+            };
         }
     }
 }
