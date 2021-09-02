@@ -1,0 +1,111 @@
+﻿@model ProfileViewModel
+@using Music.Enumerables;
+@using Music.Extensions;
+@{
+    ViewData["Title"] = Model.PrimaryItem.Title;
+    if (Model.Navigations.Count == 0) return;
+    var primaryItem = Model.PrimaryItem;
+    var secondaryItem = Model.SecondaryItem;
+}
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body shadow border-0">
+                <div class="align-items-center text-center">
+                    <img src="@primaryItem.ImageUrl" alt="@primaryItem.Title"
+                         class="rounded-circle p-3 w-75"
+                         style="background-color:@primaryItem.ColorName;" />
+                    <div class="mt-3">
+                        <h3>@primaryItem.Title</h3>
+                        <p class="text-secondary mb-3">@primaryItem.Subtitle</p>
+                        @{
+                            foreach (var summary in Model.Parameters)
+                            {
+                                <a class="btn btn-@summary.ColorName" 
+                                   href="#">@summary.Title
+                                    <h4>@summary.Subtitle</h4>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-3 shadow border">
+            <ul class="list-group list-group-flush">
+                @foreach (var information in Model.Informations)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="feather feather-globe mr-2 icon-inline">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4
+                                      10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>
+                            @information.Title
+                        </h6>
+                        <span class="text-secondary">@information.Subtitle</span>
+                    </li>
+                }
+            </ul>
+        </div>
+        <!-- Related artists -->
+        <div class="card mt-3 shadow border">
+            <div class="card-body text-center">
+                <h4 class="mb-3">Đề xuất</h4>
+                @{
+                    <div>
+                        <a asp-controller="@secondaryItem.Hyperlink.Controller"
+                           asp-action="@secondaryItem.Hyperlink.Action"
+                           asp-route-id="@secondaryItem.Hyperlink.Id">
+                            <img class="rounded-circle shadow p-1 w-50"
+                                 style="background-color:@secondaryItem.ColorName;"
+                                 aria-label="artist" src="@secondaryItem.ImageUrl" />
+                        </a>
+                        <h5 class="mt-3">@secondaryItem.Title</h5>
+                        <p class="text-secondary">@secondaryItem.Subtitle</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="nav nav-pills justify-content-center h5" id="nav-tab" role="tablist" aria-orientation="horizontal">
+            <a class="nav-item nav-link active" id="nav-@Model.Navigations[0].Header-tab" data-toggle="tab" role="tab"
+               href="#nav-@Model.Navigations[0].Header"
+               aria-controls="nav-@Model.Navigations[0].Header" aria-selected="true">
+                @Model.Navigations[0].Header.ToString(Language.Vietnamese)
+            </a>
+            @{
+                if (Model.Navigations.Count < 2) return;
+                for (int i = 1; i < Model.Navigations.Count; i++)
+                {
+                    <a class="nav-item nav-link" id="nav-@Model.Navigations[i].Header-tab" data-toggle="tab" role="tab"
+                       href="#nav-@Model.Navigations[i].Header" aria-controls="nav-contact" aria-selected="false">
+                        @Model.Navigations[i].Header.ToString(Language.Vietnamese)
+                    </a>
+                }
+            }
+        </div>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-@Model.Navigations[0].Header"
+                 role="tabpanel" aria-labelledby="nav-@Model.Navigations[0].Header-tab">
+                <partial name="@Model.Navigations[0].ViewName" model="@Model.Navigations[0].Items" />
+            </div>
+            @{
+                if (Model.Navigations.Count < 2) return;
+                for (int i = 1; i < Model.Navigations.Count; i++)
+                {
+                    <div class="tab-pane fade" id="nav-@Model.Navigations[i].Header"
+                         role="tabpanel" aria-labelledby="nav-@Model.Navigations[i].Header-tab">
+                        <partial name="@Model.Navigations[i].ViewName" model="@Model.Navigations[i]" />
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

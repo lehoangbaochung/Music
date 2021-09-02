@@ -4,7 +4,7 @@
     PaginationViewModel pagination = new()
     {
         PageNames = Music.Extensions.Extension.GetNames(Category.A, Category.Z).ToList(),
-        PartialView = new("~/Views/Shared/Partial/Artist.cshtml", ViewBag.Artists)
+        PartialView = new("~/Views/Shared/Artist.cshtml", ViewBag.Artists)
     };
 }
 <div class="row">

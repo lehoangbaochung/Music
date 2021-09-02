@@ -2,6 +2,7 @@
 using Music.Extensions;
 using Music.Utilities;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Music.Models
 {
@@ -21,7 +22,7 @@ namespace Music.Models
             if (songs.Count == 0)
             {
                 songs.AddRange(DataProvider.Songs.FindAll(
-                    song => song.ArtistId.Contains(Id)));
+                    song => song.ArtistIds.Contains(Id)));
             }    
             return songs;
         }
@@ -41,7 +42,7 @@ namespace Music.Models
                     if (album != null)
                     {
                         // With songs of this album
-                        foreach (var songId in album.SongIds.Split(Extension.JOIN_CHARACTER))
+                        foreach (var songId in album.SongIds)
                         {
                             // Correct check
                             if (songId.Equals(song.Id))

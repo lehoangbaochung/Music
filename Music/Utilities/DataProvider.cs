@@ -27,7 +27,7 @@ namespace Music.Utilities
                         songs.Add(new()
                         {
                             Id = row[(int)DataColumn.PrimaryKey],
-                            ArtistId = row[(int)DataColumn.ReferenceKey],
+                            ArtistIds = row[(int)DataColumn.ReferenceKey].ToString().Split('-'),
                             VietnameseName = row[(int)DataColumn.VietnameseName],
                             PinyinName = row[(int)DataColumn.PinyinName],
                             SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],
@@ -37,6 +37,7 @@ namespace Music.Utilities
                             //SimplifiedChineseLyric = row[SongTable.SimplifiedChineseLyric],
                             //TraditionalChineseLyric = row[SongTable.TraditionalChineseLyric],
                             //Genre = row[SongTable.Genre]
+                            //DownloadIds = row[(int)DataColumn.PrimaryKey].Split('-')
                         });
                     }
                 }    
@@ -78,7 +79,7 @@ namespace Music.Utilities
                         albums.Add(new()
                         {
                             Id = row[(int)DataColumn.PrimaryKey],
-                            SongIds = row[(int)DataColumn.ReferenceKey],
+                            SongIds = row[(int)DataColumn.ReferenceKey].ToString().Split('-'),
                             VietnameseName = row[(int)DataColumn.VietnameseName],
                             PinyinName = row[(int)DataColumn.PinyinName],
                             SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],

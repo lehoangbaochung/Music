@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<Music.Models.Album>
+@{
     ViewData["Title"] = "Album";
 }
 <div>
@@ -18,20 +19,22 @@
     </ul>
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-            <div class="row mt-3">
+            <div class="row">
                 @{
-                    foreach (var album in ViewBag.RecentAlbums)
+                    foreach (var album in Model)
                     {
-                        <div class="col-4" style="height: 350px;">
+                        var artist = album.GetArtists()[0];
+                        <div class="col-4 mb-3" style="height: 350px;">
+                                            
                             <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg p-1"
-                                 style="background-image: url('@album.ImageUrl'); background-color:black;
-                                background-size:cover; background-position:center;">
+                                    style="background-image: url('@album.ImageUrl'); background-color:black;
+                                background-size:cover; background-position:center;" href="Home/Album/@album.Id">
                                 <ul class="d-flex list-unstyled mt-auto pl-3">
                                     <li class="me-auto">
-                                        <a asp-controller="Home" asp-action="Artist" asp-route-id="@album.Artists[0].Id">
-                                            <img src="@album.Artists[0].ImageUrl" alt="artist"
-                                                 width="64" height="64" class="rounded-circle p-1"
-                                                 style="background-color:limegreen;">
+                                        <a asp-controller="Home" asp-action="Artist" asp-route-id="@artist.Id">
+                                            <img src="@artist.ImageUrl" alt="artist"
+                                                    width="64" height="64" class="rounded-circle p-1"
+                                                    style="background-color:limegreen;">
                                         </a>
                                     </li>
                                     <li class="d-flex align-items-center">

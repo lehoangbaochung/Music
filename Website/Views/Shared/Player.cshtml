@@ -1,0 +1,51 @@
+﻿@model Music.Models.Base
+@{ 
+    var id = $"v{ Model.Id }";
+}
+<div class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="modal" aria-hidden="true" id="@id">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <!--Video-->
+            <div class="modal-body mb-0 p-0">
+                <div class="embed-responsive embed-responsive-16by9 z-depth-1">
+                    <iframe class="embed-responsive-item" allowfullscreen
+                            src="https://www.youtube.com/embed/@Model.Id"></iframe>
+                </div>
+            </div>
+            <div class="modal-body">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" role="tab" data-toggle="tab"
+                           id="nav-information-tab" href="#nav-information"
+                           aria-controls="nav-information" aria-selected="true">Thông tin</a>
+                        <a class="nav-item nav-link" role="tab" data-toggle="tab"
+                           id="nav-lyric-tab" href="#nav-lyric"
+                           aria-controls="nav-lyric" aria-selected="false">Lời nhạc</a>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" role="tabpanel"
+                         id="nav-information" aria-labelledby="nav-information-tab">
+...
+                    </div>
+                    <div class="tab-pane fade" role="tabpanel"
+                         id="nav-lyric" aria-labelledby="nav-lyric-tab">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+                        </div>
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">...</div>
+                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">...</div>
+                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

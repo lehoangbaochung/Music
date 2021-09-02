@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Music.Extensions;
 using Music.Utilities;
 using System;
 using System.Linq;
@@ -46,13 +47,12 @@ namespace Website.Controllers
             if (id == null)
             {
                 System.Collections.Generic.List<Music.Models.Album> albums = new();
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 9; i++)
                 {
-                    albums.Add(DataProvider.Albums[new Random().Next(0, DataProvider.Albums.Count)]);
+                    albums.Add(DataProvider.Albums.GetRandomItem());
                 }
-                ViewBag.RecentAlbums = albums;
                 
-                return View("Album");
+                return View(albums);
             }    
             else
             {
@@ -65,6 +65,25 @@ namespace Website.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Download(string id)
+        {
+            var song = DataProvider.Songs
+                .Find(s => s.Id.Equals(id));
+
+            return song == null ? NotFound() : View(song);
+        }
+
+        public IActionResult Search(string id)
+        {
+            var artist = DataProvider.Artists
+                .Find(a => a.VietnameseName.Equals(id));
+
+            var song = DataProvider.Songs
+                .Find(s => s.Id.Equals(id));
+
+            return song == null ? NotFound() : View(song);
         }
     }
 }

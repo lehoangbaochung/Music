@@ -1,6 +1,0 @@
-﻿@model ProfileViewModel
-@{
-    Layout = "~/Views/Shared/Layout/Profile.cshtml";
-    if (Model.Navigations.Count == 0) return;
-}
-<partial name="~/Views/Shared/Partial/Navigation.cshtml" model="@Model.Navigations" />

@@ -14,11 +14,11 @@ namespace Website.Utilities
     /// </summary>
     public static class ViewExtension
     {
-        public const string PROFILE_VIEW_PATH = "~/Views/Shared/Partial/Profile.cshtml";
-        private const string LIST_VIEW_PATH = "~/Views/Shared/Partial/List.cshtml";
-        private const string GRID_VIEW_PATH = "~/Views/Shared/Partial/Grid.cshtml";
-        private const string VIDEO_VIEW_PATH = "~/Views/Shared/Partial/Video.cshtml";
-        private const string NAVIGATION_VIEW_PATH = "~/Views/Shared/Partial/Navigation.cshtml";
+        public const string PROFILE_VIEW_PATH = "~/Views/Shared/Profile.cshtml";
+        private const string LIST_VIEW_PATH = "~/Views/Shared/Song.cshtml";
+        private const string GRID_VIEW_PATH = "~/Views/Shared/Album.cshtml";
+        private const string VIDEO_VIEW_PATH = "~/Views/Shared/Video.cshtml";
+        //private const string NAVIGATION_VIEW_PATH = "~/Views/Shared/Partial/Navigation.cshtml";
 
         private static string GetButtonColorName(ConsoleColor color)
         {
@@ -233,17 +233,6 @@ namespace Website.Utilities
                 }
             });
             return model;
-        }
-
-        public static NavigationViewModel[] GetNavigations(this Song song)
-        {
-            return new NavigationViewModel[] 
-            {
-                new()
-                {
-                    Header = "Tiếng Việt"
-                }
-            };
         }
     }
 }

@@ -16,6 +16,9 @@
 
   <ItemGroup>
     <Folder Include="Views\Home\Album\" />
+    <Folder Include="Views\Home\Artist\" />
+    <Folder Include="Views\Home\Shared\" />
+    <Folder Include="Views\Shared\Layout\" />
   </ItemGroup>
 
 </Project>
