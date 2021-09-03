@@ -188,7 +188,7 @@ namespace Website.Utilities
                     ColorName = GetButtonColorName(ConsoleColor.Red)
                 }
             });
-            model.Informations.AddRange(new Profile[]
+            model.Informations.AddRange(new Item[]
             {
                 new()
                 {

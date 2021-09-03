@@ -6,7 +6,7 @@
             @{
                 foreach (var item in Model.Items)
                 {
-                    var id = $"v{ item.Id }"; 
+                    var id = $"zh{ item.Id }"; 
                     <div class="col-md-4 mt-2 mb-2 w-50">
                         <partial name="~/Views/Shared/Player.cshtml" model="@item" />
                         <div class="card shadow-sm">

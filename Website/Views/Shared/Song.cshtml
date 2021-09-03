@@ -6,7 +6,7 @@
             int index = 1;
             foreach (var item in Model)
             {
-                var id = $"v{ item.Id }";
+                var id = $"zh{ item.Id }";
                 <div class="dropdown">
                     <div class="row" id="dropdown" data-toggle="dropdown"
                          aria-haspopup="true" aria-expanded="false">
@@ -17,13 +17,20 @@
                     <ul class="dropdown-menu shadow">
                         <li><a class="dropdown-item" data-toggle="modal" data-target="#@id">Phát</a></li>
                         <li>
+                            <a class="dropdown-item" id="liveToastBtn">
+                                Thêm vào danh sách phát
+                            </a>
+                        </li>
+                        <li>
                             <a class="dropdown-item"
                                asp-controller="Home" asp-action="Download"
                                asp-route-id="@item.Id">Tải xuống</a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#myModel" 
-                               id="shareBtn" data-bs-placement="top">Chia sẻ</a></li>
+                        <li>
+                            <a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#myModel"
+                               id="shareBtn" data-bs-placement="top">Chia sẻ</a>
+                        </li>
                     </ul>
                 </div>
                 <partial name="~/Views/Shared/Player.cshtml" model="@item" />
@@ -32,5 +39,6 @@
             }
         }
         @*<partial name="~/Views/Shared/Partial/Pagination.cshtml" model="@Model" />*@
+        
     </div>
 </div>
