@@ -67,7 +67,7 @@ namespace Website.Utilities
                         ConsoleColor.Red.ToString().ToLower()
                 }
             };
-            model.Parameters.AddRange(new Profile[]
+            model.Parameters.AddRange(new Item[]
             {
                 // Song
                 new()
@@ -91,7 +91,7 @@ namespace Website.Utilities
                     ColorName = GetButtonColorName(ConsoleColor.Red)
                 }
             });
-            model.Informations.AddRange(new Profile[]
+            model.Informations.AddRange(new Item[]
             {
                 new()
                 {
@@ -164,7 +164,7 @@ namespace Website.Utilities
                         ConsoleColor.Red.ToString().ToLower()
                 }
             };
-            model.Parameters.AddRange(new Profile[]
+            model.Parameters.AddRange(new Item[]
             {
                 // Song
                 new()
@@ -233,6 +233,11 @@ namespace Website.Utilities
                 }
             });
             return model;
+        }
+
+        public static string GetImageBorderColorName(this Artist artist)
+        {
+            return artist.Category.Equals(Category.Male) ? "blue" : "pink";
         }
     }
 }

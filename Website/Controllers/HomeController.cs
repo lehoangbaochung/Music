@@ -4,6 +4,7 @@ using Music.Extensions;
 using Music.Utilities;
 using System;
 using System.Linq;
+using Website.Models;
 using Website.Utilities;
 
 namespace Website.Controllers
@@ -33,13 +34,13 @@ namespace Website.Controllers
                 ViewBag.HotArtist = artists[new Random()
                     .Next(0, DataProvider.Artists.Count)];
                 
-                return View("Artist");
+                return View("Artist/Index");
             }
 
             var artist = DataProvider.Artists.Find(a => a.Id.Equals(id));
 
             return artist == null ? NotFound() :
-                    View(ViewExtension.PROFILE_VIEW_PATH, artist.GetProfile());
+                    View("Artist/Detail", new ArtistViewModel.Detail(artist));
         }
 
         public IActionResult Album(string id)

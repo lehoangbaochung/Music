@@ -12,10 +12,11 @@ namespace Music.Models
         private readonly List<Video> videos = new();
         private readonly List<Artist> artists = new();
 
-        public string[] SongIds { get; set; } = Array.Empty<string>();
+        public string[] SongIds { get; set; } 
+            = Array.Empty<string>();
 
         public string ImageUrl
-            => ImageResolution.Medium.GetImageUrl(Id, Extension.ALBUM_IMAGE_ID);
+            => GetImageUrl(ImageResolution.Medium, ALBUM_IMAGE_ID);
 
         public List<Song> GetSongs()
         {

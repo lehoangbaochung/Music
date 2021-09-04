@@ -1,12 +1,11 @@
-﻿@model NavigationViewModel
+﻿@model IEnumerable<Music.Models.Album>
 
 <div class="card shadow m-3">
     <div class="card-body">
         <div class="row">
             @{
-                foreach (var item in Model.Items)
+                foreach (var item in Model)
                 {
-                    var hyperlink = Website.Utilities.ViewExtension.GetHyperlink(item);
                     <div class="col-md-4 mt-2 mb-2 w-50">
                         <div class="card shadow-sm">
                             <img src="@item.ImageUrl" alt="@item.VietnameseName" loading="lazy" />
@@ -14,15 +13,15 @@
                                 <h6 title="@item.VietnameseName">@item.VietnameseName</h6>
                                 <small class="text-muted float-right">@item.SimplifiedChineseName</small>
                                 <a class="stretched-link"
-                                   asp-controller="@hyperlink.Controller"
-                                   asp-action="@hyperlink.Action"
-                                   asp-route-id="@hyperlink.Id"></a>
+                                   asp-controller="Home"
+                                   asp-action="Album"
+                                   asp-route-id="@item.Id"></a>
                             </div>
                         </div>
                     </div>
                 }
             }
         </div>
-        <partial name="~/Views/Shared/Partial/Pagination.cshtml" model="@Model" />
+        
     </div>
 </div>

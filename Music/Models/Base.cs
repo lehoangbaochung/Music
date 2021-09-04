@@ -1,9 +1,15 @@
-﻿using Music.Interfaces;
+﻿using Music.Enumerables;
+using Music.Interfaces;
 
 namespace Music.Models
 {
     public class Base : IName, IDescription
     {
+        protected const string SPLIT_CHARACTER = "/";
+        protected const string IMAGE_EXTENSION = ".jpg";
+        protected const string ARTIST_IMAGE_ID = "T001";
+        protected const string ALBUM_IMAGE_ID = "T002";
+
         public string Id { get; set; }
         public string Category { get; set; } = "";
 
@@ -15,5 +21,24 @@ namespace Music.Models
         public string VietnameseDescription { get; set; }
         public string SimplifiedChineseDescription { get; set; }
         public string TraditionalChineseDescription { get; set; }
+
+        protected string GetImageUrl(ImageResolution imageResolution, string imageId = null)
+        {
+            return imageResolution switch
+            {
+                ImageResolution.Small or ImageResolution.Medium or ImageResolution.Large
+                    => Resource.ImageServerUrl + imageId
+                        + $"R{ (int)imageResolution }x{ (int)imageResolution }M000"
+                        + Id + IMAGE_EXTENSION,
+
+                ImageResolution.Default or ImageResolution.MaxResDefault or
+                ImageResolution.MQDefault or ImageResolution.HQDefault or ImageResolution.SDDefault
+                    => Resource.VideoImageUrl + Id + '/'
+                        + imageResolution.ToString().ToLower()
+                        + IMAGE_EXTENSION,
+
+                _ => string.Empty,
+            };
+        }
     }
 }

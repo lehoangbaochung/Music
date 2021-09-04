@@ -15,7 +15,7 @@ namespace Music.Models
         public string PlaylistId { get; set; }
 
         public new string ImageUrl
-            => ImageResolution.Medium.GetImageUrl(Id, Extension.ARTIST_IMAGE_ID);
+            => GetImageUrl(ImageResolution.Medium, ARTIST_IMAGE_ID);
 
         public List<Song> GetSongs()
         {
@@ -71,6 +71,20 @@ namespace Music.Models
                 }
             }    
             return videos;
+        }
+
+        public Artist GetRelatedArtist()
+            => DataProvider.Artists.GetRandomItem();
+
+        public Dictionary<string, string> GetInformationDict()
+        {
+            Dictionary<string, string> infos = new();
+            foreach (var information in VietnameseDescription.Split("\n"))
+            {
+                var value = information.Split(':');
+                infos.Add(value[0], value[1]);
+            }
+            return infos;
         }
     }
 }

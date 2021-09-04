@@ -9,11 +9,6 @@ namespace Music.Extensions
 {
     public static class Extension
     {
-        public const char JOIN_CHARACTER = '-';
-        public const string SPLIT_CHARACTER = "/";
-        public const string IMAGE_EXTENSION = ".jpg";
-        public const string ARTIST_IMAGE_ID = "T001";
-        public const string ALBUM_IMAGE_ID = "T002";
 
         public static string ToString(this string text, Language language = default)
         {
@@ -21,25 +16,6 @@ namespace Music.Extensions
             {
                 Language.Vietnamese => VietnameseString.ResourceManager.GetString(text) ?? text,
                 _ => text,
-            };
-        }
-
-        public static string GetImageUrl(this ImageResolution imageResolution, string id, string imageId = null)
-        {
-            return imageResolution switch
-            {
-                ImageResolution.Small or ImageResolution.Medium or ImageResolution.Large
-                    => Resource.ImageServerUrl + imageId
-                        + $"R{ (int)imageResolution }x{ (int)imageResolution }M000"
-                        + id + IMAGE_EXTENSION,
-
-                ImageResolution.Default or ImageResolution.MaxResDefault or
-                ImageResolution.MQDefault or ImageResolution.HQDefault or ImageResolution.SDDefault
-                    => Resource.VideoImageUrl + id + '/'
-                        + imageResolution.ToString().ToLower()
-                        + IMAGE_EXTENSION,
-
-                _ => string.Empty,
             };
         }
 
@@ -81,7 +57,7 @@ namespace Music.Extensions
         {
             T t = null;
             List<T> results = new();
-            var ids = t.Category.Split(JOIN_CHARACTER); 
+            //var ids = t.Category.Split(JOIN_CHARACTER); 
             if (category >= Category.A && category <= Category.Z)
             {
                 switch (category)

@@ -1,5 +1,4 @@
-﻿using Music.Enumerables;
-using Music.Interfaces;
+﻿using Music.Interfaces;
 
 namespace Music.Models
 {
@@ -18,13 +17,5 @@ namespace Music.Models
         public string SimplifiedChineseFullName { get; set; }
 
         public string TraditionalChineseFullName { get; set; }
-
-        public Category Category
-        {
-            get
-            {
-                return Category.Male;
-            }
-        }
     }
 }

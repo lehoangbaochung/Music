@@ -1,6 +1,4 @@
 ﻿using Music.Enumerables;
-using Music.Extensions;
-using Music.Utilities;
 using System.ComponentModel.DataAnnotations;
 
 namespace Music.Models
@@ -19,6 +17,6 @@ namespace Music.Models
         public string ReleaseDate { get; set; }
 
         public string ImageUrl
-            => ImageResolution.MQDefault.GetImageUrl(Id);
+            => GetImageUrl(ImageResolution.MQDefault);
     }
 }

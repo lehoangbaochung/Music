@@ -1,14 +1,14 @@
-﻿@model NavigationViewModel
+﻿@model IEnumerable<Music.Models.Video>
 
 <div class="card shadow m-3">
     <div class="card-body">
         <div class="row">
             @{
-                foreach (var item in Model.Items)
+                foreach (var item in Model)
                 {
                     var id = $"zh{ item.Id }"; 
                     <div class="col-md-4 mt-2 mb-2 w-50">
-                        <partial name="~/Views/Shared/Player.cshtml" model="@item" />
+                        @*<partial name="~/Views/Shared/Player.cshtml" model="@item" />*@
                         <div class="card shadow-sm">
                             <a>
                                 <img class="img-fluid" loading="lazy"
@@ -24,6 +24,6 @@
                 }
             }
         </div>
-        <partial name="~/Views/Shared/Partial/Pagination.cshtml" model="@Model" />
+        @*<partial name="~/Views/Shared/Partial/Pagination.cshtml" model="@Model" />*@
     </div>
 </div>
