@@ -15,7 +15,14 @@
                         <div class="col-sm-5 text-secondary">@item.SimplifiedChineseName</div>
                     </div>
                     <ul class="dropdown-menu shadow">
-                        <li><a class="dropdown-item" data-toggle="modal" data-target="#@id">Phát</a></li>
+                        <li>
+                            <a class="dropdown-item"
+                               asp-controller="Home" 
+                               asp-action="Song"
+                               asp-route-id="@item.Id">
+                                Phát
+                            </a>
+                        </li>
                         <li>
                             <a class="dropdown-item" id="liveToastBtn">
                                 Thêm vào danh sách phát
@@ -23,8 +30,11 @@
                         </li>
                         <li>
                             <a class="dropdown-item"
-                               asp-controller="Home" asp-action="Download"
-                               asp-route-id="@item.Id">Tải xuống</a>
+                               asp-controller="Home" 
+                               asp-action="Download"
+                               asp-route-id="@item.Id">
+                                Tải xuống
+                            </a>
                         </li>
                         <li><hr class="dropdown-divider"></li>
                         <li>
@@ -33,7 +43,7 @@
                         </li>
                     </ul>
                 </div>
-                <partial name="~/Views/Shared/Player.cshtml" model="@item" />
+                @*<partial name="~/Views/Shared/Player.cshtml" model="@item" />*@
                 <hr />
                 index++;
             }

@@ -1,0 +1,405 @@
+﻿@model SongViewModel.Detail
+@{
+    ViewData["Title"] = Model.Song.VietnameseName;
+
+    var informations = new Tuple<string, string>[]
+    {
+        new("", "")
+    };
+}
+<div class="row">
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body shadow border-0">
+                <div class="align-items-center text-center">
+                    <div class="embed-responsive embed-responsive-1by1 z-depth-0 p-3">
+                        <iframe class="embed-responsive-item"
+                                src="https://www.youtube.com/embed/M6ZQMq7eaUw"></iframe>
+                    </div>
+                    <div class="mt-3">
+                        <h3>@Model.Song.VietnameseName</h3>
+                        <p class="text-secondary mb-3">
+                            @Model.Song.SimplifiedChineseName
+                        </p>
+                        <a class="btn btn-success" href="#">
+                            Phát
+                        </a>
+                        <a class="btn btn-warning" href="#">
+                            Tải xuống
+
+                        </a>
+                        <a class="btn btn-danger" href="#">
+                            Chia sẻ
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Informations-->
+        <div class="card mt-3 shadow border">
+            <ul class="list-group list-group-flush">
+                @foreach (var information in informations)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                        <h6 class="mb-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                 class="feather feather-globe mr-2 icon-inline">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4
+                                      10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            </svg>@information.Item1
+                        </h6>
+                        <span class="text-secondary text-truncate">@information.Item2</span>
+                    </li>
+                }
+            </ul>
+        </div>
+        <!-- Related artist -->
+        <div class="card mt-3 shadow border">
+            <div class="card-body text-center">
+                <h4 class="mb-3">Đề xuất</h4>
+                @{
+                    <div>
+                        <a asp-controller="Home"
+                           asp-action="Song"
+                           asp-route-id="@Model.SecondarySong.Id">
+                            <img class="rounded-circle shadow p-1 w-50"
+                                 src="@Model.SecondarySong"                                 
+                                 alt="@Model.SecondarySong.VietnameseName"
+                                 style="background-color:yellow;"/>
+                        </a>
+                        <h5 class="mt-3">
+                            @Model.SecondarySong.VietnameseName
+                        </h5>
+                        <p class="text-secondary">
+                            @Model.SecondarySong.SimplifiedChineseName
+                        </p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!--Content-->
+    <div class="col-md-8">
+        <div class="nav nav-pills justify-content-center h5 mb-3" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-song-tab" data-toggle="tab" role="tab"
+               href="#nav-song" aria-controls="nav-song" aria-selected="true">
+                Thông tin
+            </a>
+            <a class="nav-item nav-link" id="nav-artist-tab" data-toggle="tab" role="tab"
+               href="#nav-artist" aria-controls="nav-artist" aria-selected="false">
+                Lời nhạc
+            </a>
+            <a class="nav-item nav-link" id="nav-video-tab" data-toggle="tab" role="tab"
+               href="#nav-video" aria-controls="nav-video" aria-selected="false">
+                Video
+            </a>
+        </div>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-song"
+                 role="tabpanel" aria-labelledby="nav-song-tab">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active show" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Tiếng Việt</a>
+                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Bính âm</a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Giản thể</a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Phồn thể</a>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade active show" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <p>
+                                    [00:00.00]申时 - 音阙诗听/昆玉<br />
+                                    [00:00.05]词：假寐<br />
+                                    [00:00.06]曲：殇小谨<br />
+                                    [00:00.08]编曲：Morri3on(喬凡三)<br />
+                                    [00:00.11]混音：殇小谨<br />
+                                    [00:00.14]音频编辑：冰镇小灯<br />
+                                    [00:00.18]母带处理：殇小谨<br />
+                                    [00:00.21]琵琶：深藏·古筝魂·团团子<br />
+                                    [00:00.27]古筝：深藏·琵琶魂·紫格<br />
+                                    [00:00.33]二胡：深藏·小提琴魂·张印<br />
+                                    [00:00.39]小提琴：深藏·二胡魂·大琴KoTo<br />
+                                    [00:00.45]笛子：终究是一个人扛下了所有·囚牛<br />
+                                    [00:00.53]和声：皎月<br />
+                                    [00:00.55]文案：假寐<br />
+                                    [00:00.57]封面画师：千机/fzx<br />
+                                    [00:00.61]视频制作：大琴剪剪<br />
+                                    [00:00.65]字体设计：睢亦<br />
+                                    [00:00.68]制作人：殇小谨<br />
+                                    [00:00.71]监制：李俊羽<br />
+                                    [00:00.73]出品：音阙诗听<br />
+                                    [00:00.76]（版权所有 未经许可 请勿使用）<br />
+                                    [00:00.87]一见你偏爱<br />
+                                    [00:02.72]一身月牙白<br />
+                                    [00:04.53]低头动金钗<br />
+                                    [00:06.37]互赠相思袋<br />
+                                    [00:08.29]晚霞似你<br />
+                                    [00:09.23]却无风情可替代<br />
+                                    [00:11.89]幸甚至哉<br />
+                                    [00:13.77]得你青睐<br />
+                                    [00:17.82]一灯入人海<br />
+                                    [00:19.49]相会老戏台<br />
+                                    [00:21.23]一点轻粉黛<br />
+                                    [00:23.18]我采红樱戴<br />
+                                    [00:25.00]铜锣声开唱出这钟情痴爱<br />
+                                    [00:28.66]动人词牌<br />
+                                    [00:30.68]满堂喝彩<br />
+                                    [00:49.03]锦巷乌檐竹马绕青梅<br />
+                                    [00:52.84]喜鹊衔红线恰作美<br />
+                                    [00:55.30]是谁<br />
+                                    [00:57.23]是谁<br />
+                                    [00:58.33]添段好梦归<br />
+                                    [01:03.67]琉璃步摇掌中沐清辉<br />
+                                    [01:07.71]八宝结巧手缀金穗<br />
+                                    [01:10.20]是谁<br />
+                                    [01:12.05]是谁<br />
+                                    [01:13.28]想把良缘配<br />
+                                    [01:17.34]一见你偏爱<br />
+                                    [01:19.11]一身月牙白<br />
+                                    [01:20.92]低头动金钗<br />
+                                    [01:22.78]互赠相思袋<br />
+                                    [01:24.58]晚霞似你<br />
+                                    [01:25.65]却无风情可替代<br />
+                                    [01:28.22]幸甚至哉<br />
+                                    [01:30.22]得你青睐<br />
+                                    [01:32.07]一灯入人海<br />
+                                    [01:33.94]相会老戏台<br />
+                                    [01:35.83]一点轻粉黛<br />
+                                    [01:37.65]我采红樱戴<br />
+                                    [01:39.48]铜锣声开<br />
+                                    [01:40.29]唱出这钟情痴爱<br />
+                                    [01:43.09]动人词牌<br />
+                                    [01:45.09]满堂喝彩<br />
+                                    [02:03.45]桥边柳絮正逢梨花飞<br />
+                                    [02:07.18]小鸳鸯结伴春心回<br />
+                                    [02:09.62]登对<br />
+                                    [02:11.52]登对<br />
+                                    [02:12.85]好景惹人醉<br />
+                                    [02:33.18]才子盼良辰食不知味<br />
+                                    [02:36.90]佳人凭栏锦帕揉碎<br />
+                                    [02:39.44]登对<br />
+                                    [02:41.28]登对<br />
+                                    [02:42.59]多情总相随<br />
+                                    [02:46.56]一见你偏爱<br />
+                                    [02:48.28]一身月牙白<br />
+                                    [02:50.13]低头动金钗<br />
+                                    [02:52.02]互赠相思袋<br />
+                                    [02:53.81]晚霞似你<br />
+                                    [02:54.77]却无风情可替代<br />
+                                    [02:57.43]幸甚至哉<br />
+                                    [02:59.36]得你青睐<br />
+                                    [03:01.28]一灯入人海<br />
+                                    [03:03.03]相会老戏台<br />
+                                    [03:04.92]一点轻粉黛<br />
+                                    [03:06.84]我采红樱戴<br />
+                                    [03:08.65]铜锣声开<br />
+                                    [03:09.66]唱出这钟情痴爱<br />
+                                    [03:12.36]动人词牌<br />
+                                    [03:14.30]满堂喝彩<br />
+                                    [03:31.95]太紧张<br />
+                                    [03:32.55]还是太心慌<br />
+                                    [03:33.46]小鹿乱撞却不敢张望<br />
+                                    [03:35.54]摇海棠<br />
+                                    [03:36.36]借一处风光<br />
+                                    [03:37.28]把千种思绪偷偷藏<br />
+                                    [03:39.41]不敢想<br />
+                                    [03:40.04]却想过半晌<br />
+                                    [03:41.05]到晌午送晚霞抹红妆<br />
+                                    [03:43.19]织女牛郎<br />
+                                    [03:44.91]可牵星河会一场
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <p>Culpa dolor voluptate do laboris laboris irure reprehenderit id incididunt duis pariatur mollit aute magna pariatur consectetur. Eu veniam duis non ut dolor deserunt commodo et minim in quis laboris ipsum velit id veniam. Quis ut consectetur adipisicing officia excepteur non sit. Ut et elit aliquip labore Lorem enim eu. Ullamco mollit occaecat dolore ipsum id officia mollit qui esse anim eiusmod do sint minim consectetur qui.</p>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                <p>Fugiat id quis dolor culpa eiusmod anim velit excepteur proident dolor aute qui magna. Ad proident laboris ullamco esse anim Lorem Lorem veniam quis Lorem irure occaecat velit nostrud magna nulla. Velit et et proident Lorem do ea tempor officia dolor. Reprehenderit Lorem aliquip labore est magna commodo est ea veniam consectetur.</p>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                                <p>Eu dolore ea ullamco dolore Lorem id cupidatat excepteur reprehenderit consectetur elit id dolor proident in cupidatat officia. Voluptate excepteur commodo labore nisi cillum duis aliqua do. Aliqua amet qui mollit consectetur nulla mollit velit aliqua veniam nisi id do Lorem deserunt amet. Culpa ullamco sit adipisicing labore officia magna elit nisi in aute tempor commodo eiusmod.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-artist"
+                 role="tabpanel" aria-labelledby="nav-artist-tab">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Tiếng Việt
+                                </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Bính âm
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Giản thể
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-video"
+                 role="tabpanel" aria-labelledby="nav-video-tab">
+                <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+                </p>
+                <div class="row">
+                    <div class="col">
+                        <div class="collapse multi-collapse" id="multiCollapseExample1">
+                            <div class="card card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="collapse multi-collapse" id="multiCollapseExample2">
+                            <div class="card card-body">
+                                [00:00.00]申时 - 音阙诗听/昆玉<br />
+                                [00:00.05]词：假寐<br />
+                                [00:00.06]曲：殇小谨<br />
+                                [00:00.08]编曲：Morri3on(喬凡三)<br />
+                                [00:00.11]混音：殇小谨<br />
+                                [00:00.14]音频编辑：冰镇小灯<br />
+                                [00:00.18]母带处理：殇小谨<br />
+                                [00:00.21]琵琶：深藏·古筝魂·团团子<br />
+                                [00:00.27]古筝：深藏·琵琶魂·紫格<br />
+                                [00:00.33]二胡：深藏·小提琴魂·张印<br />
+                                [00:00.39]小提琴：深藏·二胡魂·大琴KoTo<br />
+                                [00:00.45]笛子：终究是一个人扛下了所有·囚牛<br />
+                                [00:00.53]和声：皎月<br />
+                                [00:00.55]文案：假寐<br />
+                                [00:00.57]封面画师：千机/fzx<br />
+                                [00:00.61]视频制作：大琴剪剪<br />
+                                [00:00.65]字体设计：睢亦<br />
+                                [00:00.68]制作人：殇小谨<br />
+                                [00:00.71]监制：李俊羽<br />
+                                [00:00.73]出品：音阙诗听<br />
+                                [00:00.76]（版权所有 未经许可 请勿使用）<br />
+                                [00:00.87]一见你偏爱<br />
+                                [00:02.72]一身月牙白<br />
+                                [00:04.53]低头动金钗<br />
+                                [00:06.37]互赠相思袋<br />
+                                [00:08.29]晚霞似你<br />
+                                [00:09.23]却无风情可替代<br />
+                                [00:11.89]幸甚至哉<br />
+                                [00:13.77]得你青睐<br />
+                                [00:17.82]一灯入人海<br />
+                                [00:19.49]相会老戏台<br />
+                                [00:21.23]一点轻粉黛<br />
+                                [00:23.18]我采红樱戴<br />
+                                [00:25.00]铜锣声开唱出这钟情痴爱<br />
+                                [00:28.66]动人词牌<br />
+                                [00:30.68]满堂喝彩<br />
+                                [00:49.03]锦巷乌檐竹马绕青梅<br />
+                                [00:52.84]喜鹊衔红线恰作美<br />
+                                [00:55.30]是谁<br />
+                                [00:57.23]是谁<br />
+                                [00:58.33]添段好梦归<br />
+                                [01:03.67]琉璃步摇掌中沐清辉<br />
+                                [01:07.71]八宝结巧手缀金穗<br />
+                                [01:10.20]是谁<br />
+                                [01:12.05]是谁<br />
+                                [01:13.28]想把良缘配<br />
+                                [01:17.34]一见你偏爱<br />
+                                [01:19.11]一身月牙白<br />
+                                [01:20.92]低头动金钗<br />
+                                [01:22.78]互赠相思袋<br />
+                                [01:24.58]晚霞似你<br />
+                                [01:25.65]却无风情可替代<br />
+                                [01:28.22]幸甚至哉<br />
+                                [01:30.22]得你青睐<br />
+                                [01:32.07]一灯入人海<br />
+                                [01:33.94]相会老戏台<br />
+                                [01:35.83]一点轻粉黛<br />
+                                [01:37.65]我采红樱戴<br />
+                                [01:39.48]铜锣声开<br />
+                                [01:40.29]唱出这钟情痴爱<br />
+                                [01:43.09]动人词牌<br />
+                                [01:45.09]满堂喝彩<br />
+                                [02:03.45]桥边柳絮正逢梨花飞<br />
+                                [02:07.18]小鸳鸯结伴春心回<br />
+                                [02:09.62]登对<br />
+                                [02:11.52]登对<br />
+                                [02:12.85]好景惹人醉<br />
+                                [02:33.18]才子盼良辰食不知味<br />
+                                [02:36.90]佳人凭栏锦帕揉碎<br />
+                                [02:39.44]登对<br />
+                                [02:41.28]登对<br />
+                                [02:42.59]多情总相随<br />
+                                [02:46.56]一见你偏爱<br />
+                                [02:48.28]一身月牙白<br />
+                                [02:50.13]低头动金钗<br />
+                                [02:52.02]互赠相思袋<br />
+                                [02:53.81]晚霞似你<br />
+                                [02:54.77]却无风情可替代<br />
+                                [02:57.43]幸甚至哉<br />
+                                [02:59.36]得你青睐<br />
+                                [03:01.28]一灯入人海<br />
+                                [03:03.03]相会老戏台<br />
+                                [03:04.92]一点轻粉黛<br />
+                                [03:06.84]我采红樱戴<br />
+                                [03:08.65]铜锣声开<br />
+                                [03:09.66]唱出这钟情痴爱<br />
+                                [03:12.36]动人词牌<br />
+                                [03:14.30]满堂喝彩<br />
+                                [03:31.95]太紧张<br />
+                                [03:32.55]还是太心慌<br />
+                                [03:33.46]小鹿乱撞却不敢张望<br />
+                                [03:35.54]摇海棠<br />
+                                [03:36.36]借一处风光<br />
+                                [03:37.28]把千种思绪偷偷藏<br />
+                                [03:39.41]不敢想<br />
+                                [03:40.04]却想过半晌<br />
+                                [03:41.05]到晌午送晚霞抹红妆<br />
+                                [03:43.19]织女牛郎<br />
+                                [03:44.91]可牵星河会一场
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

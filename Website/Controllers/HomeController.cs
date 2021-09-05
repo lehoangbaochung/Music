@@ -23,6 +23,19 @@ namespace Website.Controllers
             return View();
         }
 
+        public IActionResult Song(string id)
+        {
+            if (id == null)
+            {
+                return View("Song/Index");
+            }
+
+            var song = DataProvider.Songs.Find(s => s.Id.Equals(id));
+
+            return song == null ? NotFound() :
+                    View("Song/Detail", new SongViewModel.Detail(song));
+        }
+
         public IActionResult Artist(string id)
         {
             if (id == null)
@@ -59,7 +72,7 @@ namespace Website.Controllers
             {
                 var album = DataProvider.Albums.Find(a => a.Id.Equals(id));
                 return album == null ? NotFound() : 
-                    View(ViewExtension.PROFILE_VIEW_PATH, album.GetProfile());
+                    View(AlbumViewModel.DETAIL_VIEW_PATH, new AlbumViewModel.Detail(album));
             }    
         }
 

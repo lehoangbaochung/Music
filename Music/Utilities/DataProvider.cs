@@ -1,8 +1,6 @@
 ﻿using Music.Enumerables;
 using Music.Models;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Net;
 
 namespace Music.Utilities
 {
@@ -22,22 +20,16 @@ namespace Music.Utilities
             {
                 if (songs.Count == 0)
                 {
-                    foreach (var row in Parse(nameof(Song)))
+                    foreach (var row in DataTable.GetValue(nameof(Song)))
                     {
                         songs.Add(new()
                         {
-                            Id = row[(int)DataColumn.PrimaryKey],
-                            ArtistIds = row[(int)DataColumn.ReferenceKey].ToString().Split('-'),
-                            VietnameseName = row[(int)DataColumn.VietnameseName],
-                            PinyinName = row[(int)DataColumn.PinyinName],
-                            SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataColumn.TraditionalChineseName],
-                            //VietnameseLyric = row[SongTable.VietnameseLyric],
-                            //PinyinLyric = row[SongTable.PinyinLyric],
-                            //SimplifiedChineseLyric = row[SongTable.SimplifiedChineseLyric],
-                            //TraditionalChineseLyric = row[SongTable.TraditionalChineseLyric],
-                            //Genre = row[SongTable.Genre]
-                            //DownloadIds = row[(int)DataColumn.PrimaryKey].Split('-')
+                            Id = row[(int)DataTable.Song.Id],
+                            ArtistId = row[(int)DataTable.Song.ArtistId],
+                            VietnameseName = row[(int)DataTable.Song.VietnameseName],
+                            PinyinName = row[(int)DataTable.Song.PinyinName],
+                            SimplifiedChineseName = row[(int)DataTable.Song.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataTable.Song.TraditionalChineseName],
                         });
                     }
                 }    
@@ -51,16 +43,16 @@ namespace Music.Utilities
             {
                 if (artists.Count == 0)
                 {
-                    foreach (var row in Parse(nameof(Artist)))
+                    foreach (var row in DataTable.GetValue(nameof(Artist)))
                     {
                         artists.Add(new()
                         {
-                            Id = row[(int)DataColumn.PrimaryKey],
+                            Id = row[(int)DataTable.Artist.Id],
                             //PlaylistId = row[(int)ArtistTable.PlaylistId],
-                            VietnameseName = row[(int)DataColumn.VietnameseName],
-                            PinyinName = row[(int)DataColumn.PinyinName],
-                            SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataColumn.TraditionalChineseName]
+                            VietnameseName = row[(int)DataTable.Artist.VietnameseName],
+                            PinyinName = row[(int)DataTable.Artist.PinyinName],
+                            SimplifiedChineseName = row[(int)DataTable.Artist.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataTable.Artist.TraditionalChineseName]
                         });
                     }
                 }
@@ -74,16 +66,16 @@ namespace Music.Utilities
             {
                 if (albums.Count == 0)
                 {
-                    foreach (var row in Parse(nameof(Album)))
+                    foreach (var row in DataTable.GetValue(nameof(Album)))
                     {
                         albums.Add(new()
                         {
-                            Id = row[(int)DataColumn.PrimaryKey],
-                            SongIds = row[(int)DataColumn.ReferenceKey].ToString().Split('-'),
-                            VietnameseName = row[(int)DataColumn.VietnameseName],
-                            PinyinName = row[(int)DataColumn.PinyinName],
-                            SimplifiedChineseName = row[(int)DataColumn.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataColumn.TraditionalChineseName]
+                            Id = row[(int)DataTable.Album.Id],
+                            SongId = row[(int)DataTable.Album.SongId],
+                            VietnameseName = row[(int)DataTable.Album.VietnameseName],
+                            PinyinName = row[(int)DataTable.Album.PinyinName],
+                            SimplifiedChineseName = row[(int)DataTable.Album.SimplifiedChineseName],
+                            TraditionalChineseName = row[(int)DataTable.Album.TraditionalChineseName]
                         });
                     }
                 }
@@ -97,12 +89,12 @@ namespace Music.Utilities
             {
                 if (videos.Count == 0)
                 {
-                    foreach (var row in Parse(nameof(Video)))
+                    foreach (var row in DataTable.GetValue(nameof(Video)))
                     {
                         videos.Add(new()
                         {
-                            Id = row[(int)DataColumn.PrimaryKey],
-                            SongId = row[(int)DataColumn.ReferenceKey]
+                            Id = row[(int)DataTable.Video.Id],
+                            SongId = row[(int)DataTable.Video.SongId]
                         });
                     }
                 }
@@ -110,14 +102,5 @@ namespace Music.Utilities
             }
         }
         #endregion
-
-        private static dynamic Parse(string tableName)
-        {
-            var address = $"https://sheets.googleapis.com/v4/spreadsheets/" +
-                $"{ Resource.SpreadsheetId }/values/{ tableName }?key={ Resource.ApiKey }";
-            var jsonString = new WebClient().DownloadString(address);
-            dynamic json = JsonConvert.DeserializeObject(jsonString);
-            return json.values;
-        }
     }
 }

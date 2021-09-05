@@ -1,17 +1,21 @@
 ﻿@model IEnumerable<Music.Models.Artist>
 
-<div class="row">
-    @{
-        foreach (var artist in Model)
-        {
-            <div class="col-lg-3 p-3 text-center" style="height:75%;">
-                <a asp-controller="Home" asp-action="Artist" asp-route-id="@artist.Id">
-                    <img class="bd-placeholder-img rounded-circle shadow p-1" width="150" height="150"
-                         src=@artist.ImageUrl loading="lazy" aria-label="artist" />
-                </a>
-                <h4 class="p-3">@artist.VietnameseName</h4>
-                <p>@artist.SimplifiedChineseName</p>
+    <div class="card shadow m-3">
+        <div class="card-body">
+            <div class="row">
+                @{
+                    foreach (var artist in Model)
+                    {
+                        <div class="col-md-4 mt-2 mb-2 text-center">
+                            <a asp-controller="Home" asp-action="Artist" asp-route-id="@artist.Id">
+                                <img class="bd-placeholder-img rounded-circle shadow p-1 w-75" 
+                                     src=@artist.ImageUrl loading="lazy" aria-label="artist" />
+                            </a>
+                            <h5 class="mt-3">@artist.VietnameseName</h5>
+                            <small>@artist.SimplifiedChineseName</small>
+                        </div>
+                    }
+                }
             </div>
-        }
-    }
-</div>
+        </div>
+    </div>

@@ -36,13 +36,13 @@ namespace Music.Models
                 {
                     // Find an album containing it (include exceptions about songid number)
                     var album = DataProvider.Albums.Find(
-                        album => album.SongIds.Contains(song.Id));
+                        album => album.SongId.Contains(song.Id));
 
                     // If there is an album containing it
                     if (album != null)
                     {
                         // With songs of this album
-                        foreach (var songId in album.SongIds)
+                        foreach (var songId in album.SongId)
                         {
                             // Correct check
                             if (songId.Equals(song.Id))
@@ -75,6 +75,15 @@ namespace Music.Models
 
         public Artist GetRelatedArtist()
             => DataProvider.Artists.GetRandomItem();
+
+        public Category GetGender()
+        {
+            foreach (var category in CategoryId.Split('/'))
+            {
+                return category.Equals(Category.Male) ? Category.Male : Category.Female;
+            }
+            return Category.Female;
+        }
 
         public Dictionary<string, string> GetInformationDict()
         {

@@ -11,7 +11,7 @@ namespace Music.Models
         protected const string ALBUM_IMAGE_ID = "T002";
 
         public string Id { get; set; }
-        public string Category { get; set; } = "";
+        public string CategoryId { get; set; } = "";
 
         public string VietnameseName { get; set; }
         public string PinyinName { get; set; }
@@ -24,21 +24,18 @@ namespace Music.Models
 
         protected string GetImageUrl(ImageResolution imageResolution, string imageId = null)
         {
-            return imageResolution switch
+            if (imageId == null)
             {
-                ImageResolution.Small or ImageResolution.Medium or ImageResolution.Large
-                    => Resource.ImageServerUrl + imageId
-                        + $"R{ (int)imageResolution }x{ (int)imageResolution }M000"
-                        + Id + IMAGE_EXTENSION,
-
-                ImageResolution.Default or ImageResolution.MaxResDefault or
-                ImageResolution.MQDefault or ImageResolution.HQDefault or ImageResolution.SDDefault
-                    => Resource.VideoImageUrl + Id + '/'
+                return Resource.VideoImageUrl + Id + SPLIT_CHARACTER
                         + imageResolution.ToString().ToLower()
-                        + IMAGE_EXTENSION,
-
-                _ => string.Empty,
-            };
+                        + IMAGE_EXTENSION;
+            }    
+            else
+            {
+                return Resource.ImageServerUrl + imageId
+                        + $"R{ (int)imageResolution }x{ (int)imageResolution }M000"
+                        + Id + IMAGE_EXTENSION;
+            }    
         }
     }
 }

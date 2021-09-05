@@ -3,8 +3,7 @@
     ViewData["Title"] = "Ca sĩ";
     PaginationViewModel pagination = new()
     {
-        PageNames = Music.Extensions.Extension.GetNames(Category.A, Category.Z).ToList(),
-        PartialView = new("~/Views/Shared/Artist.cshtml", ViewBag.Artists)
+
     };
 }
 <div class="row">

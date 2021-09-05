@@ -8,7 +8,7 @@ namespace Website.Models
     {
         public static string GetBorderColor(this Artist artist)
         {
-            return artist.Category.Equals(Category.Male) ? "blue" : "pink";
+            return artist.CategoryId.Equals(Category.Gender.Male) ? "blue" : "pink";
         }
 
         public class Detail
