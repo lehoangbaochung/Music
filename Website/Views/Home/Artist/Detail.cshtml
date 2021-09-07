@@ -14,7 +14,7 @@
             <div class="card-body shadow border-0">
                 <div class="align-items-center text-center">
                     <img class="rounded-circle p-3 w-75"
-                         src="@Model.PrimaryArtist.ImageUrl" 
+                         src="@Model.PrimaryArtist.ImageUrl"
                          alt="@Model.PrimaryArtist.VietnameseName"
                          style="background-color:@primaryBorderColor;" />
                     <div class="mt-3">
@@ -22,20 +22,25 @@
                         <p class="text-secondary mb-3">
                             @Model.PrimaryArtist.SimplifiedChineseName
                         </p>
-                        <a class="btn btn-success" href="#">
+                        <!-- Button trigger modal -->
+                        <div class="btn btn-success" data-toggle="modal" data-target="#song-modal">
                             Bài hát
                             <h4>@Model.Songs.Count</h4>
-                        </a>
-                        <a class="btn btn-warning" href="#">
+                        </div>
+                        <div class="btn btn-warning" data-toggle="modal" data-target="#album-modal">
                             Album
                             <h4>@Model.Albums.Count</h4>
-                        </a>
-                        <a class="btn btn-danger" href="#">
+                        </div>
+                        <div class="btn btn-danger" data-toggle="modal" data-target="#video-modal">
                             Video
                             <h4>@Model.Videos.Count</h4>
-                        </a>
+                        </div>
                     </div>
                 </div>
+                <!-- Modal -->
+                <partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
+                <partial name="~/Views/Shared/Modal/Album.cshtml" model="@Model.Albums" />
+
             </div>
         </div>
         <!--Informations-->
@@ -60,30 +65,6 @@
                 }
             </ul>
         </div>
-        <!-- Related artist -->
-        <div class="card mt-3 shadow border">
-            <div class="card-body text-center">
-                <h4 class="mb-3">Đề xuất</h4>
-                @{
-                    <div>
-                        <a asp-controller="Home"
-                           asp-action="Artist"
-                           asp-route-id="@Model.SecondaryArtist.Id">
-                            <img class="rounded-circle shadow p-1 w-50"
-                                 src="@Model.SecondaryArtist.ImageUrl"                                 
-                                 alt="@Model.SecondaryArtist.VietnameseName"
-                                 style="background-color:@secondaryBorderColor;"/>
-                        </a>
-                        <h5 class="mt-3">
-                            @Model.SecondaryArtist.VietnameseName
-                        </h5>
-                        <p class="text-secondary">
-                            @Model.SecondaryArtist.SimplifiedChineseName
-                        </p>
-                    </div>
-                }
-            </div>
-        </div>
     </div>
     <!--Content-->
     <div class="col-md-8">
@@ -104,15 +85,15 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-song"
                  role="tabpanel" aria-labelledby="nav-song-tab">
-                <partial name="~/Views/Shared/Song.cshtml" model="@Model.Songs" />
+                <partial name="~/Views/Shared/Card/Song.cshtml" model="@Model.Songs.Take(15)" />
             </div>
             <div class="tab-pane fade" id="nav-album"
                  role="tabpanel" aria-labelledby="nav-album-tab">
-                <partial name="~/Views/Shared/Album.cshtml" model="@Model.Albums" />
+                <partial name="~/Views/Shared/Card/Album.cshtml" model="@Model.Albums.Take(12)" />
             </div>
             <div class="tab-pane fade" id="nav-video"
                  role="tabpanel" aria-labelledby="nav-video-tab">
-                <partial name="~/Views/Shared/Video.cshtml" model="@Model.Videos" />
+                <partial name="~/Views/Shared/Card/Video.cshtml" model="@Model.Videos.Take(12)" />
             </div>
         </div>
     </div>

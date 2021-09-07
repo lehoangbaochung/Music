@@ -66,13 +66,14 @@ namespace Website.Controllers
                     albums.Add(DataProvider.Albums.GetRandomItem());
                 }
                 
-                return View(albums);
+                return View("Album/Index", albums);
             }    
             else
             {
                 var album = DataProvider.Albums.Find(a => a.Id.Equals(id));
+
                 return album == null ? NotFound() : 
-                    View(AlbumViewModel.DETAIL_VIEW_PATH, new AlbumViewModel.Detail(album));
+                    View(AlbumViewModel.DETAIL_VIEW_NAME, new AlbumViewModel.Detail(album));
             }    
         }
 

@@ -6,7 +6,7 @@ namespace Website.Models
 {
     public static class AlbumViewModel 
     {
-        public const string DETAIL_VIEW_PATH = "Album/Detail";
+        public const string DETAIL_VIEW_NAME = "Album/Detail";
 
         public class Detail
         {

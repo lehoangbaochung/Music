@@ -19,12 +19,5 @@ namespace Music.Extensions
                 .OrderByDescending(album => album.Id)
                 .Take(count).ToList();
         }
-
-        public static List<Video> GetRecentVideos(this Artist artist, int count)
-        {
-            return artist.GetVideos()
-                .OrderByDescending(video => video.Id)
-                .Take(count).ToList();
-        }
     }
 }

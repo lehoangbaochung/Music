@@ -1,23 +1,23 @@
-﻿@model IEnumerable<Music.Models.Video>
+﻿@model IEnumerable<Video>
 
 <div class="card shadow m-3">
     <div class="card-body">
         <div class="row">
             @{
-                foreach (var item in Model)
+                foreach (var song in Model)
                 {
-                    var id = $"zh{ item.Id }"; 
+                    var id = $"zh{ song.Id }"; 
                     <div class="col-md-4 mt-2 mb-2 w-50">
                         @*<partial name="~/Views/Shared/Player.cshtml" model="@item" />*@
                         <div class="card shadow-sm">
                             <a>
                                 <img class="img-fluid" loading="lazy"
-                                     src="@item.ImageUrl" alt="video"
+                                     src="@song.ImageUrl" alt="video"
                                      data-toggle="modal" data-target="#@id">
                             </a>
                             <div class="card-body d-inline-block">
-                                <h6 title="@item.VietnameseName">@item.VietnameseName</h6>
-                                <small class="text-muted float-right">@item.SimplifiedChineseName</small>
+                                <h6 title="@song.VietnameseName">@song.VietnameseName</h6>
+                                <small class="text-muted float-right">@song.SimplifiedChineseName</small>
                             </div>
                         </div>
                     </div>

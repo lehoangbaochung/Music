@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Music.Models.Album>
+
+<div class="modal fade" id="album-modal" tabindex="-1" role="dialog"
+     aria-labelledby="album-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="album-modal-label">Album</h5>
+                <div type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    @{
+                        foreach (var album in Model)
+                        {
+                            <div class="col-6 mt-3 mb-3 text-center">
+                                <a asp-controller="Home" asp-action="Album" asp-route-id="@album.Id">
+                                    <img class="bd-placeholder-img shadow p-0 w-75"
+                                         style="background-color:deeppink;"
+                                         src=@album.ImageUrl loading="lazy" aria-label="album" />
+                                </a>
+                                <h5 class="mt-3">@album.VietnameseName</h5>
+                                <small>@album.SimplifiedChineseName</small>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <div type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                     title="Phát tất cả các bài hát trong album">Phát tất cả</div>
+            </div>
+        </div>
+    </div>
+</div>

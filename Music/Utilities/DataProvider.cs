@@ -20,7 +20,7 @@ namespace Music.Utilities
             {
                 if (songs.Count == 0)
                 {
-                    foreach (var row in DataTable.GetValue(nameof(Song)))
+                    foreach (var row in DataTable.GetValues(nameof(Song)))
                     {
                         songs.Add(new()
                         {
@@ -43,7 +43,7 @@ namespace Music.Utilities
             {
                 if (artists.Count == 0)
                 {
-                    foreach (var row in DataTable.GetValue(nameof(Artist)))
+                    foreach (var row in DataTable.GetValues(nameof(Artist)))
                     {
                         artists.Add(new()
                         {
@@ -66,7 +66,7 @@ namespace Music.Utilities
             {
                 if (albums.Count == 0)
                 {
-                    foreach (var row in DataTable.GetValue(nameof(Album)))
+                    foreach (var row in DataTable.GetValues(nameof(Album)))
                     {
                         albums.Add(new()
                         {
@@ -89,7 +89,7 @@ namespace Music.Utilities
             {
                 if (videos.Count == 0)
                 {
-                    foreach (var row in DataTable.GetValue(nameof(Video)))
+                    foreach (var row in DataTable.GetValues(nameof(Video)))
                     {
                         videos.Add(new()
                         {

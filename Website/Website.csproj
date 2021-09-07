@@ -14,8 +14,4 @@
     <ProjectReference Include="..\Music\Music.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\Layout\" />
-  </ItemGroup>
-
 </Project>

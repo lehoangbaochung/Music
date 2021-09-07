@@ -21,13 +21,6 @@ namespace Music.Extensions
                 .Take(count).ToList();
         }
 
-        public static List<Video> GetVideos(this Album album, int count = 6)
-        {
-            return album.GetVideos()
-                .OrderByDescending(video => video.Id)
-                .Take(count).ToList();
-        }
-
         public static Album GetRelatedAlbum(this Album album)
         {
             return DataProvider.Albums.GetRandomItem();

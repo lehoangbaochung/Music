@@ -2,7 +2,6 @@
 using Music.Extensions;
 using Music.Utilities;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Music.Models
 {
@@ -22,7 +21,7 @@ namespace Music.Models
             if (songs.Count == 0)
             {
                 songs.AddRange(DataProvider.Songs.FindAll(
-                    song => song.ArtistIds.Contains(Id)));
+                    song => song.ArtistId.Contains(Id)));
             }    
             return songs;
         }
@@ -42,7 +41,7 @@ namespace Music.Models
                     if (album != null)
                     {
                         // With songs of this album
-                        foreach (var songId in album.SongId)
+                        foreach (var songId in album.SongId.Split(SPLIT_CHARACTER))
                         {
                             // Correct check
                             if (songId.Equals(song.Id))
@@ -66,8 +65,7 @@ namespace Music.Models
             {
                 foreach (var song in GetSongs())
                 {
-                    videos.AddRange(DataProvider.Videos.FindAll(
-                        video => video.SongId.Equals(song.Id)));
+                    videos.AddRange(song.GetVideos());
                 }
             }    
             return videos;
@@ -75,15 +73,6 @@ namespace Music.Models
 
         public Artist GetRelatedArtist()
             => DataProvider.Artists.GetRandomItem();
-
-        public Category GetGender()
-        {
-            foreach (var category in CategoryId.Split('/'))
-            {
-                return category.Equals(Category.Male) ? Category.Male : Category.Female;
-            }
-            return Category.Female;
-        }
 
         public Dictionary<string, string> GetInformationDict()
         {

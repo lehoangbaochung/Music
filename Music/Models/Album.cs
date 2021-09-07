@@ -1,6 +1,5 @@
 ﻿using Music.Enumerables;
 using Music.Utilities;
-using System;
 using System.Collections.Generic;
 
 namespace Music.Models
@@ -8,8 +7,8 @@ namespace Music.Models
     public class Album : Base
     {
         private readonly List<Song> songs = new();
-        private readonly List<Video> videos = new();
         private readonly List<Artist> artists = new();
+        private readonly List<Video> videos = new();
 
         public string SongId { get; set; } 
 
@@ -27,19 +26,6 @@ namespace Music.Models
                 }
             }
             return songs;
-        }
-
-        public List<Video> GetVideos()
-        {
-            if (videos.Count == 0)
-            {
-                foreach (var song in GetSongs())
-                {
-                    videos.Add(DataProvider.Videos.Find(
-                        video => video.SongId.Equals(song.Id)));
-                }
-            }
-            return videos;
         }
 
         public List<Artist> GetArtists()
@@ -61,6 +47,18 @@ namespace Music.Models
                 }
             }
             return artists;
+        }
+
+        public List<Video> GetVideos()
+        {
+            if (videos.Count == 0)
+            {
+                foreach (var song in GetSongs())
+                {
+                    videos.AddRange(song.GetVideos());
+                }
+            }
+            return videos;
         }
     }
 }

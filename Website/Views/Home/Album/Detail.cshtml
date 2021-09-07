@@ -1,6 +1,4 @@
 ﻿@model AlbumViewModel.Detail
-@using Music.Enumerables;
-@using Music.Extensions;
 @{
     ViewData["Title"] = Model.Album.VietnameseName;
     var informations = new Tuple<string, string>[]
@@ -12,7 +10,7 @@
     <div class="col-md-4 mb-3">
         <div class="card">
             <div class="card-body shadow border-0">
-                <div class="align-items-center text-center">
+                <div class="text-center">
                     <img class="rounded-circle p-3 w-75"
                          src="@Model.Album.ImageUrl"
                          alt="@Model.Album.VietnameseName"
@@ -22,20 +20,24 @@
                         <p class="text-secondary mb-3">
                             @Model.Album.SimplifiedChineseName
                         </p>
-                        <a class="btn btn-success" href="#">
+                        <!-- Button trigger modal -->
+                        <div class="btn btn-success" data-toggle="modal" data-target="#song-modal">
                             Bài hát
                             <h4>@Model.Songs.Count</h4>
-                        </a>
-                        <a class="btn btn-warning" href="#">
+                        </div>
+                        <div class="btn btn-warning" data-toggle="modal" data-target="#artist-modal">
                             Ca sĩ
                             <h4>@Model.Artists.Count</h4>
-                        </a>
-                        <a class="btn btn-danger" href="#">
+                        </div>
+                        <div class="btn btn-danger" data-toggle="modal" data-target="#video-modal">
                             Video
                             <h4>@Model.Videos.Count</h4>
-                        </a>
+                        </div>
                     </div>
                 </div>
+                <!-- Modal -->
+                <partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
+                <partial name="~/Views/Shared/Modal/Artist.cshtml" model="@Model.Artists" />
             </div>
         </div>
         <div class="card mt-3 shadow border">
@@ -55,29 +57,10 @@
                             </svg>
                             @information.Item1
                         </h6>
-                        <span class="text-secondary text-truncate">@information.Item2</span>
+                        <span class="text-secondary">@information.Item2</span>
                     </li>
                 }
             </ul>
-        </div>
-        <!-- Related artists -->
-        <div class="card mt-3 shadow border">
-            <div class="card-body text-center">
-                <h4 class="mb-3">Đề xuất</h4>
-                @{
-                    <div>
-                        <a asp-controller="Home"
-                           asp-action="Album"
-                           asp-route-id="@Model.SecondaryAlbum.Id">
-                            <img class="rounded-circle shadow p-1 w-50"
-                                 style="background-color:red;"
-                                 aria-label="artist" src="@Model.SecondaryAlbum.ImageUrl" />
-                        </a>
-                        <h5 class="mt-3">@Model.SecondaryAlbum.VietnameseName</h5>
-                        <p class="text-secondary">@Model.SecondaryAlbum.SimplifiedChineseName</p>
-                    </div>
-                }
-            </div>
         </div>
     </div>
     <!--Content-->
@@ -85,6 +68,10 @@
         <div class="nav nav-pills justify-content-center h5" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-song-tab" data-toggle="tab" role="tab"
                href="#nav-song" aria-controls="nav-song" aria-selected="true">
+                Án văn
+            </a>
+            <a class="nav-item nav-link" id="nav-artist-tab" data-toggle="tab" role="tab"
+               href="#nav-artist" aria-controls="nav-artist" aria-selected="false">
                 Bài hát
             </a>
             <a class="nav-item nav-link" id="nav-artist-tab" data-toggle="tab" role="tab"
@@ -99,15 +86,15 @@
         <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-song"
                  role="tabpanel" aria-labelledby="nav-song-tab">
-                <partial name="~/Views/Shared/Song.cshtml" model="@Model.Songs" />
+                <partial name="~/Views/Shared/Card/Song.cshtml" model="@Model.Songs" />
             </div>
             <div class="tab-pane fade" id="nav-artist"
                  role="tabpanel" aria-labelledby="nav-artist-tab">
-                <partial name="~/Views/Shared/Artist.cshtml" model="@Model.Artists" />
+                <partial name="~/Views/Shared/Card/Artist.cshtml" model="@Model.Artists" />
             </div>
             <div class="tab-pane fade" id="nav-video"
                  role="tabpanel" aria-labelledby="nav-video-tab">
-                <partial name="~/Views/Shared/Video.cshtml" model="@Model.Videos" />
+                <partial name="~/Views/Shared/Card/Video.cshtml" model="@Model.Videos" />
             </div>
         </div>
     </div>

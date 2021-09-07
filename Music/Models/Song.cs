@@ -1,8 +1,7 @@
-﻿using Music.Interfaces;
+﻿using Music.Enumerables;
+using Music.Interfaces;
 using Music.Utilities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Music.Models
 {
@@ -24,6 +23,13 @@ namespace Music.Models
 
         public string DownloadId { get; set; }
 
+        public string VideoId { get; set; }
+
+        public int Duration { get; set; }
+
+        public string ImageUrl
+            => GetImageUrl(ImageResolution.MQDefault);
+
         public List<Album> GetAlbums()
         {
             if (albums.Count == 0)
@@ -32,7 +38,10 @@ namespace Music.Models
                 {
                     if (album.SongId.Contains(Id))
                     {
-                        albums.Add(album);
+                        if (!albums.Contains(album))
+                        {
+                            albums.Add(album);
+                        }     
                     }    
                 }    
             }
@@ -58,13 +67,8 @@ namespace Music.Models
         {
             if (videos.Count == 0)
             {
-                foreach (var video in DataProvider.Videos)
-                {
-                    if (video.SongId.Equals(Id))
-                    {
-                        videos.Add(video);
-                    }    
-                }
+                videos.AddRange(DataProvider.Videos
+                    .FindAll(v => v.SongId.Equals(Id)));
             }
             return videos;
         }
