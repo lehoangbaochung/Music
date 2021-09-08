@@ -65,6 +65,22 @@ namespace Music.Enumerables
             Other = 91
         }
 
+        public enum SongGenre
+        {
+            Orginal = 100,
+            Cover
+        }
+
+        public enum AlbumGenre
+        {
+            Single = 200
+        }
+
+        public enum ArtistGenre
+        {
+            Njt = 300
+        }
+
         public static string ToString(this string text, Language language = default)
         {
             return language switch

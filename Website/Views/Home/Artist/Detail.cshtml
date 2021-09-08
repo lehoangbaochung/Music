@@ -23,24 +23,26 @@
                             @Model.PrimaryArtist.SimplifiedChineseName
                         </p>
                         <!-- Button trigger modal -->
-                        <div class="btn btn-success" data-toggle="modal" data-target="#song-modal">
-                            Bài hát
-                            <h4>@Model.Songs.Count</h4>
-                        </div>
-                        <div class="btn btn-warning" data-toggle="modal" data-target="#album-modal">
-                            Album
-                            <h4>@Model.Albums.Count</h4>
-                        </div>
-                        <div class="btn btn-danger" data-toggle="modal" data-target="#video-modal">
-                            Video
-                            <h4>@Model.Videos.Count</h4>
+                        <div class="btn-group">
+                            <div class="btn btn-success" data-toggle="modal" data-target="#song-modal">
+                                Bài hát
+                                <h4>@Model.Songs.Count</h4>
+                            </div>
+                            <div class="btn btn-warning" data-toggle="modal" data-target="#album-modal">
+                                Album
+                                <h4>@Model.Albums.Count</h4>
+                            </div>
+                            <div class="btn btn-danger" data-toggle="modal" data-target="#video-modal">
+                                Video
+                                <h4>@Model.Videos.Count</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <!-- Modal -->
                 <partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
                 <partial name="~/Views/Shared/Modal/Album.cshtml" model="@Model.Albums" />
-
+                <partial name="~/Views/Shared/Modal/Video.cshtml" model="@Model.Videos" />
             </div>
         </div>
         <!--Informations-->

@@ -39,15 +39,8 @@ namespace Website.Controllers
         public IActionResult Artist(string id)
         {
             if (id == null)
-            {
-                var artists = DataProvider.Artists;
-
-                ViewBag.Artists = artists.Take(12);
-                ViewBag.NewArtist = artists[0];
-                ViewBag.HotArtist = artists[new Random()
-                    .Next(0, DataProvider.Artists.Count)];
-                
-                return View("Artist/Index");
+            {                
+                return View("Artist/Index", DataProvider.Artists);
             }
 
             var artist = DataProvider.Artists.Find(a => a.Id.Equals(id));

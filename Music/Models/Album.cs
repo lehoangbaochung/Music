@@ -10,7 +10,9 @@ namespace Music.Models
         private readonly List<Artist> artists = new();
         private readonly List<Video> videos = new();
 
-        public string SongId { get; set; } 
+        public string SongId { get; set; }
+
+        public string ReleaseDate { get; set; }
 
         public string ImageUrl
             => GetImageUrl(ImageResolution.Small, ALBUM_IMAGE_ID);

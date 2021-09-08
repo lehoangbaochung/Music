@@ -75,7 +75,12 @@ namespace Music.Utilities
                             VietnameseName = row[(int)DataTable.Album.VietnameseName],
                             PinyinName = row[(int)DataTable.Album.PinyinName],
                             SimplifiedChineseName = row[(int)DataTable.Album.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.Album.TraditionalChineseName]
+                            TraditionalChineseName = row[(int)DataTable.Album.TraditionalChineseName],
+                            //VietnameseDescription = row[(int)DataTable.Album.VietnameseDescription],
+                            //SimplifiedChineseDescription = row[(int)DataTable.Album.SimplifiedChineseDescription],
+                            //TraditionalChineseDescription = row[(int)DataTable.Album.TraditionalChineseDescription],
+                            //ReleaseDate = row[(int)DataTable.Album.ReleaseDate],
+                            //CategoryId = row[(int)DataTable.Album.CategoryId],
                         });
                     }
                 }

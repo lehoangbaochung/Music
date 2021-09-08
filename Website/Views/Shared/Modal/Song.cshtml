@@ -1,11 +1,13 @@
-﻿@model IEnumerable<Music.Models.Song>
+﻿@model IEnumerable<Song>
 
 <div class="modal fade" id="song-modal" tabindex="-1" role="dialog"
      aria-labelledby="song-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="song-modal-label">Bài hát</h5>
+                <h5 class="modal-title" id="song-modal-label">
+                    Bài hát
+                </h5>
                 <div type="button" class="close" data-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">&times;</span>
                 </div>
@@ -26,8 +28,8 @@
                 }
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Phát tất cả</button>
+                <div class="btn btn-secondary" data-dismiss="modal">Đóng</div>
+                <div class="btn btn-primary">Phát tất cả</div>
             </div>
         </div>
     </div>
