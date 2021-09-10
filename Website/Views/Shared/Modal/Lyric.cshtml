@@ -1,0 +1,55 @@
+﻿@model Song
+
+<div class="modal fade" id="lyric-modal" tabindex="-1" role="dialog"
+     aria-labelledby="lyric-modal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lyric-modal-label">Lời nhạc</h5>
+                <div type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true">&times;</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-vi"
+                         role="tabpanel" aria-labelledby="nav-vi-tab">
+                        <p>@Model.VietnameseLyric</p>
+                    </div>
+                    <div class="tab-pane fade" id="nav-pi"
+                         role="tabpanel" aria-labelledby="nav-pi-tab">
+                        <p>@Model.PinyinLyric</p>
+                    </div>
+                    <div class="tab-pane fade" id="nav-sc"
+                         role="tabpanel" aria-labelledby="nav-sc-tab">
+                        <p>@Model.SimplifiedChineseLyric</p>
+                    </div>
+                    <div class="tab-pane fade" id="nav-tc"
+                         role="tabpanel" aria-labelledby="nav-tc-tab">
+                        <p>@Model.TraditionalChineseLyric</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-vi-tab" data-toggle="tab" role="tab"
+                       href="#nav-vi" aria-controls="nav-vi" aria-selected="true">
+                        Tiếng Việt
+                    </a>
+                    <a class="nav-item nav-link" id="nav-pi-tab" data-toggle="tab" role="tab"
+                       href="#nav-pi" aria-controls="nav-pi" aria-selected="false">
+                        Bính âm
+                    </a>
+                    <a class="nav-item nav-link" id="nav-sc-tab" data-toggle="tab" role="tab"
+                       href="#nav-sc" aria-controls="nav-sc" aria-selected="false">
+                        Giản thể
+                    </a>
+                    <a class="nav-item nav-link" id="nav-tc-tab" data-toggle="tab" role="tab"
+                       href="#nav-tc" aria-controls="nav-tc" aria-selected="false">
+                        Phồn thể
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

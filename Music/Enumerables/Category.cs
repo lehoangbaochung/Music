@@ -73,7 +73,8 @@ namespace Music.Enumerables
 
         public enum AlbumGenre
         {
-            Single = 200
+            Single = 200,
+            EP
         }
 
         public enum ArtistGenre

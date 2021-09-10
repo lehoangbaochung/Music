@@ -19,7 +19,8 @@
                                 <a>
                                     <img class="bd-placeholder-img shadow p-0 w-75"
                                          style="background-color:deeppink;"
-                                         src=@video.ImageUrl loading="lazy" aria-label="album" />
+                                         src=@video.ImageUrl loading="lazy" 
+                                         aria-label="@video.VietnameseName" />
                                 </a>
                                 <h6 class="mt-3">@video.VietnameseName</h6>
                                 <small>@video.SimplifiedChineseName</small>
@@ -29,9 +30,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <div type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom">
-                    Phát tất cả</div>
+                <div class="btn btn-primary">Phát tuần tự</div>
+                <div class="btn btn-primary">Phát ngẫu nhiên</div>
             </div>
         </div>
     </div>

@@ -16,20 +16,28 @@
                          aria-haspopup="true" aria-expanded="false" />
                     <!--Dropdown menu-->
                     <ul class="dropdown-menu shadow">
-                        <li><a class="dropdown-item">Phát tất cả</a></li>
-                        <li><a class="dropdown-item">Tải xuống tất cả</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item"
+                               title="Phát tất cả bài hát trong album">Phát</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               title="Tải xuống tất cả bài hát trong album">Tải xuống</a>
+                        </li>
                         <li>
                             <a class="dropdown-item"
                                data-toggle="modal" data-target="#information-modal">
                                 Thông tin
                             </a>
                         </li>
+                        <li><hr class="dropdown-divider"></li>
+
                         <li>
                             <a class="dropdown-item">Chia sẻ</a>
                         </li>
                     </ul>
                     <div class="mt-3">
+                        <!--Title-->
                         <h3>@Model.Album.VietnameseName</h3>
                         <p class="text-secondary mb-3">
                             @Model.Album.SimplifiedChineseName
@@ -119,6 +127,8 @@
                 </li>
             </ul>
         </div>
+        <!--Related-->
+        <partial name="~/Views/Shared/Card/Related.cshtml" model="@Model.Artists.Take(3)" />
     </div>
     <!--Content-->
     <div class="col-md-8">

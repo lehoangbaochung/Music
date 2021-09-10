@@ -6,6 +6,7 @@ namespace Website.Models
 {
     public static class AlbumViewModel 
     {
+        public const string INDEX_VIEW_NAME = "Album/Index";
         public const string DETAIL_VIEW_NAME = "Album/Detail";
 
         public class Detail

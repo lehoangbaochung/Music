@@ -16,8 +16,32 @@
                     <img class="rounded-circle p-3 w-75"
                          src="@Model.PrimaryArtist.ImageUrl"
                          alt="@Model.PrimaryArtist.VietnameseName"
-                         style="background-color:@primaryBorderColor;" />
+                         style="background-color:@primaryBorderColor;"
+                         id="dropdown" data-toggle="dropdown"
+                         aria-haspopup="true" aria-expanded="false" />
+                    <!--Dropdown menu-->
+                    <ul class="dropdown-menu shadow">
+                        <li><a class="dropdown-item" title="Phát tất cả bài hát">Phát</a></li>
+                        <li><a class="dropdown-item"
+                               data-toggle="modal" data-target="#error-modal">Theo dõi</a></li>
+                        <li>
+                            <a class="dropdown-item"
+                               data-toggle="modal" data-target="#information-modal">
+                                Thông tin
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item"
+                               data-toggle="modal" data-target="#error-modal">Chia sẻ</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item"
+                               data-toggle="modal" data-target="#error-modal">Báo cáo</a>
+                        </li>
+                    </ul>
                     <div class="mt-3">
+                        <!--Title-->
                         <h3>@Model.PrimaryArtist.VietnameseName</h3>
                         <p class="text-secondary mb-3">
                             @Model.PrimaryArtist.SimplifiedChineseName
@@ -39,10 +63,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
-                <partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
-                <partial name="~/Views/Shared/Modal/Album.cshtml" model="@Model.Albums" />
-                <partial name="~/Views/Shared/Modal/Video.cshtml" model="@Model.Videos" />
             </div>
         </div>
         <!--Informations-->
@@ -67,6 +87,8 @@
                 }
             </ul>
         </div>
+        <!--Related-->
+        <partial name="~/Views/Shared/Card/Related.cshtml" model="@Model.Songs.Take(3)" />
     </div>
     <!--Content-->
     <div class="col-md-8">
@@ -100,3 +122,9 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
+<partial name="~/Views/Shared/Modal/Album.cshtml" model="@Model.Albums" />
+<partial name="~/Views/Shared/Modal/Video.cshtml" model="@Model.Videos" />
+<partial name="~/Views/Shared/Modal/Information.cshtml" model="@Model.PrimaryArtist" />
+<partial name="~/Views/Shared/Modal/Error.cshtml" />

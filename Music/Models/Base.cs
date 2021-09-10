@@ -22,6 +22,9 @@ namespace Music.Models
         public string SimplifiedChineseDescription { get; set; }
         public string TraditionalChineseDescription { get; set; }
 
+        public string ImageUrl
+            => GetImageUrl(ImageResolution.MQDefault);
+
         protected string GetImageUrl(ImageResolution imageResolution, string imageId = null)
         {
             if (imageId == null)
