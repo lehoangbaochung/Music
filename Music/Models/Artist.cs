@@ -1,6 +1,6 @@
 ﻿using Music.Enumerables;
 using Music.Extensions;
-using Music.Utilities;
+using Music.Extensions;
 using System.Collections.Generic;
 
 namespace Music.Models
@@ -70,9 +70,6 @@ namespace Music.Models
             }    
             return videos;
         }
-
-        public Artist GetRelatedArtist()
-            => DataProvider.Artists.GetRandomItem();
 
         public Dictionary<string, string> GetInformationDict()
         {

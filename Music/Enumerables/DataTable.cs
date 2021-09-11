@@ -13,11 +13,14 @@ namespace Music.Enumerables
             PinyinName = 3,
             SimplifiedChineseName = 4,
             TraditionalChineseName = 5,
-            VietnameseLyric = 6,
-            PinyinLyric = 7,
-            SimplifiedChineseLyric = 8,
-            TraditionalChineseLyric = 9,
-            DownloadId = 10,
+            VietnameseDescription = 6,
+            SimplifiedChineseDescription = 7,
+            TraditionalChineseDescription = 8,
+            VietnameseLyric = 9,
+            PinyinLyric = 10,
+            SimplifiedChineseLyric = 11,
+            TraditionalChineseLyric = 12,
+            DownloadId = 13,
             CategoryId
         }
 

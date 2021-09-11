@@ -1,4 +1,5 @@
 ﻿using Music.Enumerables;
+using Music.Extensions;
 using System.ComponentModel.DataAnnotations;
 
 namespace Music.Models
@@ -16,7 +17,18 @@ namespace Music.Models
         [Display(Name = "Ngày đăng")]
         public string ReleaseDate { get; set; }
 
-        public string ImageUrl
-            => GetImageUrl(ImageResolution.MQDefault);
+        public Video() { }
+
+        public Video(string songId)
+        {
+            var song = DataProvider.Songs.Find(s => s.Id.Equals(songId));
+
+            if (song == null) return;
+
+            VietnameseName = song.VietnameseName;
+            PinyinName = song.PinyinName;
+            SimplifiedChineseName = song.SimplifiedChineseName;
+            TraditionalChineseName = song.TraditionalChineseName;
+        }
     }
 }

@@ -23,31 +23,31 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex font-weight-bold justify-content-end">
                     <ul class="navbar-nav flex-grow-0">
                         <li class="nav-item">
-                            <a class="nav-link text-primary" 
-                               asp-controller="Home" asp-action="Index" asp-route-id="">BÀI HÁT</a>
+                            <a class="nav-link text-primary"
+                               data-toggle="modal" data-target="#error-modal">BÀI HÁT</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" 
+                            <a class="nav-link text-primary"
                                asp-controller="Home" asp-action="Artist" asp-route-id="">CA SĨ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" 
+                            <a class="nav-link text-primary"
                                asp-controller="Home" asp-action="Album" asp-route-id="">ALBUM</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" 
-                               asp-controller="Home" asp-action="Privacy" asp-route-id="">VIDEO</a>
+                            <a class="nav-link text-primary"
+                               data-toggle="modal" data-target="#error-modal">VIDEO</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" 
-                               asp-controller="Home" asp-action="Privacy">THỂ LOẠI</a>
+                            <a class="nav-link text-primary"
+                               data-toggle="modal" data-target="#error-modal">THỂ LOẠI</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" 
-                               asp-controller="Home" asp-action="Privacy">BẢNG XẾP HẠNG</a>
+                            <a class="nav-link text-primary"
+                               data-toggle="modal" data-target="#error-modal">BẢNG XẾP HẠNG</a>
                         </li>
                         <li>
-                            <input type="search" class="form-control form-control-dark" 
+                            <input type="search" class="form-control form-control-dark"
                                    placeholder="Bài hát, ca sĩ, album..." aria-label="Search">
                         </li>
                         <li class="nav-item dropdown">
@@ -66,6 +66,7 @@
                         </li>
                     </ul>
                 </div>
+                <partial name="~/Views/Shared/Modal/Error.cshtml" />
             </div>
         </nav>
     </header>

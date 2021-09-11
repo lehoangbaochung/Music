@@ -1,6 +1,8 @@
 ﻿using Music.Enumerables;
+using Music.Extensions;
 using Music.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Website.Models
 {
@@ -15,18 +17,19 @@ namespace Website.Models
         {
             public Detail(Artist artist)
             {
-                PrimaryArtist = artist;
+                Artist = artist;
             }
 
-            public Artist PrimaryArtist { get; set; }
+            public Artist Artist { get; set; }
 
-            public Artist SecondaryArtist => PrimaryArtist.GetRelatedArtist();
+            public List<Artist> RelatedArtists 
+                => DataProvider.Artists.Take(5).ToList();
 
-            public List<Song> Songs => PrimaryArtist.GetSongs();
+            public List<Song> Songs => Artist.GetSongs();
 
-            public List<Album> Albums => PrimaryArtist.GetAlbums();
+            public List<Album> Albums => Artist.GetAlbums();
 
-            public List<Video> Videos => PrimaryArtist.GetVideos();
+            public List<Video> Videos => Artist.GetVideos();
         }
     }
 }

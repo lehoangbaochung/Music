@@ -2,7 +2,7 @@
 using Music.Models;
 using System.Collections.Generic;
 
-namespace Music.Utilities
+namespace Music.Extensions
 {
     public class DataProvider
     {
@@ -30,6 +30,13 @@ namespace Music.Utilities
                             PinyinName = row[(int)DataTable.Song.PinyinName],
                             SimplifiedChineseName = row[(int)DataTable.Song.SimplifiedChineseName],
                             TraditionalChineseName = row[(int)DataTable.Song.TraditionalChineseName],
+                            VietnameseDescription = row[(int)DataTable.Song.VietnameseDescription],
+                            SimplifiedChineseDescription = row[(int)DataTable.Song.SimplifiedChineseDescription],
+                            TraditionalChineseDescription = row[(int)DataTable.Song.TraditionalChineseDescription],
+                            VietnameseLyric = row[(int)DataTable.Song.VietnameseLyric],
+                            PinyinLyric = row[(int)DataTable.Song.PinyinLyric],
+                            SimplifiedChineseLyric = row[(int)DataTable.Song.SimplifiedChineseLyric],
+                            TraditionalChineseLyric = row[(int)DataTable.Song.TraditionalChineseLyric],
                         });
                     }
                 }    
@@ -52,7 +59,10 @@ namespace Music.Utilities
                             VietnameseName = row[(int)DataTable.Artist.VietnameseName],
                             PinyinName = row[(int)DataTable.Artist.PinyinName],
                             SimplifiedChineseName = row[(int)DataTable.Artist.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.Artist.TraditionalChineseName]
+                            TraditionalChineseName = row[(int)DataTable.Artist.TraditionalChineseName],
+                            VietnameseDescription = row[(int)DataTable.Artist.VietnameseDescription],
+                            SimplifiedChineseDescription = row[(int)DataTable.Artist.SimplifiedChineseDescription],
+                            TraditionalChineseDescription = row[(int)DataTable.Artist.TraditionalChineseDescription],
                         });
                     }
                 }

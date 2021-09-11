@@ -8,8 +8,6 @@ namespace Music.Models
 
         public string Address { get; set; }
 
-        public string ImageUrl { get; }
-
         public string VietnameseFullName { get; set; }
 
         public string PinyinFullName { get; set; }

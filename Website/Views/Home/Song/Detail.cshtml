@@ -12,6 +12,7 @@
                                 src="https://www.youtube.com/embed/@Model.Song.Id"></iframe>
                     </div>
                     <div class="mt-3">
+                        <!--Title-->
                         <h3>@Model.Song.VietnameseName</h3>
                         <p class="text-secondary mb-3">
                             @Model.Song.SimplifiedChineseName
@@ -105,8 +106,8 @@
     <!--Content-->
     <div class="col-md-8">
         <div class="nav nav-pills justify-content-center h5 mb-3" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link active" id="nav-information-tab" data-toggle="tab" role="tab"
-               href="#nav-information" aria-controls="nav-information" aria-selected="true">
+            <a class="nav-item nav-link active" id="nav-desc-tab" data-toggle="tab" role="tab"
+               href="#nav-desc" aria-controls="nav-desc" aria-selected="true">
                 Thông tin
             </a>
             <a class="nav-item nav-link" id="nav-lyric-tab" data-toggle="tab" role="tab"
@@ -115,245 +116,54 @@
             </a>
         </div>
         <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-information"
-                 role="tabpanel" aria-labelledby="nav-information-tab">
-                <div id="accordion">
+            <div class="tab-pane fade show active" id="nav-desc"
+                 role="tabpanel" aria-labelledby="nav-desc-tab">
+                <div id="desc-accordion">
                     <div class="card">
-                        <div class="card-header" id="headingOne">
+                        <div class="card-header" id="vi-desc-heading">
                             <h5 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-link" data-toggle="collapse" aria-expanded="true" 
+                                        data-target="#vi-desc-collapse" aria-controls="vi-desc-collapse">
                                     Tiếng Việt
                                 </button>
                             </h5>
                         </div>
-
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="vi-desc-collapse" class="collapse show" 
+                             aria-labelledby="vi-desc-heading" data-parent="#desc-accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                @Model.Song.VietnameseDescription.Replace("\r", "\n")
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header" id="headingThree">
+                        <div class="card-header" id="sc-desc-heading">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-link" data-toggle="collapse" aria-expanded="false"
+                                        data-target="#sc-desc-collapse" aria-controls="sc-desc-collapse">
                                     Giản thể
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div id="sc-desc-collapse" class="collapse"
+                             aria-labelledby="sc-desc-heading" data-parent="#desc-accordion">
                             <div class="card-body">
-                                申时 - 音阙诗听/昆玉<br />
-                                词：假寐<br />
-                                曲：殇小谨<br />
-                                编曲：Morri3on(喬凡三)<br />
-                                混音：殇小谨<br />
-                                音频编辑：冰镇小灯<br />
-                                母带处理：殇小谨<br />
-                                琵琶：深藏·古筝魂·团团子<br />
-                                古筝：深藏·琵琶魂·紫格<br />
-                                二胡：深藏·小提琴魂·张印<br />
-                                小提琴：深藏·二胡魂·大琴KoTo<br />
-                                笛子：终究是一个人扛下了所有·囚牛<br />
-                                和声：皎月<br />
-                                文案：假寐<br />
-                                封面画师：千机/fzx<br />
-                                视频制作：大琴剪剪<br />
-                                字体设计：睢亦<br />
-                                制作人：殇小谨<br />
-                                监制：李俊羽<br />
-                                出品：音阙诗听<br />
-                                （版权所有 未经许可 请勿使用）<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                锦巷乌檐竹马绕青梅<br />
-                                喜鹊衔红线恰作美<br />
-                                是谁<br />
-                                是谁<br />
-                                添段好梦归<br />
-                                琉璃步摇掌中沐清辉<br />
-                                八宝结巧手缀金穗<br />
-                                是谁<br />
-                                是谁<br />
-                                想把良缘配<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开<br />
-                                唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                桥边柳絮正逢梨花飞<br />
-                                小鸳鸯结伴春心回<br />
-                                登对<br />
-                                登对<br />
-                                好景惹人醉<br />
-                                才子盼良辰食不知味<br />
-                                佳人凭栏锦帕揉碎<br />
-                                登对<br />
-                                登对<br />
-                                多情总相随<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开<br />
-                                唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                太紧张<br />
-                                还是太心慌<br />
-                                小鹿乱撞却不敢张望<br />
-                                摇海棠<br />
-                                借一处风光<br />
-                                把千种思绪偷偷藏<br />
-                                不敢想<br />
-                                却想过半晌<br />
-                                到晌午送晚霞抹红妆<br />
-                                织女牛郎<br />
-                                可牵星河会一场
+                                @Model.Song.SimplifiedChineseDescription
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header" id="tc-heading">
+                        <div class="card-header" id="tc-desc-heading">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#tc-collapse" aria-expanded="false" aria-controls="tc-collapse">
+                                <button class="btn btn-link" data-toggle="collapse" aria-expanded="false"
+                                        data-target="#tc-desc-collapse" aria-controls="tc-desc-collapse">
                                     Phồn thể
                                 </button>
                             </h5>
                         </div>
-                        <div id="tc-collapse" class="collapse" aria-labelledby="tc-heading" data-parent="#accordion">
+                        <div id="tc-desc-collapse" class="collapse"
+                             aria-labelledby="tc-desc-heading" data-parent="#desc-accordion">
                             <div class="card-body">
-                                申时 - 音阙诗听/昆玉<br />
-                                词：假寐<br />
-                                曲：殇小谨<br />
-                                编曲：Morri3on(喬凡三)<br />
-                                混音：殇小谨<br />
-                                音频编辑：冰镇小灯<br />
-                                母带处理：殇小谨<br />
-                                琵琶：深藏·古筝魂·团团子<br />
-                                古筝：深藏·琵琶魂·紫格<br />
-                                二胡：深藏·小提琴魂·张印<br />
-                                小提琴：深藏·二胡魂·大琴KoTo<br />
-                                笛子：终究是一个人扛下了所有·囚牛<br />
-                                和声：皎月<br />
-                                文案：假寐<br />
-                                封面画师：千机/fzx<br />
-                                视频制作：大琴剪剪<br />
-                                字体设计：睢亦<br />
-                                制作人：殇小谨<br />
-                                监制：李俊羽<br />
-                                出品：音阙诗听<br />
-                                （版权所有 未经许可 请勿使用）<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                锦巷乌檐竹马绕青梅<br />
-                                喜鹊衔红线恰作美<br />
-                                是谁<br />
-                                是谁<br />
-                                添段好梦归<br />
-                                琉璃步摇掌中沐清辉<br />
-                                八宝结巧手缀金穗<br />
-                                是谁<br />
-                                是谁<br />
-                                想把良缘配<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开<br />
-                                唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                桥边柳絮正逢梨花飞<br />
-                                小鸳鸯结伴春心回<br />
-                                登对<br />
-                                登对<br />
-                                好景惹人醉<br />
-                                才子盼良辰食不知味<br />
-                                佳人凭栏锦帕揉碎<br />
-                                登对<br />
-                                登对<br />
-                                多情总相随<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开<br />
-                                唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                太紧张<br />
-                                还是太心慌<br />
-                                小鹿乱撞却不敢张望<br />
-                                摇海棠<br />
-                                借一处风光<br />
-                                把千种思绪偷偷藏<br />
-                                不敢想<br />
-                                却想过半晌<br />
-                                到晌午送晚霞抹红妆<br />
-                                织女牛郎<br />
-                                可牵星河会一场
+                                @Model.Song.TraditionalChineseDescription
                             </div>
                         </div>
                     </div>
@@ -361,167 +171,73 @@
             </div>
             <div class="tab-pane fade" id="nav-lyric"
                  role="tabpanel" aria-labelledby="nav-lyric-tab">
-                <div id="accordion">
+                <div id="lyric-accordion">
                     <div class="card">
-                        <div class="card-header" id="headingOne">
+                        <div class="card-header" id="vi-lyric-heading">
                             <h5 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <button class="btn btn-link" data-toggle="collapse" aria-expanded="true"
+                                        data-target="#vi-lyric-collapse" aria-controls="vi-lyric-collapse">
                                     Tiếng Việt
                                 </button>
                             </h5>
                         </div>
-
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="vi-lyric-collapse" class="collapse show"
+                             aria-labelledby="vi-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                @Model.Song.VietnameseLyric
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header" id="headingTwo">
+                        <div class="card-header" id="py-lyric-heading">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <button class="btn btn-link" data-toggle="collapse" aria-expanded="false"
+                                        data-target="#py-lyric-collapse" aria-controls="py-lyric-collapse">
                                     Bính âm
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div id="py-lyric-collapse" class="collapse"
+                             aria-labelledby="py-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                @Model.Song.PinyinLyric
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header" id="headingThree">
+                        <div class="card-header" id="sc-lyric-heading">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <button class="btn btn-link" data-toggle="collapse" aria-expanded="false"
+                                        data-target="#sc-lyric-collapse" aria-controls="sc-lyric-collapse">
                                     Giản thể
                                 </button>
                             </h5>
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                        <div id="sc-lyric-collapse" class="collapse"
+                             aria-labelledby="sc-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                申时 - 音阙诗听/昆玉<br />
-                                词：假寐<br />
-                                曲：殇小谨<br />
-                                编曲：Morri3on(喬凡三)<br />
-                                混音：殇小谨<br />
-                                音频编辑：冰镇小灯<br />
-                                母带处理：殇小谨<br />
-                                琵琶：深藏·古筝魂·团团子<br />
-                                古筝：深藏·琵琶魂·紫格<br />
-                                二胡：深藏·小提琴魂·张印<br />
-                                小提琴：深藏·二胡魂·大琴KoTo<br />
-                                笛子：终究是一个人扛下了所有·囚牛<br />
-                                和声：皎月<br />
-                                文案：假寐<br />
-                                封面画师：千机/fzx<br />
-                                视频制作：大琴剪剪<br />
-                                字体设计：睢亦<br />
-                                制作人：殇小谨<br />
-                                监制：李俊羽<br />
-                                出品：音阙诗听<br />
-                                （版权所有 未经许可 请勿使用）<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                锦巷乌檐竹马绕青梅<br />
-                                喜鹊衔红线恰作美<br />
-                                是谁<br />
-                                是谁<br />
-                                添段好梦归<br />
-                                琉璃步摇掌中沐清辉<br />
-                                八宝结巧手缀金穗<br />
-                                是谁<br />
-                                是谁<br />
-                                想把良缘配<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开<br />
-                                唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                桥边柳絮正逢梨花飞<br />
-                                小鸳鸯结伴春心回<br />
-                                登对<br />
-                                登对<br />
-                                好景惹人醉<br />
-                                才子盼良辰食不知味<br />
-                                佳人凭栏锦帕揉碎<br />
-                                登对<br />
-                                登对<br />
-                                多情总相随<br />
-                                一见你偏爱<br />
-                                一身月牙白<br />
-                                低头动金钗<br />
-                                互赠相思袋<br />
-                                晚霞似你<br />
-                                却无风情可替代<br />
-                                幸甚至哉<br />
-                                得你青睐<br />
-                                一灯入人海<br />
-                                相会老戏台<br />
-                                一点轻粉黛<br />
-                                我采红樱戴<br />
-                                铜锣声开<br />
-                                唱出这钟情痴爱<br />
-                                动人词牌<br />
-                                满堂喝彩<br />
-                                太紧张<br />
-                                还是太心慌<br />
-                                小鹿乱撞却不敢张望<br />
-                                摇海棠<br />
-                                借一处风光<br />
-                                把千种思绪偷偷藏<br />
-                                不敢想<br />
-                                却想过半晌<br />
-                                到晌午送晚霞抹红妆<br />
-                                织女牛郎<br />
-                                可牵星河会一场
+                                @Model.Song.SimplifiedChineseLyric
                             </div>
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header" id="tc-heading">
+                        <div class="card-header" id="tc-lyric-heading">
                             <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#tc-collapse" aria-expanded="false" aria-controls="tc-collapse">
+                                <button class="btn btn-link" data-toggle="collapse" aria-expanded="false"
+                                        data-target="#tc-lyric-collapse" aria-controls="tc-lyric-collapse">
                                     Phồn thể
                                 </button>
                             </h5>
                         </div>
-                        <div id="tc-collapse" class="collapse" aria-labelledby="tc-heading" data-parent="#accordion">
+                        <div id="tc-lyric-collapse" class="collapse"
+                             aria-labelledby="tc-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                
+                                @Model.Song.TraditionalChineseLyric
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="mt-3">
-            <h5>Đề xuất</h5>
         </div>
     </div>
 </div>

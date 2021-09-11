@@ -15,16 +15,22 @@
                     @{
                         foreach (var video in Model)
                         {
-                            <div class="col-6 mt-3 mb-3 text-center">
+                            var id = $"zh{ video.Id }";
+                            <div class="col-6 mt-3 mb-3 text-center"
+                                 data-toggle="modal" data-target="#@id">
                                 <a>
-                                    <img class="bd-placeholder-img shadow p-0 w-75"
-                                         style="background-color:deeppink;"
-                                         src=@video.ImageUrl loading="lazy" 
-                                         aria-label="@video.VietnameseName" />
+                                    <img class="img-fluid shadow p-0 w-75"
+                                         src=@video.ImageUrl loading="lazy"
+                                         alt="@video.VietnameseName" />
                                 </a>
-                                <h6 class="mt-3">@video.VietnameseName</h6>
-                                <small>@video.SimplifiedChineseName</small>
+                                <h6 class="mt-3">
+                                    @video.VietnameseName
+                                </h6>
+                                <small>
+                                    @video.SimplifiedChineseName
+                                </small>
                             </div>
+                            <partial name="~/Views/Shared/Modal/Player.cshtml" model="@video" />
                         }
                     }
                 </div>

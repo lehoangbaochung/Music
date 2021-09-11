@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Music.Utilities
+namespace Music.Extensions
 {
     public static class DataHelper
     {

@@ -1,6 +1,7 @@
 ﻿using Music.Extensions;
 using Music.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Website.Models
 {
@@ -18,7 +19,8 @@ namespace Website.Models
 
             public Album Album { get; set; }
 
-            public Album SecondaryAlbum => Music.Utilities.DataProvider.Albums.GetRandomItem();
+            public List<Album> RelatedAlbums 
+                => Album.GetRelatedAlbums().Take(5).ToList();
 
             public List<Song> Songs => Album.GetSongs();
 
