@@ -1,5 +1,6 @@
 ﻿using Music.Enumerables;
 using Music.Extensions;
+using System;
 using System.Collections.Generic;
 
 namespace Music.Models
@@ -23,8 +24,12 @@ namespace Music.Models
             {
                 foreach (var songId in SongId.Split(SPLIT_CHARACTER))
                 {
-                    songs.Add(DataProvider.Songs.Find(
-                        song => song.Id.Equals(songId)));
+                    var song = DataProvider.Songs.Find(s => s.Id.Equals(songId));
+                    if (song == null)
+                    {
+                        throw new NullReferenceException("Song is not found");
+                    }    
+                    songs.Add(song);
                 }
             }
             return songs;
@@ -38,9 +43,12 @@ namespace Music.Models
                 {
                     foreach (var artistId in song.ArtistId.Split(SPLIT_CHARACTER))
                     {
-                        var artist = DataProvider.Artists.Find(
-                            artist => artist.Id.Equals(artistId));
-
+                        var artist = DataProvider.Artists
+                            .Find(a => a.Id.Equals(artistId));
+                        if (artist == null)
+                        {
+                            throw new NullReferenceException("Artist is not found");
+                        }
                         if (!artists.Contains(artist))
                         {
                             artists.Add(artist);

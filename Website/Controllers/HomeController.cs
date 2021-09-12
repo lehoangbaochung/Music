@@ -1,11 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Music.Extensions;
-using Music.Extensions;
-using System;
-using System.Linq;
 using Website.Models;
-using Website.Utilities;
 
 namespace Website.Controllers
 {
@@ -54,7 +50,7 @@ namespace Website.Controllers
             if (id == null)
             {
                 System.Collections.Generic.List<Music.Models.Album> albums = new();
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 12; i++)
                 {
                     albums.Add(DataProvider.Albums.GetRandomItem());
                 }
