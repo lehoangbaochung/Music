@@ -12,7 +12,7 @@ namespace Music.Models
 
         public string PlaylistId { get; set; }
 
-        public new string ImageUrl
+        public string ImageUrl
             => GetImageUrl(ImageResolution.Medium, ARTIST_IMAGE_ID);
 
         public List<Song> GetSongs()

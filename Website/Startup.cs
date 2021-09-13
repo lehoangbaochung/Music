@@ -40,6 +40,12 @@ namespace Website
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: "basic",
+                    pattern: "{controller}/{id}",
+                    defaults: new { action = "Index" },
+                    constraints: new { action = "Index" }
+                );
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}/{category?}");
                 endpoints.MapControllerRoute(

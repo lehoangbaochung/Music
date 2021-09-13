@@ -4,29 +4,24 @@
     <div class="card-body">
         <div class="row">
             @{
-                foreach (var item in Model)
+                foreach (var album in Model)
                 {
-                    <div class="col-sm-4 mt-3 mb-3 w-50">
-                        <div class="card shadow-sm">
-                            <img src="@item.ImageUrl" alt="@item.VietnameseName" loading="lazy" />
-                            <div class="card-body d-inline-block">
-                                <h6 title="@item.VietnameseName">@item.VietnameseName</h6>
-                                <small class="text-muted float-right">@item.SimplifiedChineseName</small>
-                                <a class="stretched-link"
-                                   asp-controller="Home"
-                                   asp-action="Album"
-                                   asp-route-id="@item.Id"></a>
-                            </div>
-                        </div>
+                    <div class="col-6 col-md-4 col-lg-4 mt-3 mb-3 text-center">
+                        <a asp-controller="Home" asp-action="Album" asp-route-id="@album.Id">
+                            <img class="shadow p-1 w-75" loading="lazy" 
+                                 style="background-color:blue;"
+                                 src=@album.ImageUrl 
+                                 alt="@album.VietnameseName" />
+                        </a>
+                        <h6 class="mt-3">@album.VietnameseName</h6>
+                        <small>@album.SimplifiedChineseName</small>
                     </div>
                 }
             }
         </div>
-        <div>
-            <div class="btn btn-primary float-right"
-                 data-toggle="modal" data-target="#album-modal">
-                Xem tất cả
-            </div>
+        <div class="btn btn-primary float-right"
+             data-toggle="modal" data-target="#album-modal">
+            Xem tất cả
         </div>
     </div>
 </div>

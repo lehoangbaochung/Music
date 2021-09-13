@@ -9,7 +9,5 @@ namespace Music.Interfaces
         string Birthday { get; set; }
 
         string Address { get; set; }
-
-        string ImageUrl { get; }
     }
 }

@@ -117,34 +117,39 @@
                      data-interval="2500" data-ride="carousel">
                     <div class="carousel-inner">
                         @{
+                            var firstArtist = Model.RelatedArtists.First();
                             <div class="carousel-item active">
                                 <a asp-controller="Home"
                                    asp-action="Artist"
-                                   asp-route-id="@Model.RelatedArtists.ElementAt(0).Id">
+                                   asp-route-id="@firstArtist.Id">
                                     <img class="rounded-circle shadow p-1 w-50"
-                                         src="@Model.RelatedArtists.ElementAt(0).ImageUrl"
-                                         alt="@Model.RelatedArtists.ElementAt(0).VietnameseName" />
+                                         src="@firstArtist.ImageUrl" loading="lazy"
+                                         alt="@firstArtist.VietnameseName" />
                                 </a>
                                 <h5 class="mt-3">
-                                    @Model.RelatedArtists.ElementAt(0).VietnameseName
+                                    @firstArtist.VietnameseName
                                 </h5>
                                 <small class="text-secondary">
-                                    @Model.RelatedArtists.ElementAt(0).SimplifiedChineseName
+                                    @firstArtist.SimplifiedChineseName
                                 </small>
                             </div>
                             if (Model.RelatedArtists.Count() < 1) return;
-                            foreach (var item in Model.RelatedArtists.Skip(1))
+                            foreach (var artist in Model.RelatedArtists.Skip(1).Take(4))
                             {
                                 <div class="carousel-item">
                                     <a asp-controller="Home"
                                        asp-action="Artist"
-                                       asp-route-id="@item.Id">
+                                       asp-route-id="@artist.Id">
                                         <img class="rounded-circle shadow p-1 w-50"
-                                             src="@item.ImageUrl"
-                                             alt="@item.VietnameseName" />
+                                             src="@artist.ImageUrl" loading="lazy"
+                                             alt="@artist.VietnameseName" />
                                     </a>
-                                    <h5 class="mt-3">@item.VietnameseName</h5>
-                                    <small class="text-secondary">@item.SimplifiedChineseName</small>
+                                    <h5 class="mt-3">
+                                        @artist.VietnameseName
+                                    </h5>
+                                    <small class="text-secondary">
+                                        @artist.SimplifiedChineseName
+                                    </small>
                                 </div>
                             }
                         }

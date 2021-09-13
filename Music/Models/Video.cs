@@ -17,6 +17,9 @@ namespace Music.Models
         [Display(Name = "Ngày đăng")]
         public string ReleaseDate { get; set; }
 
+        public string ImageUrl
+            => GetImageUrl(ImageResolution.MQDefault);
+
         public Video() { }
 
         public Video(string songId)

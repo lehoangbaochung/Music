@@ -15,7 +15,7 @@ namespace Music.Models
 
         public string ReleaseDate { get; set; }
 
-        public new string ImageUrl
+        public string ImageUrl
             => GetImageUrl(ImageResolution.Small, ALBUM_IMAGE_ID);
 
         public List<Song> GetSongs()

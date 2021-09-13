@@ -2,7 +2,6 @@
 using Music.Extensions;
 using Music.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Website.Models
 {
@@ -22,8 +21,7 @@ namespace Website.Models
 
             public Artist Artist { get; set; }
 
-            public List<Artist> RelatedArtists 
-                => DataProvider.Artists.Take(5).ToList();
+            public List<Artist> RelatedArtists => Artist.GetRelatedArtists();
 
             public List<Song> Songs => Artist.GetSongs();
 

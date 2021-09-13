@@ -1,7 +1,7 @@
-﻿using Music.Enumerables;
-using Music.Interfaces;
+﻿using Music.Interfaces;
 using Music.Extensions;
 using System.Collections.Generic;
+using Music.Enumerables;
 
 namespace Music.Models
 {
@@ -26,6 +26,9 @@ namespace Music.Models
         public string VideoId { get; set; }
 
         public int Duration { get; set; }
+
+        public string ImageUrl
+            => GetImageUrl(ImageResolution.MQDefault);
 
         public List<Album> GetAlbums()
         {

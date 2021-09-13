@@ -15,7 +15,7 @@ namespace Website.Models
 
             public Song Song { get; set; }
 
-            public Song SecondarySong => Music.Extensions.DataProvider.Songs.GetRandomItem();
+            public List<Song> RelatedSongs => Song.GetRelatedSongs();
 
             public List<Album> Albums => Song.GetAlbums();
 

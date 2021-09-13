@@ -11,6 +11,8 @@ namespace Music.Extensions
         private const char JOIN_CHARACTER = '-';
         private const string SPLIT_CHARACTER = "/";
 
+        private static readonly Random random = new();
+
         private static readonly char[] aChars = { 'A', 'Á', 'À', 'Ă', 'Â', 'Á' };
         private static readonly char[] dChars = { 'D', 'Đ' };
         private static readonly char[] eChars = { 'E', 'Ê' };
@@ -183,6 +185,79 @@ namespace Music.Extensions
             return artistName.Remove(artistName.LastIndexOf(splitCharacter)).TrimEnd();
         }
 
+        public static List<Song> GetRelatedSongs(this Song song)
+        {
+            List<Song> songs = new();
+            // Find the songs in the same album
+            foreach (var album in song.GetAlbums())
+            {
+                foreach (var relatedSong in album.GetSongs())
+                {
+                    if (!relatedSong.Equals(song)
+                        && !songs.Contains(relatedSong))
+                    {
+                        songs.Add(relatedSong);
+                    }    
+                }    
+            }    
+            // Find the songs in the same artist
+            foreach (var artist in song.GetArtists())
+            {
+                foreach (var relatedSong in artist.GetSongs())
+                {
+                    if (!relatedSong.Equals(song)
+                        && !songs.Contains(relatedSong))
+                    {
+                        songs.Add(relatedSong);
+                    }
+                }
+            }
+            return songs.Count == 0 ?
+                DataProvider.Songs.OrderBy(relatedSong => random.Next()).ToList() :
+                songs.OrderBy(relatedSong => random.Next()).ToList();
+        }
 
+        /// <summary>
+        /// Get the remain albums of artists in this album
+        /// </summary>
+        /// <param name="album"></param>
+        /// <returns>An album list related to this album</returns>
+        public static List<Album> GetRelatedAlbums(this Album album)
+        {
+            List<Album> albums = new();
+            foreach (var artist in album.GetArtists())
+            {
+                foreach (var relatedAlbum in artist.GetAlbums())
+                {
+                    if (!relatedAlbum.Equals(album) 
+                        && !albums.Contains(relatedAlbum))
+                    {
+                        albums.Add(relatedAlbum);
+                    }    
+                }    
+            }       
+            return albums.Count == 0 ? 
+                DataProvider.Albums.OrderBy(relatedAlbum => random.Next()).ToList() :
+                albums.OrderBy(relatedAlbum => random.Next()).ToList();
+        }
+
+        public static List<Artist> GetRelatedArtists(this Artist artist)
+        {
+            List<Artist> artists = new();
+            foreach (var song in artist.GetSongs())
+            {
+                foreach (var relatedArtist in song.GetArtists())
+                {
+                    if (!relatedArtist.Equals(artist)
+                        && !artists.Contains(relatedArtist))
+                    {
+                        artists.Add(relatedArtist);
+                    }    
+                }    
+            }    
+            return artists.Count == 0 ?
+                DataProvider.Artists.OrderBy(relatedArtist => random.Next()).ToList() :
+                artists.OrderBy(relatedArtist => random.Next()).ToList();
+        }
     }
 }

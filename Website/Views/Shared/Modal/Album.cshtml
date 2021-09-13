@@ -17,7 +17,7 @@
                         {
                             <div class="col-6 mt-3 mb-3 text-center">
                                 <a asp-controller="Home" asp-action="Album" asp-route-id="@album.Id">
-                                    <img class="img-fluid shadow p-0 w-75"
+                                    <img class="img-fluid shadow p-1 w-75"
                                          style="background-color:deeppink;"
                                          src=@album.ImageUrl loading="lazy" aria-label="album" />
                                 </a>
@@ -29,9 +29,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                <div type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                     title="Phát tất cả các bài hát trong album">Phát tất cả</div>
+                <div class="btn btn-primary">Phát tuần tự</div>
+                <div class="btn btn-primary">Phát ngẫu nhiên</div>
             </div>
         </div>
     </div>

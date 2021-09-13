@@ -1,5 +1,4 @@
 ﻿using Music.Models;
-using Music.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,14 +20,6 @@ namespace Music.Extensions
                 .Take(count).ToList();
         }
 
-        public static List<Album> GetRelatedAlbums(this Album album)
-        {
-            List<Album> albums = new();
-            foreach (var artist in album.GetArtists())
-            {
-                albums.AddRange(artist.GetAlbums());
-            }
-            return albums;
-        }
+        
     }
 }
