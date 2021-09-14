@@ -6,7 +6,7 @@
             int index = 1;
             foreach (var song in Model)
             {
-                <a class="row" asp-controller="Home" asp-action="Song" asp-route-id="@song.Id">
+                <a class="row" asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
                     <div class="col-sm-1"><h6>@index</h6></div>
                     <div class="col-sm-6 text-dark"><h6>@song.VietnameseName</h6></div>
                     <div class="col-sm-5 text-secondary">@song.SimplifiedChineseName</div>

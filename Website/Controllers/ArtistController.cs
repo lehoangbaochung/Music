@@ -6,16 +6,15 @@ namespace Website.Controllers
 {
     public class ArtistController : Controller
     {
-        public IActionResult Index(string id)
+        public IActionResult Index()
         {
-            if (id == null)
-            {
-                return View("Index", DataProvider.Artists);
-            }    
+            return View(DataProvider.Artists);
+        }
 
+        public IActionResult Detail(string id)
+        {
             var artist = DataProvider.Artists.Find(a => a.Id.Equals(id));
-            return artist == null ? NotFound() :
-                    View("Detail", new ArtistViewModel.Detail(artist));
+            return artist == null ? NotFound() : View(new ArtistViewModel.Detail(artist));
         }
     }
 }

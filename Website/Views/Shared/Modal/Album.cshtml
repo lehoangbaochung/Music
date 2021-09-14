@@ -16,10 +16,11 @@
                         foreach (var album in Model)
                         {
                             <div class="col-6 mt-3 mb-3 text-center">
-                                <a asp-controller="Home" asp-action="Album" asp-route-id="@album.Id">
+                                <a asp-controller="Album" asp-action="Detail" asp-route-id="@album.Id">
                                     <img class="img-fluid shadow p-1 w-75"
                                          style="background-color:deeppink;"
-                                         src=@album.ImageUrl loading="lazy" aria-label="album" />
+                                         src=@album.ImageUrl 
+                                         loading="lazy" aria-label="album" />
                                 </a>
                                 <h6 class="mt-3">@album.VietnameseName</h6>
                                 <small>@album.SimplifiedChineseName</small>

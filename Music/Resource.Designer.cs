@@ -79,15 +79,6 @@ namespace Music {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s.
-        /// </summary>
-        public static string ApiKey {
-            get {
-                return ResourceManager.GetString("ApiKey", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to T001.
         /// </summary>
         public static string ArtistImageId {
@@ -169,6 +160,15 @@ namespace Music {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AIzaSyAD91OiEeWRoqhsw0peq94qg5joZe47r_s.
+        /// </summary>
+        public static string SheetApiKey {
+            get {
+                return ResourceManager.GetString("SheetApiKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 1znQOtTDJz0UqDs0uB2MQZV3wN0l_J0TrU44d9chH2SI.
         /// </summary>
         public static string SpreadsheetId {
@@ -183,6 +183,15 @@ namespace Music {
         public static string VideoImageUrl {
             get {
                 return ResourceManager.GetString("VideoImageUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AIzaSyBKe3ugpze8tni2Zyw-JeA-sKFCJHKMmUQ.
+        /// </summary>
+        public static string YoutubeApiKey {
+            get {
+                return ResourceManager.GetString("YoutubeApiKey", resourceCulture);
             }
         }
     }

@@ -65,7 +65,7 @@ namespace Music.Enumerables
         public static dynamic GetValues(string tableName)
         {
             var address = $"https://sheets.googleapis.com/v4/spreadsheets/" +
-                $"{ Resource.SpreadsheetId }/values/{ tableName }?key={ Resource.ApiKey }";
+                $"{ Resource.SpreadsheetId }/values/{ tableName }?key={ Resource.SheetApiKey }";
             var jsonString = new WebClient().DownloadString(address);
             dynamic json = JsonConvert.DeserializeObject(jsonString);
             return json.values;
@@ -74,7 +74,7 @@ namespace Music.Enumerables
         public static dynamic GetView(Song song)
         {
             var address = $"https://www.googleapis.com/youtube/v3/videos?part=statistics&id=" +
-                $"{ ((int)song) }&key={ Resource.ApiKey }";
+                $"{ ((int)song) }&key={ Resource.YoutubeApiKey }";
             var jsonString = new WebClient().DownloadString(address);
             dynamic json = JsonConvert.DeserializeObject(jsonString);
             return json.items.statistics;

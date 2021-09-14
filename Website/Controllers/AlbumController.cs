@@ -6,20 +6,20 @@ namespace Website.Controllers
 {
     public class AlbumController : Controller
     {
-        public IActionResult Index(string id)
+        public IActionResult Index()
         {
-            if (id == null)
+            System.Collections.Generic.List<Music.Models.Album> albums = new();
+            for (int i = 0; i < 12; i++)
             {
-                System.Collections.Generic.List<Music.Models.Album> albums = new();
-                for (int i = 0; i < 12; i++)
-                {
-                    albums.Add(DataProvider.Albums.GetRandomItem());
-                }
-                return View("Index", albums);
-            }    
+                albums.Add(DataProvider.Albums.GetRandomItem());
+            }
+            return View(albums);
+        }
 
+        public IActionResult Detail(string id)
+        {
             var album = DataProvider.Albums.Find(a => a.Id.Equals(id));
-            return album == null ? NotFound() : View("Detail", new AlbumViewModel.Detail(album));
+            return album == null ? NotFound() : View(new AlbumViewModel.Detail(album));
         }
     }
 }

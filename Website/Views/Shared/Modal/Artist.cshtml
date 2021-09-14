@@ -16,7 +16,7 @@
                         foreach (var artist in Model)
                         {
                             <div class="col-6 mt-3 mb-3 text-center">
-                                <a asp-controller="Home" asp-action="Artist" asp-route-id="@artist.Id">
+                                <a asp-controller="Artist" asp-action="Detail" asp-route-id="@artist.Id">
                                     <img class="bd-placeholder-img rounded-circle shadow p-1 w-75"
                                          style="background-color:deeppink;"
                                          src=@artist.ImageUrl loading="lazy" aria-label="artist" />

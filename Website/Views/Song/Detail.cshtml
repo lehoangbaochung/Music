@@ -107,16 +107,16 @@
             <div class="card-body text-center">
                 <h4 class="mb-3">Đề xuất</h4>
                 <div id="related-carousel" class="carousel slide"
-                     data-interval="2000" data-ride="carousel">
+                     data-interval="2500" data-ride="carousel">
                     <div class="carousel-inner">
                         @{
                             var firstSong = Model.RelatedSongs.First();
                             <div class="carousel-item active">
-                                <a asp-controller="Home"
-                                   asp-action="Song"
+                                <a asp-controller="Song"
+                                   asp-action="Detail"
                                    asp-route-id="@firstSong.Id">
                                     <img class="shadow p-1 w-75"
-                                         style="background-color:blue;background-size:cover"
+                                         style="background-color:blue;"
                                          src="@firstSong.ImageUrl"
                                          alt="@firstSong.VietnameseName" />
                                 </a>
@@ -131,8 +131,8 @@
                             foreach (var item in Model.RelatedSongs.Skip(1).Take(4))
                             {
                                 <div class="carousel-item">
-                                    <a asp-controller="Home"
-                                       asp-action="Song"
+                                    <a asp-controller="Song"
+                                       asp-action="Detail"
                                        asp-route-id="@item.Id">
                                         <img class="shadow p-1 w-75"
                                              style="background-color:blue;"

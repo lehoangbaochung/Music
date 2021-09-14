@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Video>
-
+@{
+    if (Model.Count() == 0) return;
+}
 <div class="modal fade" id="video-modal" tabindex="-1" role="dialog"
      aria-labelledby="album-modal-label" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">

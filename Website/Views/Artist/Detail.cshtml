@@ -119,10 +119,11 @@
                         @{
                             var firstArtist = Model.RelatedArtists.First();
                             <div class="carousel-item active">
-                                <a asp-controller="Home"
-                                   asp-action="Artist"
+                                <a asp-controller="Artist"
+                                   asp-action="Detail"
                                    asp-route-id="@firstArtist.Id">
                                     <img class="rounded-circle shadow p-1 w-50"
+                                         style="background-color:aqua;"
                                          src="@firstArtist.ImageUrl" loading="lazy"
                                          alt="@firstArtist.VietnameseName" />
                                 </a>
@@ -133,14 +134,15 @@
                                     @firstArtist.SimplifiedChineseName
                                 </small>
                             </div>
-                            if (Model.RelatedArtists.Count() < 1) return;
+                            if (Model.RelatedArtists.Count < 1) return;
                             foreach (var artist in Model.RelatedArtists.Skip(1).Take(4))
                             {
                                 <div class="carousel-item">
-                                    <a asp-controller="Home"
-                                       asp-action="Artist"
+                                    <a asp-controller="Artist"
+                                       asp-action="Detail"
                                        asp-route-id="@artist.Id">
                                         <img class="rounded-circle shadow p-1 w-50"
+                                             style="background-color:limegreen;"
                                              src="@artist.ImageUrl" loading="lazy"
                                              alt="@artist.VietnameseName" />
                                     </a>

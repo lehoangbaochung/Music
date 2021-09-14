@@ -7,16 +7,18 @@
         foreach (var album in Model)
         {
             <div class="col-lg-3 mt-3 mb-3">
-                <a asp-controller="Artist" 
+                <a asp-controller="Album"
+                   asp-action="Detail"
                    asp-route-id="@album.Id">
                    <img class="img-fluid p-1 w-100 border" 
                         style="background-color:deeppink;"
                         src=@album.ImageUrl loading="lazy" 
                         aria-label="album" />
                 </a>
-                <div class="d-flex list-unstyled mt-3 p-0">
+                <div class="d-flex list-unstyled mt-3 p-1">
                     <div class="me-auto">
                         <a asp-controller="Artist" 
+                           asp-action="Detail"
                            asp-route-id="@album.GetArtists()[0].Id">
                             <img src="@album.GetArtists()[0].ImageUrl" 
                                  width="64" height="64" alt="artist" 

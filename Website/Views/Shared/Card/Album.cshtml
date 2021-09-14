@@ -7,7 +7,7 @@
                 foreach (var album in Model)
                 {
                     <div class="col-6 col-md-4 col-lg-4 mt-3 mb-3 text-center">
-                        <a asp-controller="Home" asp-action="Album" asp-route-id="@album.Id">
+                        <a asp-controller="Album" asp-action="Detail" asp-route-id="@album.Id">
                             <img class="shadow p-1 w-75" loading="lazy" 
                                  style="background-color:blue;"
                                  src=@album.ImageUrl 
