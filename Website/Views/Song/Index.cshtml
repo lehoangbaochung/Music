@@ -1,0 +1,69 @@
+﻿@model SongViewModel.Index
+@using Music.Enumerables;
+@{ 
+    ViewBag.Title = "Bài hát";
+}
+
+<div class="row p-3">
+    <!--Recent songs-->
+    <div class="bg-body rounded col-sm-6 mb-5">
+        <div class="border-bottom h6 pb-2 mb-0">
+            Cập nhật gần đây
+            <div class="float-right btn-link"
+                data-toggle="modal" data-target="#song-modal">
+                Xem tất cả
+            </div>
+        </div>
+        @{
+            foreach (var song in Model.RecentSongs.Take(15))
+            {
+                <div class="d-flex text-muted pt-3">
+                    <a asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                        <img class="img-fluid shadow p-1"
+                             style="background-color:deeppink;width:64px;"
+                             src=@song.ImageUrl loading="lazy" aria-label="song" />
+                    </a>
+                    <div class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom">
+                        <a class="d-block text-gray-dark h6" 
+                           asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                            @song.ToString(Language.Vietnamese)
+                        </a>
+                        @song.ToString(Language.SimplifiedChinese)
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <!--Recommend songs-->
+    <div class="bg-body rounded col-sm-6">
+        <div class="border-bottom h6 pb-2 mb-0">
+            Đề xuất cho bạn
+            <h6 class="float-right btn-link"
+                data-toggle="modal" data-target="#song-modal">
+                Xem tất cả
+            </h6>
+        </div>
+        @{
+            foreach (var song in Model.RecommendSongs.Take(15))
+            {
+                <div class="d-flex text-muted pt-3">
+                    <a asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                        <img class="img-fluid shadow p-1"
+                             style="background-color:deeppink;width:64px;"
+                             src=@song.ImageUrl loading="lazy" aria-label="song" />
+                    </a>
+                    <div class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom">
+                        <a class="d-block text-gray-dark h6"
+                           asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                            @song.ToString(Language.Vietnamese)
+                        </a>
+                        @song.ToString(Language.SimplifiedChinese)
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<!--Modals-->
+<partial name="~/Views/Shared/Modal/Song.cshtml" model="@Music.Extensions.DataProvider.Songs.Take(15)" />

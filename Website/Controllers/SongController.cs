@@ -8,6 +8,11 @@ namespace Website.Controllers
 {
     public class SongController : Controller
     {
+        public IActionResult Index()
+        {
+            return View(new SongViewModel.Index());
+        }
+
         public IActionResult Detail(string id)
         {
             var song = DataProvider.Songs.Find(s => s.Id.Equals(id));

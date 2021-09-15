@@ -28,7 +28,7 @@ namespace Music.Models
         public int Duration { get; set; }
 
         public string ImageUrl
-            => GetImageUrl(ImageResolution.MQDefault);
+            => GetAlbums().Count > 0 ? GetAlbums()[0].ImageUrl : GetArtists()[0].ImageUrl;
 
         public List<Album> GetAlbums()
         {
@@ -71,6 +71,31 @@ namespace Music.Models
                     .FindAll(v => v.SongId.Equals(Id)));
             }
             return videos;
+        }
+
+        public string ToString(Language language = Language.Vietnamese)
+        {
+            var artistNames = string.Empty;
+            switch (language)
+            {
+                case Language.English:
+                    GetArtists().ForEach(a => artistNames += a.PinyinName + " & ");
+                    artistNames = artistNames.Remove(artistNames.Length - 3);
+                    return $"{ PinyinName } - { artistNames }";
+                case Language.SimplifiedChinese:
+                    GetArtists().ForEach(a => artistNames += a.SimplifiedChineseName + " & ");
+                    artistNames = artistNames.Remove(artistNames.Length - 3);
+                    return $"{ SimplifiedChineseName } - { artistNames }";
+                case Language.TraditionalChinese:
+                    GetArtists().ForEach(a => artistNames += a.TraditionalChineseName + " & ");
+                    artistNames = artistNames.Remove(artistNames.Length - 3);
+                    return $"{ TraditionalChineseName } - { artistNames }";
+                case Language.Vietnamese:
+                default:
+                    GetArtists().ForEach(a => artistNames += a.VietnameseName + " & ");
+                    artistNames = artistNames.Remove(artistNames.Length - 3);
+                    return $"{ VietnameseName } - { artistNames }";
+            }  
         }
     } 
 }
