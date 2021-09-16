@@ -1,6 +1,6 @@
 ﻿@model SongViewModel.Detail
 @{
-    ViewData["Title"] = Model.Song.VietnameseName;
+    ViewData["Title"] = Model.Song.Name.Vietnamese; 
 }
 <div class="row">
     <div class="col-md-4 mb-3">
@@ -13,9 +13,9 @@
                     </div>
                     <div class="mt-3">
                         <!--Title-->
-                        <h3>@Model.Song.VietnameseName</h3>
+                        <h3>@Model.Song.Name.Vietnamese</h3>
                         <p class="text-secondary mb-3">
-                            @Model.Song.SimplifiedChineseName
+                            @Model.Song.Name.SimplifiedChinese
                         </p>
                         <!-- Button trigger modal -->
                         <div class="btn-group">
@@ -118,13 +118,13 @@
                                     <img class="shadow p-1 w-50"
                                          style="background-color:blue;"
                                          src="@firstSong.ImageUrl"
-                                         alt="@firstSong.VietnameseName" />
+                                         alt="@firstSong.Name.Vietnamese" />
                                 </a>
                                 <h5 class="mt-3">
-                                    @firstSong.VietnameseName
+                                    @firstSong.Name.Vietnamese
                                 </h5>
                                 <small class="text-secondary">
-                                    @firstSong.SimplifiedChineseName
+                                    @firstSong.Name.SimplifiedChinese
                                 </small>
                             </div>
                             if (Model.RelatedSongs.Count < 1) return;
@@ -137,13 +137,13 @@
                                         <img class="shadow p-1 w-50"
                                              style="background-color:blue;"
                                              src="@item.ImageUrl"
-                                             alt="@item.VietnameseName" />
+                                             alt="@item.Name.Vietnamese" />
                                     </a>
                                     <h5 class="mt-3">
-                                        @item.VietnameseName
+                                        @item.Name.Vietnamese
                                     </h5>
                                     <small class="text-secondary">
-                                        @item.SimplifiedChineseName
+                                        @item.Name.SimplifiedChinese
                                     </small>
                                 </div>
                             }
@@ -181,7 +181,7 @@
                         <div id="vi-desc-collapse" class="collapse show"
                                 aria-labelledby="vi-desc-heading" data-parent="#desc-accordion">
                             <div class="card-body">
-                                @Model.Song.VietnameseDescription.Replace("\r", "<br />")
+                                @Model.Song.Description.Vietnamese.Replace("\r", "<br />")
                             </div>
                         </div>
                     </div>
@@ -197,7 +197,7 @@
                         <div id="sc-desc-collapse" class="collapse"
                                 aria-labelledby="sc-desc-heading" data-parent="#desc-accordion">
                             <div class="card-body">
-                                @Model.Song.SimplifiedChineseDescription
+                                @Model.Song.Description.SimplifiedChinese
                             </div>
                         </div>
                     </div>
@@ -213,7 +213,7 @@
                         <div id="tc-desc-collapse" class="collapse"
                                 aria-labelledby="tc-desc-heading" data-parent="#desc-accordion">
                             <div class="card-body">
-                                @Model.Song.TraditionalChineseDescription
+                                @Model.Song.Description.TraditionalChinese
                             </div>
                         </div>
                     </div>
@@ -234,7 +234,7 @@
                         <div id="vi-lyric-collapse" class="collapse show"
                                 aria-labelledby="vi-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                @Model.Song.VietnameseLyric
+                                @Model.Song.Lyric.Vietnamese
                             </div>
                         </div>
                     </div>
@@ -250,7 +250,7 @@
                         <div id="py-lyric-collapse" class="collapse"
                                 aria-labelledby="py-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                @Model.Song.PinyinLyric
+                                @Model.Song.Lyric.Pinyin
                             </div>
                         </div>
                     </div>
@@ -266,7 +266,7 @@
                         <div id="sc-lyric-collapse" class="collapse"
                                 aria-labelledby="sc-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                @Model.Song.SimplifiedChineseLyric
+                                @Model.Song.Lyric.SimplifiedChinese
                             </div>
                         </div>
                     </div>
@@ -282,7 +282,7 @@
                         <div id="tc-lyric-collapse" class="collapse"
                                 aria-labelledby="tc-lyric-heading" data-parent="#lyric-accordion">
                             <div class="card-body">
-                                @Model.Song.TraditionalChineseLyric
+                                @Model.Song.Lyric.TraditionalChinese
                             </div>
                         </div>
                     </div>

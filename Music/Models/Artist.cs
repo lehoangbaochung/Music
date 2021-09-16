@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Music.Models
 {
-    public class Artist : User
+    public class Artist : Base
     {
         private readonly List<Song> songs = new();
         private readonly List<Album> albums = new();
@@ -73,7 +73,7 @@ namespace Music.Models
         public Dictionary<string, string> GetInformationDict()
         {
             Dictionary<string, string> infos = new();
-            foreach (var information in VietnameseDescription.Split("\n"))
+            foreach (var information in Description.Vietnamese.Split("\n"))
             {
                 var value = information.Split(':');
                 infos.Add(value[0], value[1]);

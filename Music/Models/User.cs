@@ -2,7 +2,7 @@
 
 namespace Music.Models
 {
-    public class User : Base, IProfile
+    public class User : Base
     {
         public string Birthday { get; set; }
 

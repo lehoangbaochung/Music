@@ -21,17 +21,5 @@ namespace Music.Models
             => GetImageUrl(ImageResolution.MQDefault);
 
         public Video() { }
-
-        public Video(string songId)
-        {
-            var song = DataProvider.Songs.Find(s => s.Id.Equals(songId));
-
-            if (song == null) return;
-
-            VietnameseName = song.VietnameseName;
-            PinyinName = song.PinyinName;
-            SimplifiedChineseName = song.SimplifiedChineseName;
-            TraditionalChineseName = song.TraditionalChineseName;
-        }
     }
 }

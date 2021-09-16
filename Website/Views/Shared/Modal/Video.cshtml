@@ -23,13 +23,13 @@
                                 <a>
                                     <img class="img-fluid shadow p-0 w-75"
                                          src=@video.ImageUrl loading="lazy"
-                                         alt="@video.VietnameseName" />
+                                         alt="@video.Name.Vietnamese" />
                                 </a>
                                 <h6 class="mt-3">
-                                    @video.VietnameseName
+                                    @video.Name.Vietnamese
                                 </h6>
                                 <small>
-                                    @video.SimplifiedChineseName
+                                    @video.Name.SimplifiedChinese
                                 </small>
                             </div>
                             <partial name="~/Views/Shared/Modal/Player.cshtml" model="@video" />

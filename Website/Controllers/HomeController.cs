@@ -34,7 +34,7 @@ namespace Website.Controllers
         public IActionResult Search(string id)
         {
             var artist = DataProvider.Artists
-                .Find(a => a.VietnameseName.Equals(id));
+                .Find(a => a.Name.Vietnamese.Equals(id));
 
             var song = DataProvider.Songs
                 .Find(s => s.Id.Equals(id));

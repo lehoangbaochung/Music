@@ -1,23 +1,16 @@
-﻿using Music.Interfaces;
-using Music.Extensions;
+﻿using Music.Extensions;
 using System.Collections.Generic;
 using Music.Enumerables;
 
 namespace Music.Models
 {
-    public class Song : Base, ILyric
+    public class Song : Base
     {
         private readonly List<Album> albums = new();
         private readonly List<Artist> artists = new();
         private readonly List<Video> videos = new();
 
-        public string VietnameseLyric { get; set; }
-
-        public string PinyinLyric { get; set; }
-
-        public string SimplifiedChineseLyric { get; set; }
-
-        public string TraditionalChineseLyric { get; set; }
+        public Property Lyric { get; set; }
 
         public string ArtistId { get; set; }
 
@@ -79,22 +72,22 @@ namespace Music.Models
             switch (language)
             {
                 case Language.English:
-                    GetArtists().ForEach(a => artistNames += a.PinyinName + " & ");
+                    GetArtists().ForEach(a => artistNames += a.Name.Pinyin + " & ");
                     artistNames = artistNames.Remove(artistNames.Length - 3);
-                    return $"{ PinyinName } - { artistNames }";
+                    return $"{ Name.Pinyin } - { artistNames }";
                 case Language.SimplifiedChinese:
-                    GetArtists().ForEach(a => artistNames += a.SimplifiedChineseName + " & ");
+                    GetArtists().ForEach(a => artistNames += a.Name.SimplifiedChinese + " & ");
                     artistNames = artistNames.Remove(artistNames.Length - 3);
-                    return $"{ SimplifiedChineseName } - { artistNames }";
+                    return $"{ Name.SimplifiedChinese } - { artistNames }";
                 case Language.TraditionalChinese:
-                    GetArtists().ForEach(a => artistNames += a.TraditionalChineseName + " & ");
+                    GetArtists().ForEach(a => artistNames += a.Name.TraditionalChinese + " & ");
                     artistNames = artistNames.Remove(artistNames.Length - 3);
-                    return $"{ TraditionalChineseName } - { artistNames }";
+                    return $"{ Name.TraditionalChinese } - { artistNames }";
                 case Language.Vietnamese:
                 default:
-                    GetArtists().ForEach(a => artistNames += a.VietnameseName + " & ");
+                    GetArtists().ForEach(a => artistNames += a.Name.Vietnamese + " & ");
                     artistNames = artistNames.Remove(artistNames.Length - 3);
-                    return $"{ VietnameseName } - { artistNames }";
+                    return $"{ Name.Vietnamese } - { artistNames }";
             }  
         }
     } 

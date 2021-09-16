@@ -19,8 +19,8 @@
                     {
                         <a class="row" asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
                             <div class="col-sm-2"><h6>@index</h6></div>
-                            <div class="col-sm-6 text-dark"><h6>@song.VietnameseName</h6></div>
-                            <div class="col-sm-4 text-secondary">@song.SimplifiedChineseName</div>
+                            <div class="col-sm-6 text-dark"><h6>@song.Name.Vietnamese</h6></div>
+                            <div class="col-sm-4 text-secondary">@song.Name.SimplifiedChinese</div>
                         </a>
                         <hr />
                         index++;

@@ -1,5 +1,4 @@
-﻿using Music.Enumerables;
-using Music.Models;
+﻿using Music.Models;
 using System.Collections.Generic;
 
 namespace Music.Extensions
@@ -24,19 +23,28 @@ namespace Music.Extensions
                     {
                         songs.Add(new()
                         {
-                            Id = row[(int)DataTable.Song.Id],
-                            ArtistId = row[(int)DataTable.Song.ArtistId],
-                            VietnameseName = row[(int)DataTable.Song.VietnameseName],
-                            PinyinName = row[(int)DataTable.Song.PinyinName],
-                            SimplifiedChineseName = row[(int)DataTable.Song.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.Song.TraditionalChineseName],
-                            VietnameseDescription = row[(int)DataTable.Song.VietnameseDescription],
-                            SimplifiedChineseDescription = row[(int)DataTable.Song.SimplifiedChineseDescription],
-                            TraditionalChineseDescription = row[(int)DataTable.Song.TraditionalChineseDescription],
-                            VietnameseLyric = row[(int)DataTable.Song.VietnameseLyric],
-                            PinyinLyric = row[(int)DataTable.Song.PinyinLyric],
-                            SimplifiedChineseLyric = row[(int)DataTable.Song.SimplifiedChineseLyric],
-                            TraditionalChineseLyric = row[(int)DataTable.Song.TraditionalChineseLyric],
+                            Id = row[DataTable.PrimaryId],
+                            ArtistId = row[DataTable.ReferenceId],
+                            Name = new()
+                            {
+                                Vietnamese = row[DataTable.Name.Vietnamese],
+                                Pinyin = row[DataTable.Name.Pinyin],
+                                SimplifiedChinese = row[DataTable.Name.SimplifiedChinese],
+                                TraditionalChinese = row[DataTable.Name.TraditionalChinese]
+                            },
+                            Description = new()
+                            {
+                                Vietnamese = row[DataTable.Description.Vietnamese],
+                                SimplifiedChinese = row[DataTable.Description.SimplifiedChinese],
+                                TraditionalChinese = row[DataTable.Description.TraditionalChinese]
+                            },
+                            Lyric = new()
+                            {
+                                Vietnamese = row[DataTable.Lyric.Vietnamese],
+                                Pinyin = row[DataTable.Lyric.Pinyin],
+                                SimplifiedChinese = row[DataTable.Lyric.SimplifiedChinese],
+                                TraditionalChinese = row[DataTable.Lyric.TraditionalChinese]
+                            }
                         });
                     }
                 }    
@@ -54,15 +62,20 @@ namespace Music.Extensions
                     {
                         artists.Add(new()
                         {
-                            Id = row[(int)DataTable.Artist.Id],
-                            //PlaylistId = row[(int)ArtistTable.PlaylistId],
-                            VietnameseName = row[(int)DataTable.Artist.VietnameseName],
-                            PinyinName = row[(int)DataTable.Artist.PinyinName],
-                            SimplifiedChineseName = row[(int)DataTable.Artist.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.Artist.TraditionalChineseName],
-                            VietnameseDescription = row[(int)DataTable.Artist.VietnameseDescription],
-                            SimplifiedChineseDescription = row[(int)DataTable.Artist.SimplifiedChineseDescription],
-                            TraditionalChineseDescription = row[(int)DataTable.Artist.TraditionalChineseDescription],
+                            Id = row[DataTable.PrimaryId],
+                            Name = new()
+                            {
+                                Vietnamese = row[DataTable.Name.Vietnamese],
+                                Pinyin = row[DataTable.Name.Pinyin],
+                                SimplifiedChinese = row[DataTable.Name.SimplifiedChinese],
+                                TraditionalChinese = row[DataTable.Name.TraditionalChinese] 
+                            },
+                            Description = new()
+                            {
+                                Vietnamese = row[DataTable.Description.Vietnamese],
+                                SimplifiedChinese = row[DataTable.Description.SimplifiedChinese],
+                                TraditionalChinese = row[DataTable.Description.TraditionalChinese]
+                            }
                         });
                     }
                 }
@@ -80,17 +93,21 @@ namespace Music.Extensions
                     {
                         albums.Add(new()
                         {
-                            Id = row[(int)DataTable.Album.Id],
-                            SongId = row[(int)DataTable.Album.SongId],
-                            VietnameseName = row[(int)DataTable.Album.VietnameseName],
-                            PinyinName = row[(int)DataTable.Album.PinyinName],
-                            SimplifiedChineseName = row[(int)DataTable.Album.SimplifiedChineseName],
-                            TraditionalChineseName = row[(int)DataTable.Album.TraditionalChineseName],
-                            VietnameseDescription = row[(int)DataTable.Album.VietnameseDescription],
-                            SimplifiedChineseDescription = row[(int)DataTable.Album.SimplifiedChineseDescription],
-                            TraditionalChineseDescription = row[(int)DataTable.Album.TraditionalChineseDescription],
-                            //ReleaseDate = row[(int)DataTable.Album.ReleaseDate],
-                            //CategoryId = row[(int)DataTable.Album.CategoryId],
+                            Id = row[DataTable.PrimaryId],
+                            SongId = row[DataTable.ReferenceId],
+                            Name = new()
+                            {
+                                Vietnamese = row[DataTable.Name.Vietnamese],
+                                Pinyin = row[DataTable.Name.Pinyin],
+                                SimplifiedChinese = row[DataTable.Name.SimplifiedChinese],
+                                TraditionalChinese = row[DataTable.Name.TraditionalChinese]
+                            },
+                            Description = new()
+                            {
+                                Vietnamese = row[DataTable.Description.Vietnamese],
+                                SimplifiedChinese = row[DataTable.Description.SimplifiedChinese],
+                                TraditionalChinese = row[DataTable.Description.TraditionalChinese]
+                            }
                         });
                     }
                 }
@@ -108,8 +125,8 @@ namespace Music.Extensions
                     {
                         videos.Add(new()
                         {
-                            Id = row[(int)DataTable.Video.Id],
-                            SongId = row[(int)DataTable.Video.SongId]
+                            Id = row[DataTable.PrimaryId],
+                            SongId = row[DataTable.ReferenceId]
                         });
                     }
                 }

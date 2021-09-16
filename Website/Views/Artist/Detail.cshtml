@@ -1,6 +1,6 @@
 ﻿@model ArtistViewModel.Detail
 @{
-    ViewData["Title"] = Model.Artist.VietnameseName;
+    ViewData["Title"] = Model.Artist.Name.Vietnamese;
     var primaryBorderColor = Model.Artist.GetBorderColor();
 }
 <div class="row">
@@ -10,7 +10,7 @@
                 <div class="align-items-center text-center">
                     <img class="rounded-circle p-3 w-75"
                          src="@Model.Artist.ImageUrl"
-                         alt="@Model.Artist.VietnameseName"
+                         alt="@Model.Artist.Name.Vietnamese"
                          style="background-color:@primaryBorderColor;"
                          id="dropdown" data-toggle="dropdown"
                          aria-haspopup="true" aria-expanded="false" />
@@ -39,9 +39,9 @@
                     </ul>
                     <div class="mt-3">
                         <!--Title-->
-                        <h3>@Model.Artist.VietnameseName</h3>
+                        <h3>@Model.Artist.Name.Vietnamese</h3>
                         <p class="text-secondary mb-3">
-                            @Model.Artist.SimplifiedChineseName
+                            @Model.Artist.Name.SimplifiedChinese
                         </p>
                         <!-- Button trigger modal -->
                         <div class="btn-group">
@@ -125,13 +125,13 @@
                                     <img class="rounded-circle shadow p-1 w-50"
                                          style="background-color:aqua;"
                                          src="@firstArtist.ImageUrl" loading="lazy"
-                                         alt="@firstArtist.VietnameseName" />
+                                         alt="@firstArtist.Name.Vietnamese" />
                                 </a>
                                 <h5 class="mt-3">
-                                    @firstArtist.VietnameseName
+                                    @firstArtist.Name.Vietnamese
                                 </h5>
                                 <small class="text-secondary">
-                                    @firstArtist.SimplifiedChineseName
+                                    @firstArtist.Name.SimplifiedChinese
                                 </small>
                             </div>
                             if (Model.RelatedArtists.Count < 1) return;
@@ -144,13 +144,13 @@
                                         <img class="rounded-circle shadow p-1 w-50"
                                              style="background-color:limegreen;"
                                              src="@artist.ImageUrl" loading="lazy"
-                                             alt="@artist.VietnameseName" />
+                                             alt="@artist.Name.Vietnamese" />
                                     </a>
                                     <h5 class="mt-3">
-                                        @artist.VietnameseName
+                                        @artist.Name.Vietnamese
                                     </h5>
                                     <small class="text-secondary">
-                                        @artist.SimplifiedChineseName
+                                        @artist.Name.SimplifiedChinese
                                     </small>
                                 </div>
                             }
