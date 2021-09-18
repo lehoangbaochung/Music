@@ -12,8 +12,8 @@ namespace Music.Models
         public string Id { get; set; }
         public string CategoryId { get; set; } = "";
 
-        public Property Name { get; set; }
-        public Property Description { get; set; }
+        public Property Name { get; set; } = new();
+        public Property Description { get; set; } = new();
 
         protected string GetImageUrl(ImageResolution imageResolution, string imageId = null)
         {

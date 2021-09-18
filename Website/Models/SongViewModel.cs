@@ -16,25 +16,27 @@ namespace Website.Models
                 => DataProvider.Songs.Take(15).ToList();
 
             public List<Song> RecommendSongs
-                => DataProvider.Songs.OrderBy(s => random.Next()).ToList();
+                => DataProvider.Songs.OrderBy(s => random.Next()).Take(15).ToList();
         }
 
         public class Detail
         {
+            private readonly Song song;
+
             public Detail(Song song)
             {
-                Song = song;
+                this.song = song;
             }
 
-            public Song Song { get; set; }
+            public Song Song => song;
 
-            public List<Song> RelatedSongs => Song.GetRelatedSongs();
+            public List<Song> RelatedSongs => song.GetRelatedSongs();
 
-            public List<Album> Albums => Song.GetAlbums();
+            public List<Album> Albums => song.GetAlbums();
 
-            public List<Artist> Artists => Song.GetArtists();
+            public List<Artist> Artists => song.GetArtists();
 
-            public List<Video> Videos => Song.GetVideos();
+            public List<Video> Videos => song.GetVideos();
         }
     }
 }

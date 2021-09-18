@@ -1,6 +1,6 @@
 ﻿namespace Music.Models
 {
-    public class VideoStatistic
+    public class Statistic
     {
         public int ViewCount { get; set; }
 

@@ -259,5 +259,60 @@ namespace Music.Extensions
                 DataProvider.Artists.OrderBy(relatedArtist => random.Next()).ToList() :
                 artists.OrderBy(relatedArtist => random.Next()).ToList();
         }
+
+        public static List<Album> GetAlbums(this List<Song> songs)
+        {
+            List<Album> albums = new();
+            foreach (var song in songs)
+            {
+                foreach (var album in song.GetAlbums())
+                {
+                    if (!albums.Contains(album))
+                    {
+                        albums.Add(album);
+                    }
+                }
+            }
+            return albums;
+        }
+
+        public static List<Artist> GetArtists(this List<Song> songs)
+        {
+            List<Artist> artists = new();
+            foreach (var song in songs)
+            {
+                foreach (var artist in song.GetArtists())
+                {
+                    if (!artists.Contains(artist))
+                    {
+                        artists.Add(artist);
+                    }    
+                }    
+            }    
+            return artists;
+        }
+
+        public static List<Video> GetVideos(this List<Song> songs)
+        {
+            List<Video> videos = new();
+            foreach (var song in songs)
+            {
+                foreach (var video in song.GetVideos())
+                {
+                    if (!videos.Contains(video))
+                    {
+                        videos.Add(video);
+                    }    
+                }    
+            }    
+            return videos;
+        }
+
+        public static string GetSongIds(this List<Song> songs)
+        {
+            var songIds = string.Empty;
+            songs.ForEach(song => songIds += song.Id + ',');
+            return songIds.Remove(songIds.Length - 1);
+        }
     }
 }

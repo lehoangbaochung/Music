@@ -15,31 +15,12 @@ namespace Website.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(); 
         }
 
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public IActionResult Download(string id)
-        {
-            var song = DataProvider.Songs
-                .Find(s => s.Id.Equals(id));
-
-            return song == null ? NotFound() : View(song);
-        }
-
-        public IActionResult Search(string id)
-        {
-            var artist = DataProvider.Artists
-                .Find(a => a.Name.Vietnamese.Equals(id));
-
-            var song = DataProvider.Songs
-                .Find(s => s.Id.Equals(id));
-
-            return song == null ? NotFound() : View(song);
         }
     }
 }

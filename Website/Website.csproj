@@ -16,7 +16,6 @@
 
   <ItemGroup>
     <Folder Include="Views\Video\" />
-    <Folder Include="Views\Shared\Models\" />
   </ItemGroup>
 
 </Project>

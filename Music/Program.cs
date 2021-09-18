@@ -6,6 +6,11 @@ namespace Music
     {
         static void Main()
         {
+            Caesar();
+        }
+
+        void Affine()
+        {
             Console.WriteLine("Nhap chuoi: ");
             var str = Console.ReadLine();
             int a = 0;
