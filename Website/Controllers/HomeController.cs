@@ -12,7 +12,7 @@ namespace Website.Controllers
         {
             this.logger = logger;
         }
-
+        
         public IActionResult Index()
         {
             return View(); 

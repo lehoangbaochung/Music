@@ -1,17 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Music.Extensions;
-using Music.Models;
+﻿using Music.Extensions;
 using System;
 using System.Collections.Generic;
-using Website.Models;
 
-namespace Website.Controllers
+namespace Music.Models
 {
-    public class PlayerController : Controller
+    public class Playlist
     {
-        public IActionResult Song(string id)
+        private static readonly List<Song> songs = new();
+        private static readonly List<Video> videos = new();
+
+        public static List<Song> Songs => songs;
+        public static List<Video> Videos => videos;
+
+        public Playlist(string id)
         {
-            List<Song> songs = new();
             foreach (var songId in id.Split(','))
             {
                 var song = DataProvider.Songs
@@ -23,7 +25,6 @@ namespace Website.Controllers
                 }
                 songs.Add(song);
             }
-            return View(new PlayerViewModel.Song(songs));
         }
     }
 }

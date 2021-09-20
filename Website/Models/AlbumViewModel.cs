@@ -20,7 +20,7 @@ namespace Website.Models
 
             public List<Album> RelatedAlbums => Album.GetRelatedAlbums();
 
-            public List<Song> Songs => Album.GetSongs();
+            public List<Music.Models.Song> Songs => Album.GetSongs();
 
             public List<Artist> Artists => Album.GetArtists();
 

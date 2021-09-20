@@ -314,5 +314,28 @@ namespace Music.Extensions
             songs.ForEach(song => songIds += song.Id + ',');
             return songIds.Remove(songIds.Length - 1);
         }
+
+        public static string GetEmbedId(this List<Song> songs)
+        {
+            return songs.Count == 0 ? null :
+                $"{songs[0].Id}?playlist={songs.GetSongIds()}";
+        }
+
+        public static List<Song> GetSongs(string[] songIds)
+        {
+            List<Song> songs = new();
+            foreach (var songId in songIds)
+            {
+                var song = DataProvider.Songs
+                    .Find(s => s.Id.Equals(songId));
+                if (song == null)
+                {
+                    throw new NullReferenceException(
+                        "Not found the song with id " + songId);
+                }
+                songs.Add(song);
+            }
+            return songs;
+        }
     }
 }

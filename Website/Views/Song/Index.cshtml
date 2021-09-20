@@ -1,4 +1,4 @@
-﻿@model SongViewModel.Index
+﻿@model Website.Models.Song.Index
 @using Music.Enumerables;
 @using Music.Extensions; 
 @{ 
@@ -10,7 +10,7 @@
     <div class="bg-body rounded col-sm-6 mb-5">
         <div class="border-bottom h6 pb-2 mb-0">
             Cập nhật gần đây
-            <a class="float-right" asp-controller="Player" 
+            <a class="float-right" asp-controller="Playlist" 
                asp-action="Song" asp-route-id="@Model.RecentSongs.GetSongIds()">
                 Phát tất cả
             </a>
@@ -39,7 +39,7 @@
     <div class="bg-body rounded col-sm-6">
         <div class="border-bottom h6 pb-2 mb-0">
             Đề xuất cho bạn
-            <a class="float-right" asp-controller="Player"
+            <a class="float-right" asp-controller="Playlist"
                asp-action="Song" asp-route-id="@Model.RecommendSongs.GetSongIds()">
                 Phát tất cả
             </a>
