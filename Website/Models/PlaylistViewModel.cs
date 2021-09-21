@@ -6,38 +6,46 @@ namespace Website.Models
 {
     public class PlaylistViewModel
     {
-        public class Song
+        public class Audio
         {
-            private readonly List<Music.Models.Song> songs;
-
-            public Song(List<Music.Models.Song> songs)
+            public Audio(string[] songIds)
             {
-                this.songs = songs;
+                Songs = DataHelper.GetSongs(songIds);
             }
 
-            public string Id => songs.GetEmbedId();
+            public Audio(Album album)
+            {
+                Songs = album.GetSongs();
+            }
 
-            public List<Music.Models.Song> Songs => songs;
+            public Audio(Artist artist)
+            {
+                Songs = artist.GetSongs();
+            }
 
-            public List<Album> Albums => songs.GetAlbums();
+            public string Id => Songs.GetEmbedId();
 
-            public List<Artist> Artists => songs.GetArtists();
+            public List<Song> Songs { get; } = new();
 
-            public List<Video> Videos => songs.GetVideos();
+            public List<Album> Albums => Songs.GetAlbums();
+
+            public List<Artist> Artists => Songs.GetArtists();
+
+            public List<Video> Videos => Songs.GetVideos();
         }
 
         public class Detail
         {
-            private readonly List<Music.Models.Song> songs;
+            private readonly List<Song> songs;
 
-            public Detail(List<Music.Models.Song> songs)
+            public Detail(List<Song> songs)
             {
                 this.songs = songs;
             }
 
             public string Id => songs.GetEmbedId();
 
-            public List<Music.Models.Song> Songs => songs;
+            public List<Song> Songs => songs;
 
             public List<Album> Albums => songs.GetAlbums();
 

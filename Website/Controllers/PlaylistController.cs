@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Music.Extensions;
-using Music.Models;
-using System.Collections.Generic;
+using Website.Models;
 
 namespace Website.Controllers
 {
@@ -9,24 +8,24 @@ namespace Website.Controllers
     {
         public IActionResult Song(string id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            
-            List<Song> songs;
+            return id == null ? NotFound() : 
+                View(new PlaylistViewModel.Audio(id.Split(',')));
+        }
 
-            if (id.Split(',').Length > 0)
-            {
-                songs = DataHelper.GetSongs(id.Split(','));
-            }    
-            else
-            {
-                var album = DataProvider.Albums.Find(a => a.Id.Equals(id));
-                var artist = DataProvider.Artists.Find(a => a.Id.Equals(id));
-                songs = artist.GetSongs() ?? album.GetSongs(); 
-            }
-            return View(new Models.Playlist.Song(songs));
+        public IActionResult Album(string id)
+        {
+            var album = DataProvider.Albums
+                .Find(a => a.Id.Equals(id));
+            return album == null ? NotFound() : 
+                View(new PlaylistViewModel.Audio(album));
+        }
+
+        public IActionResult Artist(string id)
+        {
+            var artist = DataProvider.Artists
+                .Find(a => a.Id.Equals(id));
+            return artist == null ? NotFound() : 
+                View(new PlaylistViewModel.Audio(artist));
         }
 
         public IActionResult Video(string id)

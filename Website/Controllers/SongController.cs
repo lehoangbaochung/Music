@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Music.Extensions;
-using Website.Models.Song;
+using Website.Models.Song2;
 /// <summary>
 /// ngrok http https://localhost:44397 -host-header="localhost:44397"
 /// </summary>
