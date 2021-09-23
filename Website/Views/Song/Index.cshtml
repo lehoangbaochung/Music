@@ -11,7 +11,7 @@
         <div class="border-bottom h6 pb-2 mb-0">
             Cập nhật gần đây
             <a class="float-right" asp-controller="Playlist" 
-               asp-action="Song" asp-route-id="@Model.RecentSongs.GetSongIds()">
+               asp-action="Audio" asp-route-id="@Model.RecentSongs.GetSongIds()">
                 Phát tất cả
             </a>
         </div>
@@ -24,13 +24,15 @@
                              style="background-color:deeppink; width:64px;"
                              src=@song.ImageUrl loading="lazy" aria-label="song" />
                     </a>
-                    <div class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom">
-                        <a class="d-block text-gray-dark h6" 
-                           asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                    <a class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom"
+                       asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                        <div class="d-block text-gray-dark h6">
                             @song.ToString(Language.Vietnamese)
-                        </a>
-                        @song.ToString(Language.SimplifiedChinese)
-                    </div>
+                        </div>
+                        <div class="text-muted">
+                            @song.ToString(Language.SimplifiedChinese)
+                        </div>
+                    </a>
                 </div>
             }
         }
@@ -40,7 +42,8 @@
         <div class="border-bottom h6 pb-2 mb-0">
             Đề xuất cho bạn
             <a class="float-right" asp-controller="Playlist"
-               asp-action="Song" asp-route-id="@Model.RecommendSongs.GetSongIds()">
+               asp-action="Audio" asp-route-id="@Model.RecommendSongs.GetSongIds()"
+               asp-route-shuffle="true">
                 Phát tất cả
             </a>
         </div>
@@ -53,13 +56,15 @@
                              style="background-color:deeppink; width:64px;"
                              src=@song.ImageUrl loading="lazy" aria-label="song" />
                     </a>
-                    <div class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom">
-                        <a class="d-block text-gray-dark h6"
-                           asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                    <a class="pb-3 ml-3 mb-0 small lh-sm w-100 border-bottom"
+                         asp-controller="Song" asp-action="Detail" asp-route-id="@song.Id">
+                        <div class="d-block text-gray-dark h6">
                             @song.ToString(Language.Vietnamese)
-                        </a>
-                        @song.ToString(Language.SimplifiedChinese)
-                    </div>
+                        </div>
+                        <div class="text-muted">
+                            @song.ToString(Language.SimplifiedChinese)
+                        </div>
+                    </a>
                 </div>
             }
         }

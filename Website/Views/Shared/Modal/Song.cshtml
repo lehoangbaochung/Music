@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Song>
+﻿@model ModalViewModel.Song
 @using Music.Enumerables;
 
 <div class="modal fade" id="song-modal" tabindex="-1" role="dialog"
@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="song-modal-label">
-                    Bài hát (@Model.Count())
+                    Bài hát (@Model.Items.Count())
                 </h5>
                 <div type="button" class="close" data-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">&times;</span>
@@ -16,9 +16,9 @@
             <div class="modal-body">
                 @{
                     int index = 1;
-                    foreach (var song in Model)
+                    foreach (var song in Model.Items)
                     {
-                        <a class="row" asp-controller="Song" 
+                        <a class="row" asp-controller="Song"
                            asp-action="Detail" asp-route-id="@song.Id">
                             <div class="col-sm-1"><h6>@index</h6></div>
                             <div class="col-sm-11 text-dark">
@@ -28,14 +28,45 @@
                                 </small>
                             </div>
                         </a>
-                        <hr />
-                        index++;
+                        if (index < Model.Items.Count())
+                        {
+                            <hr />
+                            index++;
+                        }
                     }
                 }
             </div>
             <div class="modal-footer">
-                <div class="btn btn-primary">Phát tuần tự</div>
-                <div class="btn btn-primary">Phát ngẫu nhiên</div>
+                <a class="btn btn-primary" asp-controller="Playlist" asp-action="Audio"
+                   asp-route-id="@Model.Id" asp-route-shuffle="true" title="Phát ngẫu nhiên">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                         fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827
+                              1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98
+                              1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126
+                              2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828
+                              10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595
+                              0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5
+                              0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624
+                              0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z" />
+                        <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36
+                              1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284
+                              0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z" />
+                    </svg>
+                </a>
+                <a class="btn btn-primary" asp-controller="Playlist" asp-action="Audio"
+                   asp-route-id="@Model.Id" title="Phát tuần tự">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                         fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25
+                              0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25
+                              0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5
+                              0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002
+                              0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002
+                              6.002 0 0 1 2.083 9H3.1z" />
+                    </svg>
+                </a>
             </div>
         </div>
     </div>

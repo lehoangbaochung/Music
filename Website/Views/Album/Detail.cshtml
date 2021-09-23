@@ -180,7 +180,7 @@
     </div>
     <!--Content-->
     <div class="col-md-8">
-        <div class="nav nav-pills justify-content-center h5" id="nav-tab" role="tablist">
+        <div class="nav nav-pills justify-content-center h5 mb-3" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-song-tab" data-toggle="tab" role="tab"
                href="#nav-song" aria-controls="nav-song" aria-selected="true">
                 Bài hát
@@ -211,7 +211,8 @@
     </div>
 </div>
 <!-- Modal -->
-<partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
+<partial name="~/Views/Shared/Modal/Song.cshtml" 
+         model="@new ModalViewModel.Song(Model.Album.Id, Model.Songs)" />
 <partial name="~/Views/Shared/Modal/Artist.cshtml" model="@Model.Artists" />
 <partial name="~/Views/Shared/Modal/Video.cshtml" model="@Model.Videos" />
 <partial name="~/Views/Shared/Modal/Information.cshtml" model="@Model.Album" />

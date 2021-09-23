@@ -1,5 +1,4 @@
 ﻿@model PlaylistViewModel.Audio
-@using Music.Enumerables; 
 @{
     ViewBag.Title = "Danh sách phát";
 }
@@ -95,38 +94,12 @@
     </div>
     <!--Content-->
     <div class="col-md-8">
-        <div class="card shadow">
-            <div class="card-body">
-                @{
-                    int index = 1;
-                    foreach (var song in Model.Songs)
-                    {
-                        <a class="row" asp-controller="Song" 
-                           asp-action="Detail" asp-route-id="@song.Id">
-                            <div class="col-sm-1"><h6>@index</h6></div>
-                            <div class="col-sm-11 text-dark">
-                                <h6>@song.ToString(Language.Vietnamese)</h6>
-                                <h6 class="text-secondary small">
-                                    @song.ToString(Language.SimplifiedChinese)
-                                </h6>
-                            </div>
-                        </a>
-                        <hr />
-                        index++;
-                    }
-                }
-                <div>
-                    <div class="btn btn-primary float-right"
-                         data-toggle="modal" data-target="#song-modal">
-                        Xem tất cả
-                    </div>
-                </div>
-            </div>
-        </div>
+        <partial name="~/Views/Shared/Card/Song.cshtml" model="@Model.Songs.Take(15)" />
     </div>
 </div>
 <!-- Modal -->
 <partial name="~/Views/Shared/Modal/Album.cshtml" model="@Model.Albums" />
 <partial name="~/Views/Shared/Modal/Artist.cshtml" model="@Model.Artists" />
 <partial name="~/Views/Shared/Modal/Video.cshtml" model="@Model.Videos" />
-<partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
+<partial name="~/Views/Shared/Modal/Song.cshtml"
+         model="@new ModalViewModel.Song(Model.Id, Model.Songs)" />

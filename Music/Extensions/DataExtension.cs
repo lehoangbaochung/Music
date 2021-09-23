@@ -5,11 +5,8 @@ using System.Linq;
 
 namespace Music.Extensions
 {
-    public static class DataHelper
+    public static class DataExtension
     {
-        private const char JOIN_CHARACTER = '-';
-        private const string SPLIT_CHARACTER = "/";
-
         private static readonly Random random = new();
 
         private static readonly char[] aChars = { 'A', 'Á', 'À', 'Ă', 'Â', 'Á' };
@@ -321,19 +318,32 @@ namespace Music.Extensions
                 $"{songs[0].Id}?playlist={songs.GetSongIds()}";
         }
 
-        public static List<Song> GetSongs(string[] songIds)
+        public static List<Song> GetSongs(string id)
         {
             List<Song> songs = new();
-            foreach (var songId in songIds)
+            var artist = DataProvider.Artists.Find(s => s.Id.Equals(id));
+            if (artist == null)
             {
-                var song = DataProvider.Songs
-                    .Find(s => s.Id.Equals(songId));
-                if (song == null)
+                var album = DataProvider.Albums.Find(a => a.Id.Equals(id));
+                if (album == null)
                 {
-                    throw new NullReferenceException(
-                        "Not found the song with id " + songId);
+                    foreach (var songId in id.Split(','))
+                    {
+                        var song = DataProvider.Songs.Find(s => s.Id.Equals(songId));
+                        if (song != null)
+                        {
+                            songs.Add(song);
+                        }
+                    }
                 }
-                songs.Add(song);
+                else
+                {
+                    songs = album.GetSongs();
+                }
+            }
+            else
+            {
+                songs = artist.GetSongs();
             }
             return songs;
         }

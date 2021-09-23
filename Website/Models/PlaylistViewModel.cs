@@ -1,6 +1,8 @@
 ﻿using Music.Extensions;
 using Music.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Website.Models
 {
@@ -8,19 +10,21 @@ namespace Website.Models
     {
         public class Audio
         {
-            public Audio(string[] songIds)
+            public Audio(string id, bool shuffle = false)
             {
-                Songs = DataHelper.GetSongs(songIds);
-            }
-
-            public Audio(Album album)
-            {
-                Songs = album.GetSongs();
-            }
-
-            public Audio(Artist artist)
-            {
-                Songs = artist.GetSongs();
+                if (id != null)
+                {
+                    if (!shuffle)
+                    {
+                        Songs = DataExtension.GetSongs(id);
+                    }   
+                    else
+                    {
+                        Random random = new();
+                        Songs = DataExtension.GetSongs(id)
+                            .OrderBy(s => random.Next()).ToList();
+                    }    
+                }    
             }
 
             public string Id => Songs.GetEmbedId();
@@ -32,26 +36,6 @@ namespace Website.Models
             public List<Artist> Artists => Songs.GetArtists();
 
             public List<Video> Videos => Songs.GetVideos();
-        }
-
-        public class Detail
-        {
-            private readonly List<Song> songs;
-
-            public Detail(List<Song> songs)
-            {
-                this.songs = songs;
-            }
-
-            public string Id => songs.GetEmbedId();
-
-            public List<Song> Songs => songs;
-
-            public List<Album> Albums => songs.GetAlbums();
-
-            public List<Artist> Artists => songs.GetArtists();
-
-            public List<Video> Videos => songs.GetVideos();
         }
     }
 }

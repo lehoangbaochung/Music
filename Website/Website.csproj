@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Models\Song\" />
     <Folder Include="Views\Video\" />
   </ItemGroup>
 

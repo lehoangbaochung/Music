@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Music.Extensions;
-using Website.Models.Song2;
+using Website.Models;
 /// <summary>
 /// ngrok http https://localhost:44397 -host-header="localhost:44397"
 /// </summary>
@@ -10,13 +10,15 @@ namespace Website.Controllers
     {
         public IActionResult Index()
         {
-            return View(new Index());
+            return View(new SongViewModel.Index());
         }
 
         public IActionResult Detail(string id)
         {
-            var song = DataProvider.Songs.Find(s => s.Id.Equals(id));
-            return song == null ? NotFound() : View(new Detail(song));
+            var song = DataProvider.Songs
+                .Find(s => s.Id.Equals(id));
+            return song == null ? NotFound() :
+                View(new SongViewModel.Detail(song));
         }
 
         public IActionResult Artist(string id)

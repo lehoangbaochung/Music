@@ -193,7 +193,8 @@
     </div>
 </div>
 <!-- Modal -->
-<partial name="~/Views/Shared/Modal/Song.cshtml" model="@Model.Songs" />
+<partial name="~/Views/Shared/Modal/Song.cshtml"
+         model="@new ModalViewModel.Song(Model.Artist.Id, Model.Songs)" />
 <partial name="~/Views/Shared/Modal/Album.cshtml" model="@Model.Albums" />
 <partial name="~/Views/Shared/Modal/Video.cshtml" model="@Model.Videos" />
 <partial name="~/Views/Shared/Modal/Information.cshtml" model="@Model.Artist" />
