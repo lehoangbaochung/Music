@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Song>
+@using Music.Enumerables;
+
+@{
+    int index = 1;
+    foreach (var song in Model)
+    {
+        <a class="row" asp-controller="Song"
+           asp-action="Detail" asp-route-id="@song.Id">
+            <div class="col-sm-1"><h6>@index</h6></div>
+            <div class="col-sm-11 text-dark">
+                <h6>@song.ToString(Language.Vietnamese)</h6>
+                <small class="text-secondary">
+                    @song.ToString(Language.SimplifiedChinese)
+                </small>
+            </div>
+        </a>
+        if (index < Model.Count())
+        {
+            <hr />
+            index++;
+        }
+    }
+}

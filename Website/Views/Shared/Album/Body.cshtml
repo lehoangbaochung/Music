@@ -1,0 +1,66 @@
+﻿@model AlbumViewModel.Detail
+
+<!--Song-->
+<div class="mb-5">
+    <div class="h5 pb-2 mb-0 text-success">
+        <i class="bi bi-music-note"></i>
+        Bài hát
+        <a class="float-right" data-toggle="modal" data-target="#song-@Model.Album.Id-modal">
+            Xem tất cả
+            <i class="bi bi-arrow-up-right-square-fill"></i>
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <partial name="~/Views/Shared/Song/List.cshtml" model="@Model.Songs.Take(10)" />
+        </div>
+    </div>
+</div>
+<!--Artist-->
+<div class="mb-5">
+    <div class="h5 pb-2 mb-0 text-warning">
+        <i class="bi bi-person-fill"></i>
+        Ca sĩ
+        <a class="float-right" data-toggle="modal" data-target="#artist-@Model.Album.Id-modal">
+            Xem tất cả
+            <i class="bi bi-arrow-up-right-square-fill"></i>
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <partial name="~/Views/Shared/Artist/Grid.cshtml" model="@Model.Artists.Take(4)" />
+        </div>
+    </div>
+</div>
+<!--Video-->
+<div class="mb-5">
+    <div class="h5 pb-2 mb-0 text-danger">
+        <i class="bi bi-youtube"></i>
+        Video
+        <a class="float-right" data-toggle="modal" data-target="#video-@Model.Album.Id-modal">
+            Xem tất cả
+            <i class="bi bi-arrow-up-right-square-fill"></i>
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <partial name="~/Views/Shared/Video/Grid.cshtml" model="@Model.Videos.Take(4)" />
+        </div>
+    </div>
+</div>
+<!--Related-->
+<div class="mb-5">
+    <div class="h5 pb-2 mb-0 text-primary">
+        <i class="bi bi-star-fill"></i>
+        Đề xuất
+        <a class="float-right" data-toggle="modal" data-target="#album-@Model.Album.Id-modal">
+            Xem tất cả
+            <i class="bi bi-arrow-up-right-square-fill"></i>
+        </a>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <partial name="~/Views/Shared/Album/Grid.cshtml" model="@Model.RelatedAlbums.Take(4)" />
+        </div>
+    </div>
+</div>

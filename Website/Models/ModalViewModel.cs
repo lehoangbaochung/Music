@@ -1,20 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
 
 namespace Website.Models
 {
     public class ModalViewModel
     {
-        public class Song
-        {
-            public Song(string id, IEnumerable<Music.Models.Song> items)
-            {
-                Id = id;
-                Items = items;
-            }
+        public string Id { get; set; }
 
-            public string Id { get; }
+        public string Title { get; set; }
 
-            public IEnumerable<Music.Models.Song> Items { get; }
-        }
+        public IList Items { get; set; }
     }
 }

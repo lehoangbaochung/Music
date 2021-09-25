@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Song>
+
+<div class="card">
+    <div class="card-body">
+        <!--Body-->
+        <partial name="~/Views/Shared/Song/List.cshtml" model="@Model.Take(15)" />
+        <!--Footer-->
+        <div>
+            <div class="btn btn-primary float-right"
+                 data-toggle="modal" data-target="#song-modal">
+                Xem tất cả
+            </div>
+        </div>
+    </div>
+</div>

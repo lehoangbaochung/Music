@@ -8,9 +8,9 @@ namespace Website.Models
 {
     public class PlaylistViewModel
     {
-        public class Audio
+        public class Song
         {
-            public Audio(string id, bool shuffle = false)
+            public Song(string id, bool shuffle = false)
             {
                 if (id != null)
                 {
@@ -29,13 +29,16 @@ namespace Website.Models
 
             public string Id => Songs.GetEmbedId();
 
-            public List<Song> Songs { get; } = new();
+            public List<Music.Models.Song> Songs { get; } = new();
 
             public List<Album> Albums => Songs.GetAlbums();
 
             public List<Artist> Artists => Songs.GetArtists();
 
             public List<Video> Videos => Songs.GetVideos();
+
+            public ModalViewModel SongModal
+                => new() { Id = Id, Title = $"Bài hát ({Songs.Count})", Items = Songs };
         }
     }
 }

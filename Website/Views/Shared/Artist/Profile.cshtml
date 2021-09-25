@@ -1,0 +1,62 @@
+﻿@model Artist
+
+<div class="card">
+    <div class="card-body shadow border-0">
+        <div class="align-items-center text-center">
+            <img class="rounded-circle p-3 w-75"
+                 src="@Model.ImageUrl"
+                 alt="@Model.Name.Vietnamese"
+                 style="background-color:@Model.GetBorderColor();"
+                 id="dropdown" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false" />
+            <!--Dropdown menu-->
+            <ul class="dropdown-menu shadow">
+                <li><a class="dropdown-item" title="Phát tất cả bài hát">Phát</a></li>
+                <li>
+                    <a class="dropdown-item"
+                       data-toggle="modal" data-target="#error-modal">Theo dõi</a>
+                </li>
+                <li>
+                    <a class="dropdown-item"
+                       data-toggle="modal" data-target="#information-modal">
+                        Thông tin
+                    </a>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                    <a class="dropdown-item"
+                       data-toggle="modal" data-target="#error-modal">Chia sẻ</a>
+                </li>
+                <li>
+                    <a class="dropdown-item"
+                       data-toggle="modal" data-target="#error-modal">Báo cáo</a>
+                </li>
+            </ul>
+            <div class="mt-3">
+                <!--Title-->
+                <h3>@Model.Name.Vietnamese</h3>
+                <p class="text-secondary mb-3">
+                    @Model.Name.SimplifiedChinese
+                </p>
+                <!-- Button trigger modal -->
+                <div class="btn-group">
+                    <div class="btn btn-success"
+                         data-toggle="modal" data-target="#song-@Model.Id-modal">
+                        Bài hát
+                        <h4>@Model.GetSongs().Count</h4>
+                    </div>
+                    <div class="btn btn-warning"
+                         data-toggle="modal" data-target="#album-@Model.Id-modal">
+                        Album
+                        <h4>@Model.GetAlbums().Count</h4>
+                    </div>
+                    <div class="btn btn-danger"
+                         data-toggle="modal" data-target="#video-@Model.Id-modal">
+                        Video
+                        <h4>@Model.GetVideos().Count</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

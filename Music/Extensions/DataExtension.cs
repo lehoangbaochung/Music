@@ -252,8 +252,8 @@ namespace Music.Extensions
                     }    
                 }    
             }    
-            return artists.Count == 0 ?
-                DataProvider.Artists.OrderBy(relatedArtist => random.Next()).ToList() :
+            return artists.Count == 0 ? DataProvider.Artists
+                .OrderBy(relatedArtist => random.Next()).Take(12).ToList() :
                 artists.OrderBy(relatedArtist => random.Next()).ToList();
         }
 

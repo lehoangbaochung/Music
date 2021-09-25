@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Artist>
+
+<div class="card mt-3 mb-3 shadow border">
+    <div class="card-body text-center">
+        <h4 class="mb-3">Đề xuất</h4>
+        <div id="related-carousel" class="carousel slide"
+             data-interval="2500" data-ride="carousel">
+            <div class="carousel-inner">
+                @{
+                    var firstArtist = Model.First();
+                    <div class="carousel-item active">
+                        <a asp-controller="Artist"
+                           asp-action="Detail"
+                           asp-route-id="@firstArtist.Id">
+                            <img class="rounded-circle shadow p-1 w-50"
+                                 style="background-color:aqua;"
+                                 src="@firstArtist.ImageUrl" loading="lazy"
+                                 alt="@firstArtist.Name.Vietnamese" />
+                        </a>
+                        <h5 class="mt-3">
+                            @firstArtist.Name.Vietnamese
+                        </h5>
+                        <small class="text-secondary">
+                            @firstArtist.Name.SimplifiedChinese
+                        </small>
+                    </div>
+                    if (Model.Count() < 1) return;
+                    foreach (var artist in Model.Skip(1).Take(4))
+                    {
+                        <div class="carousel-item">
+                            <a asp-controller="Artist"
+                               asp-action="Detail"
+                               asp-route-id="@artist.Id">
+                                <img class="rounded-circle shadow p-1 w-50"
+                                     style="background-color:limegreen;"
+                                     src="@artist.ImageUrl" loading="lazy"
+                                     alt="@artist.Name.Vietnamese" />
+                            </a>
+                            <h5 class="mt-3">
+                                @artist.Name.Vietnamese
+                            </h5>
+                            <small class="text-secondary">
+                                @artist.Name.SimplifiedChinese
+                            </small>
+                    </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

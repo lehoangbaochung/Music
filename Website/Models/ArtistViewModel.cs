@@ -23,11 +23,23 @@ namespace Website.Models
 
             public List<Artist> RelatedArtists => Artist.GetRelatedArtists();
 
-            public List<Music.Models.Song> Songs => Artist.GetSongs();
+            public List<Song> Songs => Artist.GetSongs();
 
             public List<Album> Albums => Artist.GetAlbums();
 
             public List<Video> Videos => Artist.GetVideos();
+
+            public ModalViewModel SongModal 
+                => new() { Id = Artist.Id, Title = $"Bài hát ({Songs.Count})", Items = Songs };
+
+            public ModalViewModel AlbumModal
+                => new() { Id = Artist.Id, Title = $"Album ({Albums.Count})", Items = Albums };
+
+            public ModalViewModel VideoModal
+                => new() { Id = Artist.Id, Title = $"Video ({Videos.Count})", Items = Videos };
+
+            public ModalViewModel RelatedModal
+                => new() { Id = Artist.Id, Title = $"Đề xuất ({RelatedArtists.Count})", Items = RelatedArtists };
         }
     }
 }

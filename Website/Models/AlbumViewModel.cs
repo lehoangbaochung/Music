@@ -6,9 +6,6 @@ namespace Website.Models
 {
     public static class AlbumViewModel 
     {
-        public const string INDEX_VIEW_NAME = "Album/Index";
-        public const string DETAIL_VIEW_NAME = "Album/Detail";
-
         public class Detail
         {
             public Detail(Album album)
@@ -25,6 +22,18 @@ namespace Website.Models
             public List<Artist> Artists => Album.GetArtists();
 
             public List<Video> Videos => Album.GetVideos();
+
+            public ModalViewModel SongModal
+                => new() { Id = Album.Id, Title = $"Bài hát ({Songs.Count})", Items = Songs };
+
+            public ModalViewModel ArtistModal
+                => new() { Id = Album.Id, Title = $"Ca sĩ ({Artists.Count})", Items = Artists };
+
+            public ModalViewModel VideoModal
+                => new() { Id = Album.Id, Title = $"Video ({Videos.Count})", Items = Videos };
+
+            public ModalViewModel RelatedModal
+                => new() { Id = Album.Id, Title = $"Đề xuất ({RelatedAlbums.Count})", Items = RelatedAlbums };
         }
     }
 }
