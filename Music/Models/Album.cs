@@ -3,7 +3,7 @@ using Music.Extensions;
 using System;
 using System.Collections.Generic;
 
-namespace Music.Models
+namespace Music.Models;
 {
     public class Album : Base
     {

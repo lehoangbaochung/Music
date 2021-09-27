@@ -35,7 +35,7 @@
                 }
             </div>
             <div class="modal-footer">
-                <a class="btn btn-primary" asp-controller="Playlist" asp-action="Audio"
+                <a class="btn btn-primary" asp-controller="Playlist" asp-action="Song"
                    asp-route-id="@Model.Id" asp-route-shuffle="true" title="Phát ngẫu nhiên">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                          fill="currentColor" class="bi bi-shuffle" viewBox="0 0 16 16">
@@ -52,7 +52,7 @@
                               0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z" />
                     </svg>
                 </a>
-                <a class="btn btn-primary" asp-controller="Playlist" asp-action="Audio"
+                <a class="btn btn-primary" asp-controller="Playlist" asp-action="Song"
                    asp-route-id="@Model.Id" title="Phát tuần tự">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                          fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">

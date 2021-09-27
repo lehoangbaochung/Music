@@ -1,0 +1,37 @@
+﻿@model Song
+
+<div class="card">
+    <div class="card-body shadow border-0">
+        <div class="align-items-center text-center">
+            <div class="embed-responsive embed-responsive-1by1 z-depth-0 p-3">
+                <iframe class="embed-responsive-item"
+                        src="https://www.youtube.com/embed/@Model.Id"></iframe>
+            </div>
+            <div class="mt-3">
+                <!--Title-->
+                <h3>@Model.Name.Vietnamese</h3>
+                <p class="text-secondary mb-3">
+                    @Model.Name.SimplifiedChinese
+                </p>
+                <!-- Button trigger modal -->
+                <div class="btn-group">
+                    <div type="button" class="btn btn-success" 
+                         data-toggle="modal" data-target="#album-@Model.Id-modal">
+                        Album
+                        <h4>@Model.GetAlbums().Count</h4>
+                    </div>
+                    <div type="button" class="btn btn-warning" 
+                         data-toggle="modal" data-target="#artist-@Model.Id-modal">
+                        Ca sĩ
+                        <h4>@Model.GetArtists().Count</h4>
+                    </div>
+                    <div type="button" class="btn btn-danger" 
+                         data-toggle="modal" data-target="#video-@Model.Id-modal">
+                        Video
+                        <h4>@Model.GetVideos().Count</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
